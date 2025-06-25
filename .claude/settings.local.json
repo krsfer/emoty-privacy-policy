@@ -12,7 +12,10 @@
       "Bash(python3:*)",
       "Bash(source:*)",
       "Bash(pip install:*)",
-      "Bash(python generate_site.py:*)"
+      "Bash(python generate_site.py:*)",
+      "WebFetch(domain:emoty.fr)",
+      "Bash(ls:*)",
+      "Bash(grep:*)"
     ],
     "deny": []
   }
