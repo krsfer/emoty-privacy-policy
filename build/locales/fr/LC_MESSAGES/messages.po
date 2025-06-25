@@ -1,0 +1,95 @@
+# French translations for Emoty website
+# Copyright (C) 2025 Christopher Archer
+# This file is distributed under the same license as the project.
+# Christopher Archer <support@emoty.fr>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: support@emoty.fr\n"
+"POT-Creation-Date: 2025-06-25 12:00+0000\n"
+"PO-Revision-Date: 2025-06-25 12:00+0000\n"
+"Last-Translator: Christopher Archer <support@emoty.fr>\n"
+"Language-Team: French\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+# Meta tags
+msgid "meta.title"
+msgstr "Emoty - Créateur de Motifs d'Émojis"
+
+msgid "meta.description"
+msgstr "Emoty - Créez de magnifiques motifs d'émojis avec l'assistance IA. Disponible sur Android. Axé sur la confidentialité et conforme COPPA."
+
+msgid "meta.keywords"
+msgstr "Emoty, motifs d'émojis, application créative, Android, générateur de motifs IA, conforme COPPA"
+
+# Header
+msgid "header.tagline"
+msgstr "Créez de Magnifiques Motifs d'Émojis avec l'IA"
+
+# Navigation
+msgid "nav.lang_switch"
+msgstr "English"
+
+# Features
+msgid "features.ai_creation.title"
+msgstr "Création Assistée par IA"
+
+msgid "features.ai_creation.description"
+msgstr "Générez des motifs d'émojis créatifs à partir de prompts texte et obtenez des noms suggérés par l'IA pour vos créations grâce à Claude AI."
+
+msgid "features.palettes.title"
+msgstr "15 Palettes Organisées"
+
+msgid "features.palettes.description"
+msgstr "Choisissez parmi Cœurs & Fleurs, Visages Souriants, Ambiance Nature, Animaux Mignons, Espace & Cosmos et 10 autres collections thématiques."
+
+msgid "features.privacy.title"
+msgstr "Confidentialité d'Abord"
+
+msgid "features.privacy.description"
+msgstr "Toutes les données restent sur votre appareil. Aucune information personnelle collectée. Conforme COPPA et sûr pour tous les âges."
+
+msgid "features.emotybot.title"
+msgstr "Assistant EmotyBot"
+
+msgid "features.emotybot.description"
+msgstr "Obtenez de l'aide et des suggestions créatives de notre assistant IA convivial avec des recommandations d'émojis contextuelles."
+
+msgid "features.share_export.title"
+msgstr "Partage & Export"
+
+msgid "features.share_export.description"
+msgstr "Sauvegardez en images, imprimez en PDF, partagez les motifs par codes, ou exportez toute votre collection en JSON."
+
+msgid "features.voice_commands.title"
+msgstr "Commandes Vocales"
+
+msgid "features.voice_commands.description"
+msgstr "Créez des motifs mains libres avec les commandes vocales en français et anglais avec détection automatique de la langue."
+
+# Call to Action
+msgid "cta.title"
+msgstr "Téléchargez Emoty pour Android"
+
+msgid "cta.description"
+msgstr "Transformez vos émojis en magnifiques motifs. Parfait pour les réseaux sociaux, les décorations ou l'expression créative !"
+
+msgid "cta.download_button"
+msgstr "Télécharger sur Google Play"
+
+msgid "cta.privacy_button"
+msgstr "Politique de Confidentialité"
+
+# Footer
+msgid "footer.rights"
+msgstr "Tous droits réservés."
+
+msgid "footer.privacy_policy"
+msgstr "Politique de Confidentialité"
+
+msgid "footer.contact"
+msgstr "Contact"

@@ -1,0 +1,24 @@
+{
+  "domain": "emoty.fr",
+  "base_url": "https://emoty.fr",
+  "languages": {
+    "en": {
+      "code": "en",
+      "name": "English",
+      "path": "/",
+      "hreflang": "en",
+      "alternate_url": "https://emoty.fr/"
+    },
+    "fr": {
+      "code": "fr", 
+      "name": "Français",
+      "path": "/fr-FR/",
+      "hreflang": "fr-FR",
+      "alternate_url": "https://emoty.fr/fr-FR/"
+    }
+  },
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.carcher.emoty",
+  "contact_email": "support@emoty.fr",
+  "author": "Christopher Archer",
+  "year": "2025"
+}

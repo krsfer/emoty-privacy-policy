@@ -6,7 +6,13 @@
       "Bash(git push:*)",
       "Bash(git pull:*)",
       "Bash(git stash:*)",
-      "Bash(touch:*)"
+      "Bash(touch:*)",
+      "Bash(mkdir:*)",
+      "Bash(python3 -m pip install:*)",
+      "Bash(python3:*)",
+      "Bash(source:*)",
+      "Bash(pip install:*)",
+      "Bash(python generate_site.py:*)"
     ],
     "deny": []
   }

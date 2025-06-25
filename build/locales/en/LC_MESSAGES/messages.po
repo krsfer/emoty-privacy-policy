@@ -1,0 +1,95 @@
+# English translations for Emoty website
+# Copyright (C) 2025 Christopher Archer
+# This file is distributed under the same license as the project.
+# Christopher Archer <support@emoty.fr>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: support@emoty.fr\n"
+"POT-Creation-Date: 2025-06-25 12:00+0000\n"
+"PO-Revision-Date: 2025-06-25 12:00+0000\n"
+"Last-Translator: Christopher Archer <support@emoty.fr>\n"
+"Language-Team: English\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+# Meta tags
+msgid "meta.title"
+msgstr "Emoty - Emoji Pattern Creator"
+
+msgid "meta.description"
+msgstr "Emoty - Create beautiful emoji patterns with AI assistance. Available for Android. Privacy-focused and COPPA compliant."
+
+msgid "meta.keywords"
+msgstr "Emoty, emoji patterns, creative app, Android, AI pattern generator, COPPA compliant"
+
+# Header
+msgid "header.tagline"
+msgstr "Create Beautiful Emoji Patterns with AI"
+
+# Navigation
+msgid "nav.lang_switch"
+msgstr "Français"
+
+# Features
+msgid "features.ai_creation.title"
+msgstr "AI-Powered Creation"
+
+msgid "features.ai_creation.description"
+msgstr "Generate creative emoji patterns from text prompts and get AI-suggested names for your creations using Claude AI."
+
+msgid "features.palettes.title"
+msgstr "15 Curated Palettes"
+
+msgid "features.palettes.description"
+msgstr "Choose from Hearts & Flowers, Happy Faces, Nature Vibes, Cute Animals, Space & Cosmos, and 10 more themed collections."
+
+msgid "features.privacy.title"
+msgstr "Privacy First"
+
+msgid "features.privacy.description"
+msgstr "All data stays on your device. No personal information collected. COPPA compliant and safe for all ages."
+
+msgid "features.emotybot.title"
+msgstr "EmotyBot Assistant"
+
+msgid "features.emotybot.description"
+msgstr "Get help and creative suggestions from our friendly AI chat assistant with contextual emoji recommendations."
+
+msgid "features.share_export.title"
+msgstr "Share & Export"
+
+msgid "features.share_export.description"
+msgstr "Save as images, print as PDFs, share patterns as codes, or export your entire collection as JSON."
+
+msgid "features.voice_commands.title"
+msgstr "Voice Commands"
+
+msgid "features.voice_commands.description"
+msgstr "Create patterns hands-free with voice commands in English and French with automatic language detection."
+
+# Call to Action
+msgid "cta.title"
+msgstr "Get Emoty for Android"
+
+msgid "cta.description"
+msgstr "Transform your emojis into beautiful patterns. Perfect for social media, decorations, or creative expression!"
+
+msgid "cta.download_button"
+msgstr "Download on Google Play"
+
+msgid "cta.privacy_button"
+msgstr "Privacy Policy"
+
+# Footer
+msgid "footer.rights"
+msgstr "All rights reserved."
+
+msgid "footer.privacy_policy"
+msgstr "Privacy Policy"
+
+msgid "footer.contact"
+msgstr "Contact"
