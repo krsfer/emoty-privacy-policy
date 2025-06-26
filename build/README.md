@@ -18,7 +18,7 @@ build/
 ├── generate_site.py          # Main generator script
 ├── babel.cfg                 # Babel extraction config
 ├── requirements.txt          # Python dependencies
-├── venv/                     # Virtual environment
+├── venv/                     # Virtual environment (excluded from git)
 ├── templates/
 │   ├── base.html.j2          # Base template with CSS
 │   └── index.html.j2         # Content template
@@ -36,16 +36,35 @@ build/
 
 ## Installation
 
-1. **Create virtual environment:**
+### First Time Setup
+
+1. **Navigate to build directory:**
 ```bash
 cd build
+```
+
+2. **Create virtual environment:**
+```bash
 python3 -m venv venv
+```
+**Note:** The `venv/` directory is excluded from git via `.gitignore` - each developer creates their own.
+
+3. **Activate virtual environment:**
+```bash
 source venv/bin/activate
 ```
 
-2. **Install dependencies:**
+4. **Install dependencies:**
 ```bash
 pip install -r requirements.txt
+```
+
+### Subsequent Sessions
+
+```bash
+cd build
+source venv/bin/activate
+# Now ready to run build commands
 ```
 
 ## Usage
