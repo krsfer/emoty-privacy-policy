@@ -16,7 +16,9 @@
       "WebFetch(domain:emoty.fr)",
       "Bash(ls:*)",
       "Bash(grep:*)",
-      "Bash(git rm:*)"
+      "Bash(git rm:*)",
+      "Bash(python:*)",
+      "Bash(cp:*)"
     ],
     "deny": []
   }
