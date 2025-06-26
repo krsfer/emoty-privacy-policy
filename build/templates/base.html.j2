@@ -50,22 +50,15 @@
             font-size: 3em;
             color: white;
             letter-spacing: 0.3em;
-            text-decoration: underline;
             text-decoration-color: rgba(255,255,255,0.8);
             text-underline-offset: 8px;
             margin: 0;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         }
-        .emoty-emoji {
-            font-size: 1.2em;
-            margin-left: 8px;
-            vertical-align: super;
-            line-height: 0;
-        }
         .emoty-accent-line {
-            width: 80%;
+            width: 50%;
             height: 3px;
-            margin-top: 12px;
+            margin-top: 0px;
             background: linear-gradient(90deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.4) 100%);
             border-radius: 2px;
         }
@@ -160,15 +153,26 @@
         footer a:hover {
             text-decoration: underline;
         }
-        .emoji-demo {
-            font-size: 2em;
-            text-align: center;
-            margin: 20px auto;
-            line-height: 1.4;
-            max-width: 350px;
-            letter-spacing: 0.25em;
-            word-spacing: 0.15em;
+
+        .emoji-demos {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: clamp(0.5rem, 2vw, 2rem); /* Dynamic spacing between divs */
+            width: 100%;
+            box-sizing: border-box;
         }
+
+        .emoji-demo {
+            font-size: clamp(0.7rem, 2.5vw, 2rem); /* Dynamic font size */
+            text-align: center;
+            margin: 0; /* Remove margin since we use gap on parent */
+            line-height: 1.4;
+            flex: 1; /* Equal distribution of space */
+            min-width: 0; /* Allow shrinking below content size */
+            letter-spacing: clamp(0.05em, 0.5vw, 0.25em); /* Dynamic letter spacing */
+            word-spacing: clamp(0.05em, 0.3vw, 0.15em); /* Dynamic word spacing */
+        }
+        
         @media (max-width: 600px) {
             .emoty-text { font-size: 2em; }
             .tagline { font-size: 1.1em; }
@@ -193,8 +197,8 @@
             </div>
             <div class="emoty-logo">
                 <div class="emoty-text-container">
-                    <span class="emoty-text">°e m o t y°</span>
-                    <span class="emoty-emoji">&#x1F4AC;</span>
+                    <span class="emoty-text">e m o t y</span>
+                    <span>💬</span>
                 </div>
                 <div class="emoty-accent-line"></div>
             </div>
