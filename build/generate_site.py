@@ -112,6 +112,39 @@ class SiteGenerator:
         
         return html
     
+    def generate_privacy_policy_page(self, locale: str) -> str:
+        """Generate privacy-policy.html for a specific locale."""
+        # Load translations
+        translations = self._get_translations(locale)
+        self.env.install_gettext_translations(translations)
+        
+        # Get language configuration
+        lang_config = self._get_language_config(locale)
+        
+        # Update config with author email
+        config = self.config.copy()
+        config['author_email'] = 'archer.chris@gmail.com'
+        
+        # Update privacy policy URL for alternate language
+        other_locale = 'fr' if locale == 'en' else 'en'
+        other_lang = self.config['languages'][other_locale]
+        privacy_alternate_url = f"{other_lang['alternate_url']}privacy-policy"
+        
+        # Load template
+        template = self.env.get_template('privacy-policy.html.j2')
+        
+        # Render template
+        html = template.render(
+            locale=locale,
+            config=config,
+            alternate_lang=lang_config['alternate_lang'],
+            alternate_url=privacy_alternate_url,
+            alternate_path=f"{lang_config['alternate_path']}privacy-policy",
+            privacy_policy_url=lang_config['privacy_policy_url']
+        )
+        
+        return html
+    
     def build_site(self) -> None:
         """Build the complete site for all locales."""
         click.echo("Building site...")
@@ -142,6 +175,25 @@ class SiteGenerator:
                 f.write(html)
             
             click.echo(f"    Created: {output_path}")
+            
+            # Generate privacy policy page
+            privacy_html = self.generate_privacy_policy_page(locale)
+            
+            # Determine privacy policy output path
+            if locale == 'en':
+                privacy_dir = self.output_dir / 'privacy-policy'
+                privacy_dir.mkdir(exist_ok=True)
+                privacy_output_path = privacy_dir / 'index.html'
+            else:
+                privacy_dir = self.output_dir / 'fr-FR' / 'privacy-policy'
+                privacy_dir.mkdir(parents=True, exist_ok=True)
+                privacy_output_path = privacy_dir / 'index.html'
+            
+            # Write privacy policy HTML file
+            with open(privacy_output_path, 'w', encoding='utf-8') as f:
+                f.write(privacy_html)
+            
+            click.echo(f"    Created: {privacy_output_path}")
     
     def validate_build(self) -> bool:
         """Validate the generated site."""
@@ -150,7 +202,9 @@ class SiteGenerator:
         # Check that all expected files exist
         expected_files = [
             self.output_dir / 'index.html',
-            self.output_dir / 'fr-FR' / 'index.html'
+            self.output_dir / 'fr-FR' / 'index.html',
+            self.output_dir / 'privacy-policy' / 'index.html',
+            self.output_dir / 'fr-FR' / 'privacy-policy' / 'index.html'
         ]
         
         all_valid = True
@@ -192,11 +246,11 @@ class SiteGenerator:
         )
         
         # Extract strings from templates
-        extracted = extract_from_dir(str(self.templates_dir), ['jinja2'], {
-            'jinja2': {
-                'extensions': 'jinja2.ext.i18n'
-            }
-        })
+        extracted = extract_from_dir(
+            str(self.templates_dir), 
+            [('*.j2', 'jinja2')],
+            options={'jinja2': {'extensions': 'jinja2.ext.i18n'}}
+        )
         
         for message in extracted:
             catalog.add(message[2], locations=[(message[0], message[1])])
@@ -285,6 +339,15 @@ def deploy(ctx, target):
                 shutil.rmtree(target_fr)
             shutil.copytree(src_fr, target_fr)
             click.echo(f"  Copied: fr-FR/")
+        
+        # Copy privacy-policy directory
+        src_privacy = generator.output_dir / 'privacy-policy'
+        target_privacy = target_path / 'privacy-policy'
+        if src_privacy.exists():
+            if target_privacy.exists():
+                shutil.rmtree(target_privacy)
+            shutil.copytree(src_privacy, target_privacy)
+            click.echo(f"  Copied: privacy-policy/")
         
         click.echo("✓ Deployment completed!")
     else:

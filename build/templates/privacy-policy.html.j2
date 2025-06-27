@@ -1,0 +1,156 @@
+{% extends 'base.html.j2' %}
+
+{% block content %}
+<style>
+    h1 { color: #667eea; margin-top: 0; }
+    h2 { color: #667eea; margin-top: 30px; }
+    h3 { color: #764ba2; margin-top: 20px; }
+    ul { margin: 10px 0; padding-left: 25px; }
+    p { margin: 10px 0; }
+    hr { border: none; border-top: 1px solid #ddd; margin: 40px 0; }
+</style>
+
+<h1>{{ _('privacy.title') }}</h1>
+<p><strong>{{ _('privacy.effective_date') }}:</strong> {{ _('privacy.date') }}<br />
+<strong>{{ _('privacy.last_updated') }}:</strong> {{ _('privacy.date') }}</p>
+
+<h2>{{ _('privacy.intro.title') }}</h2>
+<p>{{ _('privacy.intro.content') }}</p>
+
+<h2>{{ _('privacy.collection.title') }}</h2>
+<h3>{{ _('privacy.collection.user_content.title') }}</h3>
+<ul>
+    <li><strong>{{ _('privacy.collection.user_content.patterns') }}</strong>: {{ _('privacy.collection.user_content.patterns_desc') }}</li>
+    <li><strong>{{ _('privacy.collection.user_content.names') }}</strong>: {{ _('privacy.collection.user_content.names_desc') }}</li>
+    <li><strong>{{ _('privacy.collection.user_content.tags') }}</strong>: {{ _('privacy.collection.user_content.tags_desc') }}</li>
+    <li><strong>{{ _('privacy.collection.user_content.timestamps') }}</strong>: {{ _('privacy.collection.user_content.timestamps_desc') }}</li>
+</ul>
+
+<h3>{{ _('privacy.collection.app_usage.title') }}</h3>
+<ul>
+    <li><strong>{{ _('privacy.collection.app_usage.preferences') }}</strong>: {{ _('privacy.collection.app_usage.preferences_desc') }}</li>
+    <li><strong>{{ _('privacy.collection.app_usage.state') }}</strong>: {{ _('privacy.collection.app_usage.state_desc') }}</li>
+</ul>
+
+<h3>{{ _('privacy.collection.ai_service.title') }}</h3>
+<ul>
+    <li><strong>{{ _('privacy.collection.ai_service.sequences') }}</strong>: {{ _('privacy.collection.ai_service.sequences_desc') }}</li>
+    <li><strong>{{ _('privacy.collection.ai_service.no_personal') }}</strong>: {{ _('privacy.collection.ai_service.no_personal_desc') }}</li>
+</ul>
+
+<h2>{{ _('privacy.usage.title') }}</h2>
+<h3>{{ _('privacy.usage.local_storage.title') }}</h3>
+<ul>
+    <li>{{ _('privacy.usage.local_storage.point1') }}</li>
+    <li>{{ _('privacy.usage.local_storage.point2') }}</li>
+    <li>{{ _('privacy.usage.local_storage.point3') }}</li>
+</ul>
+
+<h3>{{ _('privacy.usage.ai_naming.title') }}</h3>
+<ul>
+    <li>{{ _('privacy.usage.ai_naming.point1') }}</li>
+    <li>{{ _('privacy.usage.ai_naming.point2') }}</li>
+    <li>{{ _('privacy.usage.ai_naming.point3') }}</li>
+</ul>
+
+<h3>{{ _('privacy.usage.app_functionality.title') }}</h3>
+<ul>
+    <li>{{ _('privacy.usage.app_functionality.point1') }}</li>
+    <li>{{ _('privacy.usage.app_functionality.point2') }}</li>
+</ul>
+
+<h2>{{ _('privacy.storage.title') }}</h2>
+<h3>{{ _('privacy.storage.local.title') }}</h3>
+<ul>
+    <li>{{ _('privacy.storage.local.point1') }}</li>
+    <li>{{ _('privacy.storage.local.point2') }}</li>
+    <li>{{ _('privacy.storage.local.point3') }}</li>
+</ul>
+
+<h3>{{ _('privacy.storage.transmission.title') }}</h3>
+<ul>
+    <li>{{ _('privacy.storage.transmission.point1') }}</li>
+    <li>{{ _('privacy.storage.transmission.point2') }}</li>
+    <li>{{ _('privacy.storage.transmission.point3') }}</li>
+</ul>
+
+<h2>{{ _('privacy.third_party.title') }}</h2>
+<h3>{{ _('privacy.third_party.claude.title') }}</h3>
+<ul>
+    <li><strong>{{ _('privacy.third_party.claude.purpose') }}</strong>: {{ _('privacy.third_party.claude.purpose_desc') }}</li>
+    <li><strong>{{ _('privacy.third_party.claude.data_sent') }}</strong>: {{ _('privacy.third_party.claude.data_sent_desc') }}</li>
+    <li><strong>{{ _('privacy.third_party.claude.data_not_sent') }}</strong>: {{ _('privacy.third_party.claude.data_not_sent_desc') }}</li>
+    <li><strong>{{ _('privacy.third_party.claude.privacy_policy') }}</strong>: <a href="https://www.anthropic.com/privacy">https://www.anthropic.com/privacy</a></li>
+</ul>
+
+<h3>{{ _('privacy.third_party.none.title') }}</h3>
+<ul>
+    <li>{{ _('privacy.third_party.none.point1') }}</li>
+    <li>{{ _('privacy.third_party.none.point2') }}</li>
+</ul>
+
+<h2>{{ _('privacy.children.title') }}</h2>
+<p>{{ _('privacy.children.intro') }}</p>
+<ul>
+    <li><strong>{{ _('privacy.children.no_collection') }}</strong>: {{ _('privacy.children.no_collection_desc') }}</li>
+    <li><strong>{{ _('privacy.children.no_social') }}</strong>: {{ _('privacy.children.no_social_desc') }}</li>
+    <li><strong>{{ _('privacy.children.local_data') }}</strong>: {{ _('privacy.children.local_data_desc') }}</li>
+    <li><strong>{{ _('privacy.children.safe_ai') }}</strong>: {{ _('privacy.children.safe_ai_desc') }}</li>
+    <li><strong>{{ _('privacy.children.no_ads') }}</strong>: {{ _('privacy.children.no_ads_desc') }}</li>
+</ul>
+<p>{{ _('privacy.children.parental') }}</p>
+
+<h2>{{ _('privacy.rights.title') }}</h2>
+<h3>{{ _('privacy.rights.control.title') }}</h3>
+<ul>
+    <li><strong>{{ _('privacy.rights.control.delete') }}</strong>: {{ _('privacy.rights.control.delete_desc') }}</li>
+    <li><strong>{{ _('privacy.rights.control.export') }}</strong>: {{ _('privacy.rights.control.export_desc') }}</li>
+    <li><strong>{{ _('privacy.rights.control.opt_out') }}</strong>: {{ _('privacy.rights.control.opt_out_desc') }}</li>
+</ul>
+
+<h3>{{ _('privacy.rights.permissions.title') }}</h3>
+<ul>
+    <li><strong>{{ _('privacy.rights.permissions.internet') }}</strong>: {{ _('privacy.rights.permissions.internet_desc') }}</li>
+    <li><strong>{{ _('privacy.rights.permissions.storage') }}</strong>: {{ _('privacy.rights.permissions.storage_desc') }}</li>
+    <li><strong>{{ _('privacy.rights.permissions.notifications') }}</strong>: {{ _('privacy.rights.permissions.notifications_desc') }}</li>
+</ul>
+
+<h2>{{ _('privacy.retention.title') }}</h2>
+<ul>
+    <li><strong>{{ _('privacy.retention.local') }}</strong>: {{ _('privacy.retention.local_desc') }}</li>
+    <li><strong>{{ _('privacy.retention.ai') }}</strong>: {{ _('privacy.retention.ai_desc') }}</li>
+</ul>
+
+<h2>{{ _('privacy.international.title') }}</h2>
+<ul>
+    <li>{{ _('privacy.international.point1') }}</li>
+    <li>{{ _('privacy.international.point2') }}</li>
+</ul>
+
+<h2>{{ _('privacy.changes.title') }}</h2>
+<p>{{ _('privacy.changes.intro') }}</p>
+<ul>
+    <li>{{ _('privacy.changes.point1') }}</li>
+    <li>{{ _('privacy.changes.point2') }}</li>
+    <li>{{ _('privacy.changes.point3') }}</li>
+</ul>
+
+<h2>{{ _('privacy.contact.title') }}</h2>
+<p>{{ _('privacy.contact.intro') }}</p>
+<p><strong>{{ _('privacy.contact.email') }}</strong>: {{ config.author_email }}<br />
+<strong>{{ _('privacy.contact.developer') }}</strong>: {{ config.author }}<br />
+<strong>{{ _('privacy.contact.app') }}</strong>: {{ _('privacy.contact.app_name') }}</p>
+
+<h2>{{ _('privacy.legal.title') }}</h2>
+<p>{{ _('privacy.legal.intro') }}</p>
+<ul>
+    <li>{{ _('privacy.legal.point1') }}</li>
+    <li>{{ _('privacy.legal.point2') }}</li>
+    <li>{{ _('privacy.legal.point3') }}</li>
+    <li>{{ _('privacy.legal.point4') }}</li>
+</ul>
+
+<hr />
+<p><strong>{{ _('privacy.last_updated') }}</strong>: {{ _('privacy.date') }}<br />
+<strong>{{ _('privacy.effective_date') }}</strong>: {{ _('privacy.date') }}</p>
+{% endblock %}

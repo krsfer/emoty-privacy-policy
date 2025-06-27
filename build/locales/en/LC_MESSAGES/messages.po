@@ -93,3 +93,340 @@ msgstr "Privacy Policy"
 
 msgid "footer.contact"
 msgstr "Contact"
+
+# Privacy Policy
+msgid "privacy.title"
+msgstr "Privacy Policy for Emoty"
+
+msgid "privacy.effective_date"
+msgstr "Effective Date"
+
+msgid "privacy.last_updated"
+msgstr "Last Updated"
+
+msgid "privacy.date"
+msgstr "15th june 2025"
+
+msgid "privacy.intro.title"
+msgstr "Introduction"
+
+msgid "privacy.intro.content"
+msgstr "Welcome to Emoty! This Privacy Policy explains how we collect, use, and protect your information when you use our emoji pattern creation app. We are committed to protecting your privacy and being transparent about our data practices."
+
+msgid "privacy.collection.title"
+msgstr "Information We Collect"
+
+msgid "privacy.collection.user_content.title"
+msgstr "User-Created Content"
+
+msgid "privacy.collection.user_content.patterns"
+msgstr "Emoji Patterns"
+
+msgid "privacy.collection.user_content.patterns_desc"
+msgstr "The emoji sequences and patterns you create"
+
+msgid "privacy.collection.user_content.names"
+msgstr "Pattern Names"
+
+msgid "privacy.collection.user_content.names_desc"
+msgstr "Names you give to your saved patterns (including AI-generated suggestions you choose)"
+
+msgid "privacy.collection.user_content.tags"
+msgstr "Tags and Organization"
+
+msgid "privacy.collection.user_content.tags_desc"
+msgstr "Tags, favorites, and organizational data you add to patterns"
+
+msgid "privacy.collection.user_content.timestamps"
+msgstr "Creation Timestamps"
+
+msgid "privacy.collection.user_content.timestamps_desc"
+msgstr "When patterns were created or modified"
+
+msgid "privacy.collection.app_usage.title"
+msgstr "App Usage Information"
+
+msgid "privacy.collection.app_usage.preferences"
+msgstr "Preferences"
+
+msgid "privacy.collection.app_usage.preferences_desc"
+msgstr "Your language setting (English/French), theme preference (light/dark)"
+
+msgid "privacy.collection.app_usage.state"
+msgstr "App State"
+
+msgid "privacy.collection.app_usage.state_desc"
+msgstr "Current pattern being worked on (saved locally for app continuity)"
+
+msgid "privacy.collection.ai_service.title"
+msgstr "AI Service Data"
+
+msgid "privacy.collection.ai_service.sequences"
+msgstr "Emoji Sequences"
+
+msgid "privacy.collection.ai_service.sequences_desc"
+msgstr "When you use our AI naming feature, we send your emoji sequences to Anthropic's Claude AI service to generate creative pattern names"
+
+msgid "privacy.collection.ai_service.no_personal"
+msgstr "No Personal Information"
+
+msgid "privacy.collection.ai_service.no_personal_desc"
+msgstr "We do not send any personal information, device identifiers, or user data to AI services"
+
+msgid "privacy.usage.title"
+msgstr "How We Use Your Information"
+
+msgid "privacy.usage.local_storage.title"
+msgstr "Local Storage"
+
+msgid "privacy.usage.local_storage.point1"
+msgstr "All your patterns, preferences, and app data are stored locally on your device"
+
+msgid "privacy.usage.local_storage.point2"
+msgstr "We use this data to provide app functionality, save your creations, and maintain your preferences"
+
+msgid "privacy.usage.local_storage.point3"
+msgstr "No personal data is transmitted to our servers"
+
+msgid "privacy.usage.ai_naming.title"
+msgstr "AI Pattern Naming"
+
+msgid "privacy.usage.ai_naming.point1"
+msgstr "When you request AI-generated pattern names, we send only your emoji sequence to Anthropic's Claude AI"
+
+msgid "privacy.usage.ai_naming.point2"
+msgstr "This helps generate creative, relevant names for your patterns"
+
+msgid "privacy.usage.ai_naming.point3"
+msgstr "No personal information or device identifiers are included in these requests"
+
+msgid "privacy.usage.app_functionality.title"
+msgstr "App Functionality"
+
+msgid "privacy.usage.app_functionality.point1"
+msgstr "We use your preferences to customize the app experience (language, theme)"
+
+msgid "privacy.usage.app_functionality.point2"
+msgstr "Pattern data enables features like search, favorites, import/export, and organization"
+
+msgid "privacy.storage.title"
+msgstr "Data Storage and Security"
+
+msgid "privacy.storage.local.title"
+msgstr "Local Storage"
+
+msgid "privacy.storage.local.point1"
+msgstr "All your data is stored locally on your device using Android's secure database systems"
+
+msgid "privacy.storage.local.point2"
+msgstr "You have full control over your data and can delete it at any time"
+
+msgid "privacy.storage.local.point3"
+msgstr "Data remains on your device unless you explicitly export or share it"
+
+msgid "privacy.storage.transmission.title"
+msgstr "Data Transmission"
+
+msgid "privacy.storage.transmission.point1"
+msgstr "Limited to AI naming requests (emoji sequences only)"
+
+msgid "privacy.storage.transmission.point2"
+msgstr "All network communications use secure HTTPS encryption"
+
+msgid "privacy.storage.transmission.point3"
+msgstr "No background data collection or transmission"
+
+msgid "privacy.third_party.title"
+msgstr "Third-Party Services"
+
+msgid "privacy.third_party.claude.title"
+msgstr "Anthropic Claude AI"
+
+msgid "privacy.third_party.claude.purpose"
+msgstr "Purpose"
+
+msgid "privacy.third_party.claude.purpose_desc"
+msgstr "Generate creative names for your emoji patterns"
+
+msgid "privacy.third_party.claude.data_sent"
+msgstr "Data Sent"
+
+msgid "privacy.third_party.claude.data_sent_desc"
+msgstr "Only emoji sequences (e.g., \"❤️🌸🌟\") when you request AI naming"
+
+msgid "privacy.third_party.claude.data_not_sent"
+msgstr "Data Not Sent"
+
+msgid "privacy.third_party.claude.data_not_sent_desc"
+msgstr "No personal information, device identifiers, or user data"
+
+msgid "privacy.third_party.claude.privacy_policy"
+msgstr "Privacy Policy"
+
+msgid "privacy.third_party.none.title"
+msgstr "No Other Third Parties"
+
+msgid "privacy.third_party.none.point1"
+msgstr "We do not use analytics services, advertising networks, or tracking tools"
+
+msgid "privacy.third_party.none.point2"
+msgstr "No data is shared with other third parties"
+
+msgid "privacy.children.title"
+msgstr "Children's Privacy (COPPA Compliance)"
+
+msgid "privacy.children.intro"
+msgstr "Emoty is safe for children under 13:"
+
+msgid "privacy.children.no_collection"
+msgstr "No Personal Information Collection"
+
+msgid "privacy.children.no_collection_desc"
+msgstr "We do not collect names, email addresses, phone numbers, or any personal identifiers"
+
+msgid "privacy.children.no_social"
+msgstr "No Social Features"
+
+msgid "privacy.children.no_social_desc"
+msgstr "No chat, messaging, or social interaction features"
+
+msgid "privacy.children.local_data"
+msgstr "Local Data Only"
+
+msgid "privacy.children.local_data_desc"
+msgstr "All data stays on the device under parental control"
+
+msgid "privacy.children.safe_ai"
+msgstr "Safe AI Usage"
+
+msgid "privacy.children.safe_ai_desc"
+msgstr "AI naming feature only processes emoji sequences, no personal data"
+
+msgid "privacy.children.no_ads"
+msgstr "No Advertising"
+
+msgid "privacy.children.no_ads_desc"
+msgstr "No third-party advertising or tracking"
+
+msgid "privacy.children.parental"
+msgstr "Parents can review and delete all app data through the device's application settings."
+
+msgid "privacy.rights.title"
+msgstr "Your Rights and Choices"
+
+msgid "privacy.rights.control.title"
+msgstr "Data Control"
+
+msgid "privacy.rights.control.delete"
+msgstr "Delete Data"
+
+msgid "privacy.rights.control.delete_desc"
+msgstr "Uninstall the app to remove all data, or use device settings to clear app data"
+
+msgid "privacy.rights.control.export"
+msgstr "Export Data"
+
+msgid "privacy.rights.control.export_desc"
+msgstr "Use the app's export feature to save your patterns"
+
+msgid "privacy.rights.control.opt_out"
+msgstr "Opt-Out of AI"
+
+msgid "privacy.rights.control.opt_out_desc"
+msgstr "You can create patterns without using the AI naming feature"
+
+msgid "privacy.rights.permissions.title"
+msgstr "App Permissions"
+
+msgid "privacy.rights.permissions.internet"
+msgstr "Internet"
+
+msgid "privacy.rights.permissions.internet_desc"
+msgstr "Required only for AI pattern naming feature"
+
+msgid "privacy.rights.permissions.storage"
+msgstr "Storage"
+
+msgid "privacy.rights.permissions.storage_desc"
+msgstr "For saving pattern images to your device gallery (with your permission)"
+
+msgid "privacy.rights.permissions.notifications"
+msgstr "Notifications"
+
+msgid "privacy.rights.permissions.notifications_desc"
+msgstr "For app-related notifications (can be disabled in device settings)"
+
+msgid "privacy.retention.title"
+msgstr "Data Retention"
+
+msgid "privacy.retention.local"
+msgstr "Local Data"
+
+msgid "privacy.retention.local_desc"
+msgstr "Remains on your device until you delete the app or clear its data"
+
+msgid "privacy.retention.ai"
+msgstr "AI Requests"
+
+msgid "privacy.retention.ai_desc"
+msgstr "Emoji sequences sent to Anthropic are not stored by us (see Anthropic's privacy policy for their practices)"
+
+msgid "privacy.international.title"
+msgstr "International Users"
+
+msgid "privacy.international.point1"
+msgstr "Data processing occurs locally on your device"
+
+msgid "privacy.international.point2"
+msgstr "AI requests are processed by Anthropic (see their privacy policy for international data handling)"
+
+msgid "privacy.changes.title"
+msgstr "Changes to This Privacy Policy"
+
+msgid "privacy.changes.intro"
+msgstr "We may update this Privacy Policy occasionally. We will notify users of material changes through:"
+
+msgid "privacy.changes.point1"
+msgstr "App update descriptions"
+
+msgid "privacy.changes.point2"
+msgstr "In-app notifications"
+
+msgid "privacy.changes.point3"
+msgstr "Updated effective date on this policy"
+
+msgid "privacy.contact.title"
+msgstr "Contact Us"
+
+msgid "privacy.contact.intro"
+msgstr "If you have questions about this Privacy Policy or our data practices:"
+
+msgid "privacy.contact.email"
+msgstr "Email"
+
+msgid "privacy.contact.developer"
+msgstr "Developer"
+
+msgid "privacy.contact.app"
+msgstr "App"
+
+msgid "privacy.contact.app_name"
+msgstr "Emoty - Emoji Pattern Creator"
+
+msgid "privacy.legal.title"
+msgstr "Legal Compliance"
+
+msgid "privacy.legal.intro"
+msgstr "This Privacy Policy complies with:"
+
+msgid "privacy.legal.point1"
+msgstr "Google Play Store policies"
+
+msgid "privacy.legal.point2"
+msgstr "Children's Online Privacy Protection Act (COPPA)"
+
+msgid "privacy.legal.point3"
+msgstr "General Data Protection Regulation (GDPR) where applicable"
+
+msgid "privacy.legal.point4"
+msgstr "California Consumer Privacy Act (CCPA) where applicable"

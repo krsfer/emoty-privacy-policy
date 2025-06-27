@@ -1,0 +1,146 @@
+{
+    "folders": [
+        {
+            "path": ".",
+            "name": "Emoty Privacy Policy Website",
+            "folder_exclude_patterns": [
+                "build/venv",
+                "build/__pycache__",
+                "build/output",
+                ".git"
+            ],
+            "file_exclude_patterns": [
+                "*.pyc",
+                "*.mo"
+            ],
+            "binary_file_patterns": [
+                "*.mo"
+            ]
+        },
+        {
+            "path": "build",
+            "name": "Build System",
+            "folder_exclude_patterns": [
+                "venv",
+                "__pycache__",
+                "output"
+            ],
+            "file_exclude_patterns": [
+                "*.pyc",
+                "*.mo"
+            ]
+        },
+        {
+            "path": "build/templates",
+            "name": "Templates",
+            "file_include_patterns": [
+                "*.j2",
+                "*.html"
+            ]
+        },
+        {
+            "path": "build/locales",
+            "name": "Translations",
+            "file_include_patterns": [
+                "*.po",
+                "*.pot"
+            ],
+            "file_exclude_patterns": [
+                "*.mo"
+            ]
+        }
+    ],
+    "settings": {
+        "tab_size": 4,
+        "translate_tabs_to_spaces": true,
+        "trim_trailing_white_space_on_save": true,
+        "ensure_newline_at_eof_on_save": true,
+        "default_encoding": "UTF-8",
+        "default_line_ending": "unix",
+        "rulers": [80, 120],
+        "word_wrap": false,
+        "spell_check": true,
+        "dictionary": "Packages/Language - English/en_US.dic",
+        "file_exclude_patterns": [
+            "*.pyc",
+            "*.pyo",
+            "*.exe",
+            "*.dll",
+            "*.obj",
+            "*.o",
+            "*.a",
+            "*.lib",
+            "*.so",
+            "*.dylib",
+            "*.ncb",
+            "*.sdf",
+            "*.suo",
+            "*.pdb",
+            "*.idb",
+            ".DS_Store",
+            "*.class",
+            "*.psd",
+            "*.db",
+            "*.sublime-workspace"
+        ]
+    },
+    "build_systems": [
+        {
+            "name": "Build Site",
+            "cmd": ["source venv/bin/activate && python generate_site.py build"],
+            "working_dir": "$project_path/build",
+            "shell": true,
+            "variants": [
+                {
+                    "name": "Build + Validate",
+                    "cmd": ["source venv/bin/activate && python generate_site.py build && python generate_site.py validate"],
+                    "shell": true
+                },
+                {
+                    "name": "Full Build + Deploy",
+                    "cmd": ["source venv/bin/activate && python generate_site.py build && python generate_site.py validate && python generate_site.py deploy --target ../"],
+                    "shell": true
+                },
+                {
+                    "name": "Build + Deploy + Preview",
+                    "cmd": ["source venv/bin/activate && python generate_site.py build && python generate_site.py validate && python generate_site.py deploy --target ../ && open ../index.html && open ../privacy-policy/index.html && open ../fr-FR/index.html && open ../fr-FR/privacy-policy/index.html"],
+                    "shell": true
+                }
+            ]
+        },
+        {
+            "name": "Validate Site",
+            "cmd": ["source venv/bin/activate && python generate_site.py validate"],
+            "working_dir": "$project_path/build",
+            "shell": true
+        },
+        {
+            "name": "Deploy Site",
+            "cmd": ["source venv/bin/activate && python generate_site.py deploy --target ../"],
+            "working_dir": "$project_path/build",
+            "shell": true
+        },
+        {
+            "name": "Extract Strings",
+            "cmd": ["source venv/bin/activate && python generate_site.py extract"],
+            "working_dir": "$project_path/build",
+            "shell": true
+        },
+        {
+            "name": "Compile Translations",
+            "cmd": ["source venv/bin/activate && python generate_site.py compile"],
+            "working_dir": "$project_path/build",
+            "shell": true
+        },
+        {
+            "name": "Preview All Pages",
+            "cmd": ["open index.html && open privacy-policy/index.html && open fr-FR/index.html && open fr-FR/privacy-policy/index.html"],
+            "working_dir": "$project_path",
+            "shell": true
+        }
+    ],
+    "syntax_override": {
+        "\\.j2$": ["Packages/Jinja2/Syntaxes/Jinja2.sublime-syntax", "Packages/HTML/HTML.sublime-syntax"],
+        "\\.po$": ["Packages/Gettext/Gettext.sublime-syntax"]
+    }
+}
