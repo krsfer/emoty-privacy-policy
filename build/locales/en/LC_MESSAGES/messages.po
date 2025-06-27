@@ -34,6 +34,9 @@ msgstr "Create Beautiful Emoji Patterns with AI"
 msgid "nav.lang_switch"
 msgstr "Français"
 
+msgid "nav.home"
+msgstr "Home"
+
 # Features
 msgid "features.ai_creation.title"
 msgstr "AI-Powered Creation"

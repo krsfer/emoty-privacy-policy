@@ -192,9 +192,11 @@
 <body>
     <div class="container">
         <header>
+            {% block header_nav %}
             <div class="lang-switch">
                 <a href="{{ alternate_path }}">{{ _('nav.lang_switch') }}</a>
             </div>
+            {% endblock %}
             <div class="emoty-logo">
                 <div class="emoty-text-container">
                     <span class="emoty-text">e m o t y</span>

@@ -192,9 +192,14 @@
 <body>
     <div class="container">
         <header>
-            <div class="lang-switch">
-                <a href="/privacy-policy">English</a>
-            </div>
+            
+<div class="home-button">
+    <a href="/fr-FR/">Accueil</a>
+</div>
+<div class="lang-switch">
+    <a href="/privacy-policy">English</a>
+</div>
+
             <div class="emoty-logo">
                 <div class="emoty-text-container">
                     <span class="emoty-text">e m o t y</span>
@@ -213,6 +218,39 @@
     ul { margin: 10px 0; padding-left: 25px; }
     p { margin: 10px 0; }
     hr { border: none; border-top: 1px solid #ddd; margin: 40px 0; }
+    
+    .home-button {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+    }
+    
+    .home-button a {
+        color: white;
+        text-decoration: none;
+        background: rgba(255,255,255,0.3);
+        padding: 8px 16px;
+        border-radius: 20px;
+        transition: background 0.3s;
+        border: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    .home-button a:hover {
+        background: rgba(255,255,255,0.4);
+        border-color: rgba(255,255,255,0.3);
+    }
+    
+    @media (max-width: 600px) {
+        .home-button {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+        }
+        .home-button a {
+            padding: 6px 12px;
+            font-size: 0.9em;
+        }
+    }
 </style>
 
 <h1>Politique de Confidentialité pour Emoty</h1>

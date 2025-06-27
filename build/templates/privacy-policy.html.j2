@@ -1,5 +1,14 @@
 {% extends 'base.html.j2' %}
 
+{% block header_nav %}
+<div class="home-button">
+    <a href="{{ home_url }}">{{ _('nav.home') }}</a>
+</div>
+<div class="lang-switch">
+    <a href="{{ alternate_path }}">{{ _('nav.lang_switch') }}</a>
+</div>
+{% endblock %}
+
 {% block content %}
 <style>
     h1 { color: #667eea; margin-top: 0; }
@@ -8,6 +17,39 @@
     ul { margin: 10px 0; padding-left: 25px; }
     p { margin: 10px 0; }
     hr { border: none; border-top: 1px solid #ddd; margin: 40px 0; }
+    
+    .home-button {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+    }
+    
+    .home-button a {
+        color: white;
+        text-decoration: none;
+        background: rgba(255,255,255,0.3);
+        padding: 8px 16px;
+        border-radius: 20px;
+        transition: background 0.3s;
+        border: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    .home-button a:hover {
+        background: rgba(255,255,255,0.4);
+        border-color: rgba(255,255,255,0.3);
+    }
+    
+    @media (max-width: 600px) {
+        .home-button {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+        }
+        .home-button a {
+            padding: 6px 12px;
+            font-size: 0.9em;
+        }
+    }
 </style>
 
 <h1>{{ _('privacy.title') }}</h1>

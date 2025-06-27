@@ -34,6 +34,9 @@ msgstr "Créez de Magnifiques Motifs d'Émojis avec l'IA"
 msgid "nav.lang_switch"
 msgstr "English"
 
+msgid "nav.home"
+msgstr "Accueil"
+
 # Features
 msgid "features.ai_creation.title"
 msgstr "Création Assistée par IA"
