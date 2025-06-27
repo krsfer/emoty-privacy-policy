@@ -1,82 +1,3 @@
-{% extends "base.html.j2" %}
-
-{% block content %}
-
-    <div class="emoji-demos">
-
-        <div class="emoji-demo">
-            🌸🌸🌸🌸🌸<br>
-            🌸🌺🌺🌺🌸<br>
-            🌸🌺🌸🌺🌸<br>
-            🌸🌺🌺🌺🌸<br>
-            🌸🌸🌸🌸🌸
-        </div>
-        <div class="emoji-demo">
-            💫💫💫💫💫<br>
-            💫🧡🧡🧡💫<br>
-            💫🧡✨🧡💫<br>
-            💫🧡🧡🧡💫<br>
-            💫💫💫💫💫
-        </div>
-
-        <div class="emoji-demo">
-            🌻🌻🌻🌻🌻<br>
-            🌻💋💋💋🌻<br>
-            🌻💋🌹💋🌻<br>
-            🌻💋💋💋🌻<br>
-            🌻🌻🌻🌻🌻
-        </div>
-
-        
-    </div>
-
-    <div class="features">
-        <div class="feature">
-            <h3>&#x2728; {{ _('features.ai_creation.title') }}</h3>
-            <p>{{ _('features.ai_creation.description') }}</p>
-        </div>
-        
-        <div class="feature">
-            <h3>&#x1F3A8; {{ _('features.palettes.title') }}</h3>
-            <p>{{ _('features.palettes.description') }}</p>
-        </div>
-        
-        <div class="feature">
-            <h3>&#x1F510; {{ _('features.privacy.title') }}</h3>
-            <p>{{ _('features.privacy.description') }}</p>
-        </div>
-        
-        <div class="feature">
-            <h3>&#x1F4AC; {{ _('features.emotybot.title') }}</h3>
-            <p>{{ _('features.emotybot.description') }}</p>
-        </div>
-        
-        <div class="feature">
-            <h3>&#x1F4E4; {{ _('features.share_export.title') }}</h3>
-            <p>{{ _('features.share_export.description') }}</p>
-        </div>
-        
-        <div class="feature">
-            <h3>&#x1F399; {{ _('features.voice_commands.title') }}</h3>
-            <p>{{ _('features.voice_commands.description') }}</p>
-        </div>
-    </div>
-
-    <div class="cta">
-        <h2>{{ _('cta.title') }}</h2>
-        <p>{{ _('cta.description') }}</p>
-        <a href="{{ config.google_play_url }}" class="button">
-            {{ _('cta.download_button') }}
-        </a>
-        <a href="{{ privacy_policy_url }}" class="button secondary">
-            {{ _('cta.privacy_button') }}
-        </a>
-    </div>
-{% endblock %}
-
-{% block language_detection %}
-{% if language_detection.enabled %}
-<script>
 /**
  * Emoty Language Detection
  * Automatically redirects users to their preferred language based on browser settings
@@ -85,14 +6,14 @@
 (function() {
     'use strict';
     
-    // Configuration from template
+    // Configuration - will be replaced by template
     const config = {
-        enabled: {{ language_detection.enabled|lower }},
-        frenchLanguageCodes: {{ language_detection.french_language_codes|tojson }},
-        storageKey: '{{ language_detection.storage_key }}',
-        redirectDelay: {{ language_detection.redirect_delay }},
-        frenchUrl: '{{ french_path }}',
-        englishUrl: '{{ english_path }}'
+        enabled: true,
+        frenchLanguageCodes: ['fr', 'fr-FR', 'fr-CA', 'fr-BE', 'fr-CH'],
+        storageKey: 'emoty_language_preference',
+        redirectDelay: 0,
+        frenchUrl: '/fr-FR/',
+        englishUrl: '/'
     };
     
     // Don't run detection if disabled
@@ -173,6 +94,3 @@
         });
     });
 })();
-</script>
-{% endif %}
-{% endblock %}

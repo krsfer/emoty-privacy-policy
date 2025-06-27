@@ -107,7 +107,11 @@ class SiteGenerator:
             alternate_lang=lang_config['alternate_lang'],
             alternate_url=lang_config['alternate_url'],
             alternate_path=lang_config['alternate_path'],
-            privacy_policy_url=lang_config['privacy_policy_url']
+            privacy_policy_url=lang_config['privacy_policy_url'],
+            path=lang_config['path'],
+            language_detection=self.config.get('language_detection', {}),
+            french_path=self.config['languages']['fr']['path'],
+            english_path=self.config['languages']['en']['path']
         )
         
         return html
@@ -151,6 +155,7 @@ class SiteGenerator:
             alternate_url=privacy_alternate_url,
             alternate_path=f"{other_lang['path']}privacy-policy",
             privacy_policy_url=lang_config['privacy_policy_url'],
+            path=f"{lang_config['path']}privacy-policy",
             meta_override=privacy_meta,
             home_url=home_url
         )

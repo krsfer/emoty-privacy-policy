@@ -20,5 +20,11 @@
   "google_play_url": "https://play.google.com/store/apps/details?id=com.carcher.emoty",
   "contact_email": "support@emoty.fr",
   "author": "Christopher Archer",
-  "year": "2025"
+  "year": "2025",
+  "language_detection": {
+    "enabled": true,
+    "french_language_codes": ["fr", "fr-FR", "fr-CA", "fr-BE", "fr-CH"],
+    "storage_key": "emoty_language_preference",
+    "redirect_delay": 0
+  }
 }
