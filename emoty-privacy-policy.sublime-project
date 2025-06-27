@@ -105,6 +105,11 @@
                     "name": "Build + Deploy + Preview",
                     "cmd": ["source venv/bin/activate && python generate_site.py build && python generate_site.py validate && python generate_site.py deploy --target ../ && open ../index.html && open ../privacy-policy/index.html && open ../fr-FR/index.html && open ../fr-FR/privacy-policy/index.html"],
                     "shell": true
+                },
+                {
+                    "name": "Build + Deploy + Verify",
+                    "cmd": ["source venv/bin/activate && python cleanup_old_files.py && python generate_site.py build && python generate_site.py validate && python generate_site.py deploy --target ../ && python verify_styling.py"],
+                    "shell": true
                 }
             ]
         },
@@ -136,6 +141,24 @@
             "name": "Preview All Pages",
             "cmd": ["open index.html && open privacy-policy/index.html && open fr-FR/index.html && open fr-FR/privacy-policy/index.html"],
             "working_dir": "$project_path",
+            "shell": true
+        },
+        {
+            "name": "Verify Styling",
+            "cmd": ["source venv/bin/activate && python verify_styling.py"],
+            "working_dir": "$project_path/build",
+            "shell": true
+        },
+        {
+            "name": "Verify Styling (Detailed)",
+            "cmd": ["source venv/bin/activate && python verify_styling.py --details"],
+            "working_dir": "$project_path/build",
+            "shell": true
+        },
+        {
+            "name": "Cleanup Old Files",
+            "cmd": ["source venv/bin/activate && python cleanup_old_files.py"],
+            "working_dir": "$project_path/build",
             "shell": true
         }
     ],
