@@ -94,6 +94,16 @@ msgstr "Privacy Policy"
 msgid "footer.contact"
 msgstr "Contact"
 
+# Privacy Policy Meta
+msgid "privacy.meta.title"
+msgstr "Privacy Policy - Emoty"
+
+msgid "privacy.meta.description"
+msgstr "Privacy Policy for Emoty - Emoji Pattern Creator. Learn how we protect your data and privacy when using our app."
+
+msgid "privacy.meta.keywords"
+msgstr "Emoty, privacy policy, emoji patterns, data protection, COPPA compliant"
+
 # Privacy Policy
 msgid "privacy.title"
 msgstr "Privacy Policy for Emoty"

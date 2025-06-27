@@ -94,6 +94,16 @@ msgstr "Politique de Confidentialité"
 msgid "footer.contact"
 msgstr "Contact"
 
+# Privacy Policy Meta
+msgid "privacy.meta.title"
+msgstr "Politique de Confidentialité - Emoty"
+
+msgid "privacy.meta.description"
+msgstr "Politique de Confidentialité pour Emoty - Créateur de Motifs d'Émojis. Découvrez comment nous protégeons vos données et votre vie privée lors de l'utilisation de notre application."
+
+msgid "privacy.meta.keywords"
+msgstr "Emoty, politique de confidentialité, motifs d'émojis, protection des données, conforme COPPA"
+
 # Privacy Policy
 msgid "privacy.title"
 msgstr "Politique de Confidentialité pour Emoty"

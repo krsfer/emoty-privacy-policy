@@ -133,6 +133,13 @@ class SiteGenerator:
         # Load template
         template = self.env.get_template('privacy-policy.html.j2')
         
+        # Override meta tags for privacy policy
+        privacy_meta = {
+            'title': translations.gettext('privacy.meta.title'),
+            'description': translations.gettext('privacy.meta.description'),
+            'keywords': translations.gettext('privacy.meta.keywords')
+        }
+        
         # Render template
         html = template.render(
             locale=locale,
@@ -140,7 +147,8 @@ class SiteGenerator:
             alternate_lang=lang_config['alternate_lang'],
             alternate_url=privacy_alternate_url,
             alternate_path=f"{lang_config['alternate_path']}privacy-policy",
-            privacy_policy_url=lang_config['privacy_policy_url']
+            privacy_policy_url=lang_config['privacy_policy_url'],
+            meta_override=privacy_meta
         )
         
         return html

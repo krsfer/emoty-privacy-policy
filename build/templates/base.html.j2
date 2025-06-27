@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="{{ _('meta.description') }}">
+    <meta name="description" content="{{ meta_override.description if meta_override else _('meta.description') }}">
     <meta name="author" content="{{ config.author }}">
-    <meta name="keywords" content="{{ _('meta.keywords') }}">
+    <meta name="keywords" content="{{ meta_override.keywords if meta_override else _('meta.keywords') }}">
     <link rel="alternate" hreflang="{{ alternate_lang }}" href="{{ alternate_url }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
-    <title>{{ _('meta.title') }}</title>
+    <title>{{ meta_override.title if meta_override else _('meta.title') }}</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
