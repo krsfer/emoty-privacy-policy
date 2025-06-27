@@ -317,6 +317,18 @@
     // Don't redirect if this is already a language-specific page
     if (window.location.pathname !== '/') return;
     
+    // Check for explicit language choice via URL parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const langParam = urlParams.get('lang');
+    if (langParam) {
+        localStorage.setItem(config.storageKey, langParam);
+        // Remove the parameter from URL
+        if (window.history && window.history.replaceState) {
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
+        return; // Don't redirect if explicit language chosen
+    }
+    
     // Don't redirect search engine bots
     const userAgent = navigator.userAgent.toLowerCase();
     const isBot = /bot|crawler|spider|crawling/i.test(userAgent);
@@ -334,9 +346,14 @@
         return;
     }
     
-    // Don't redirect if user came from internal navigation
+    // Don't redirect if user came from internal navigation (language switching)
     const referrer = document.referrer;
     if (referrer && (referrer.includes('emoty.fr') || referrer.includes('localhost'))) {
+        // User clicked language switcher, store their choice
+        if (referrer.includes('/fr-FR/')) {
+            // Coming from French page, user wants English
+            localStorage.setItem(config.storageKey, 'en');
+        }
         return;
     }
     
