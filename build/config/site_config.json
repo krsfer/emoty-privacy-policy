@@ -15,6 +15,13 @@
       "path": "/fr-FR/",
       "hreflang": "fr-FR",
       "alternate_url": "https://emoty.fr/fr-FR/"
+    },
+    "fr-tu": {
+      "code": "fr-tu",
+      "name": "Français (informel)",
+      "path": "/fr-FR/tu/",
+      "hreflang": "fr-FR-tu",
+      "alternate_url": "https://emoty.fr/fr-FR/tu/"
     }
   },
   "google_play_url": "https://play.google.com/store/apps/details?id=com.carcher.emoty",

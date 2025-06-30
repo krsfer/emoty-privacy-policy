@@ -1,0 +1,33 @@
+{% extends "base.html.j2" %}
+
+{% block header_nav %}
+<div class="lang-switch">
+    <a href="{{ eli5_alternate_path }}">{{ _('nav.lang_switch') }}</a>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>{{ _('eli5.title') }} &#x1F3A8;</h1>
+    
+    <p>{{ _('eli5.intro') }}</p>
+    
+    <h2>{{ _('eli5.what_is_emoty.title') }}</h2>
+    <p>{{ _('eli5.what_is_emoty.content') }}</p>
+    
+    <h2>{{ _('eli5.what_can_you_do.title') }}</h2>
+    <ul>
+        <li><strong>{{ _('eli5.what_can_you_do.patterns.title') }}</strong> {{ _('eli5.what_can_you_do.patterns.content') }}</li>
+        <li><strong>{{ _('eli5.what_can_you_do.colors.title') }}</strong> {{ _('eli5.what_can_you_do.colors.content') }}</li>
+        <li><strong>{{ _('eli5.what_can_you_do.safe.title') }}</strong> {{ _('eli5.what_can_you_do.safe.content') }}</li>
+        <li><strong>{{ _('eli5.what_can_you_do.share.title') }}</strong> {{ _('eli5.what_can_you_do.share.content') }}</li>
+    </ul>
+    
+    <h2>{{ _('eli5.get_the_app.title') }}</h2>
+    <p>{{ _('eli5.get_the_app.content') }}</p>
+    
+    <a href="{{ config.google_play_url }}" class="button">
+        {{ _('eli5.download_button') }}
+    </a>
+</div>
+{% endblock %}

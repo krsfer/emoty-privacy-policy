@@ -18,7 +18,12 @@
       "Bash(grep:*)",
       "Bash(git rm:*)",
       "Bash(python:*)",
-      "Bash(cp:*)"
+      "Bash(cp:*)",
+      "Bash(find:*)",
+      "Bash(msgfmt:*)",
+      "Bash(rm:*)",
+      "Bash(/bin/bash:*)",
+      "Bash(open:*)"
     ],
     "deny": []
   }

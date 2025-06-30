@@ -1,634 +1,633 @@
-# English translations for Emoty website
+# Translations template for Emoty Website.
 # Copyright (C) 2025 Christopher Archer
-# This file is distributed under the same license as the project.
-# Christopher Archer <support@emoty.fr>, 2025.
+# This file is distributed under the same license as the Emoty Website
+# project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
 #
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.0\n"
+"Project-Id-Version: Emoty Website 1.0\n"
 "Report-Msgid-Bugs-To: support@emoty.fr\n"
 "POT-Creation-Date: 2025-07-01 00:00+0200\n"
-"PO-Revision-Date: 2025-07-01 00:00+0200\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.17.0\n"
-"Language: en\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: base.html.j2:6
 msgid "meta.description"
-msgstr "Emoty - Create beautiful emoji patterns with AI assistance. Available for Android. Privacy-focused and COPPA compliant."
+msgstr ""
 
 #: base.html.j2:8
 msgid "meta.keywords"
-msgstr "Emoty, emoji patterns, creative app, Android, AI pattern generator, COPPA compliant"
+msgstr ""
 
 #: base.html.j2:14
 msgid "meta.title"
-msgstr "Emoty - Emoji Pattern Creator"
+msgstr ""
 
 #: base.html.j2:198 eli5.html.j2:5 privacy-policy.html.j2:8
 msgid "nav.lang_switch"
-msgstr "Français"
+msgstr ""
 
 #: base.html.j2:208
 msgid "header.tagline"
-msgstr "Create Beautiful Emoji Patterns, with Smart Help Available"
+msgstr ""
 
 #: base.html.j2:214
 msgid "footer.rights"
-msgstr "All rights reserved."
+msgstr ""
 
 #: base.html.j2:216
 msgid "footer.privacy_policy"
-msgstr "Privacy Policy"
+msgstr ""
 
 #: base.html.j2:217
 msgid "footer.contact"
-msgstr "Contact"
+msgstr ""
 
 #: eli5.html.j2:11
 msgid "eli5.title"
-msgstr "Make Fun Emoji Pictures! "
+msgstr ""
 
 #: eli5.html.j2:13
 msgid "eli5.intro"
-msgstr "Ever wanted to make cool patterns with emojis? Emoty helps you do just that!"
+msgstr ""
 
 #: eli5.html.j2:15
 msgid "eli5.what_is_emoty.title"
-msgstr "What is Emoty?"
+msgstr ""
 
 #: eli5.html.j2:16
 msgid "eli5.what_is_emoty.content"
-msgstr "It's an app for your Android phone that lets you be creative with emojis. Think of it like a coloring book, but with emojis!"
+msgstr ""
 
 #: eli5.html.j2:18
 msgid "eli5.what_can_you_do.title"
-msgstr "What can you do?"
+msgstr ""
 
 #: eli5.html.j2:20
 msgid "eli5.what_can_you_do.patterns.title"
-msgstr "Make Patterns:"
+msgstr ""
 
 #: eli5.html.j2:20
 msgid "eli5.what_can_you_do.patterns.content"
-msgstr "Tell the app what you want, and our robot helper (AI) will make a pattern for you."
+msgstr ""
 
 #: eli5.html.j2:21
 msgid "eli5.what_can_you_do.colors.title"
-msgstr "Use Fun Colors:"
+msgstr ""
 
 #: eli5.html.j2:21
 msgid "eli5.what_can_you_do.colors.content"
-msgstr "Pick from lots of cool emoji groups like animals, space, or hearts."
+msgstr ""
 
 #: eli5.html.j2:22
 msgid "eli5.what_can_you_do.safe.title"
-msgstr "It's Safe:"
+msgstr ""
 
 #: eli5.html.j2:22
 msgid "eli5.what_can_you_do.safe.content"
-msgstr "We don't look at your stuff. What you make stays on your phone."
+msgstr ""
 
 #: eli5.html.j2:23
 msgid "eli5.what_can_you_do.share.title"
-msgstr "Share Your Art:"
+msgstr ""
 
 #: eli5.html.j2:23
 msgid "eli5.what_can_you_do.share.content"
-msgstr "Show your friends your cool emoji pictures!"
+msgstr ""
 
 #: eli5.html.j2:26
 msgid "eli5.get_the_app.title"
-msgstr "Get the App!"
+msgstr ""
 
 #: eli5.html.j2:27
 msgid "eli5.get_the_app.content"
-msgstr "It's free on the Google Play Store. Click the button to download it."
+msgstr ""
 
 #: eli5.html.j2:30
 msgid "eli5.download_button"
-msgstr "Download Emoty"
+msgstr ""
 
 #: index.html.j2:35
 msgid "features.ai_creation.title"
-msgstr "Creative Assist"
+msgstr ""
 
 #: index.html.j2:36
 msgid "features.ai_creation.description"
-msgstr "Stuck for an idea? Ask for help to generate a pattern from a text prompt, or get clever name suggestions for your finished art."
+msgstr ""
 
 #: index.html.j2:40
 msgid "features.palettes.title"
-msgstr "15 Curated Palettes"
+msgstr ""
 
 #: index.html.j2:41
 msgid "features.palettes.description"
-msgstr "Choose from Hearts & Flowers, Happy Faces, Nature Vibes, Cute Animals, Space & Cosmos, and 10 more themed collections."
+msgstr ""
 
 #: index.html.j2:45
 msgid "features.privacy.title"
-msgstr "Privacy First"
+msgstr ""
 
 #: index.html.j2:46
 msgid "features.privacy.description"
-msgstr "All data stays on your device. No personal information collected. COPPA compliant and safe for all ages."
+msgstr ""
 
 #: index.html.j2:50
 msgid "features.emotybot.title"
-msgstr "Your EmotyBot Assistant"
+msgstr ""
 
 #: index.html.j2:51
 msgid "features.emotybot.description"
-msgstr "Your friendly EmotyBot is always ready to help. Ask for creative ideas, find app features, or get emoji recommendations through a simple chat."
+msgstr ""
 
 #: index.html.j2:55
 msgid "features.share_export.title"
-msgstr "Share & Export"
+msgstr ""
 
 #: index.html.j2:56
 msgid "features.share_export.description"
-msgstr "Save as images, print as PDFs, share patterns as codes, or export your entire collection as JSON."
+msgstr ""
 
 #: index.html.j2:60
 msgid "features.voice_commands.title"
-msgstr "Voice Commands"
+msgstr ""
 
 #: index.html.j2:61
 msgid "features.voice_commands.description"
-msgstr "Create patterns hands-free with voice commands in English and French with automatic language detection."
+msgstr ""
 
-# Call to Action
 #: index.html.j2:66
 msgid "cta.title"
-msgstr "Get Emoty for Android"
+msgstr ""
 
 #: index.html.j2:67
 msgid "cta.description"
-msgstr "Transform your emojis into beautiful patterns. Perfect for social media, decorations, or creative expression!"
+msgstr ""
 
 #: index.html.j2:69
 msgid "cta.download_button"
-msgstr "Download on Google Play"
+msgstr ""
 
 #: index.html.j2:72
 msgid "cta.privacy_button"
-msgstr "Privacy Policy"
+msgstr ""
 
 #: privacy-policy.html.j2:5
 msgid "nav.home"
-msgstr "Home"
+msgstr ""
 
-# Privacy Policy
 #: privacy-policy.html.j2:55
 msgid "privacy.title"
-msgstr "Privacy Policy for Emoty"
+msgstr ""
 
 #: privacy-policy.html.j2:56 privacy-policy.html.j2:197
 msgid "privacy.effective_date"
-msgstr "Effective Date"
+msgstr ""
 
 #: privacy-policy.html.j2:56 privacy-policy.html.j2:57
 #: privacy-policy.html.j2:196 privacy-policy.html.j2:197
 msgid "privacy.date"
-msgstr "15th june 2025"
+msgstr ""
 
 #: privacy-policy.html.j2:57 privacy-policy.html.j2:196
 msgid "privacy.last_updated"
-msgstr "Last Updated"
+msgstr ""
 
 #: privacy-policy.html.j2:59
 msgid "privacy.intro.title"
-msgstr "Introduction"
+msgstr ""
 
 #: privacy-policy.html.j2:60
 msgid "privacy.intro.content"
-msgstr "Welcome to Emoty! This Privacy Policy explains how we collect, use, and protect your information when you use our emoji pattern creation app. We are committed to protecting your privacy and being transparent about our data practices."
+msgstr ""
 
 #: privacy-policy.html.j2:62
 msgid "privacy.collection.title"
-msgstr "Information We Collect"
+msgstr ""
 
 #: privacy-policy.html.j2:63
 msgid "privacy.collection.user_content.title"
-msgstr "User-Created Content"
+msgstr ""
 
 #: privacy-policy.html.j2:65
 msgid "privacy.collection.user_content.patterns"
-msgstr "Emoji Patterns"
+msgstr ""
 
 #: privacy-policy.html.j2:65
 msgid "privacy.collection.user_content.patterns_desc"
-msgstr "The emoji sequences and patterns you create"
+msgstr ""
 
 #: privacy-policy.html.j2:66
 msgid "privacy.collection.user_content.names"
-msgstr "Pattern Names"
+msgstr ""
 
 #: privacy-policy.html.j2:66
 msgid "privacy.collection.user_content.names_desc"
-msgstr "Names you give to your saved patterns (including AI-generated suggestions you choose)"
+msgstr ""
 
 #: privacy-policy.html.j2:67
 msgid "privacy.collection.user_content.tags"
-msgstr "Tags and Organization"
+msgstr ""
 
 #: privacy-policy.html.j2:67
 msgid "privacy.collection.user_content.tags_desc"
-msgstr "Tags, favorites, and organizational data you add to patterns"
+msgstr ""
 
 #: privacy-policy.html.j2:68
 msgid "privacy.collection.user_content.timestamps"
-msgstr "Creation Timestamps"
+msgstr ""
 
 #: privacy-policy.html.j2:68
 msgid "privacy.collection.user_content.timestamps_desc"
-msgstr "When patterns were created or modified"
+msgstr ""
 
 #: privacy-policy.html.j2:71
 msgid "privacy.collection.app_usage.title"
-msgstr "App Usage Information"
+msgstr ""
 
 #: privacy-policy.html.j2:73
 msgid "privacy.collection.app_usage.preferences"
-msgstr "Preferences"
+msgstr ""
 
 #: privacy-policy.html.j2:73
 msgid "privacy.collection.app_usage.preferences_desc"
-msgstr "Your language setting (English/French), theme preference (light/dark)"
+msgstr ""
 
 #: privacy-policy.html.j2:74
 msgid "privacy.collection.app_usage.state"
-msgstr "App State"
+msgstr ""
 
 #: privacy-policy.html.j2:74
 msgid "privacy.collection.app_usage.state_desc"
-msgstr "Current pattern being worked on (saved locally for app continuity)"
+msgstr ""
 
 #: privacy-policy.html.j2:77
 msgid "privacy.collection.ai_service.title"
-msgstr "AI Service Data"
+msgstr ""
 
 #: privacy-policy.html.j2:79
 msgid "privacy.collection.ai_service.sequences"
-msgstr "Emoji Sequences"
+msgstr ""
 
 #: privacy-policy.html.j2:79
 msgid "privacy.collection.ai_service.sequences_desc"
-msgstr "When you use our AI naming feature, we send your emoji sequences to Anthropic's Claude AI service to generate creative pattern names"
+msgstr ""
 
 #: privacy-policy.html.j2:80
 msgid "privacy.collection.ai_service.no_personal"
-msgstr "No Personal Information"
+msgstr ""
 
 #: privacy-policy.html.j2:80
 msgid "privacy.collection.ai_service.no_personal_desc"
-msgstr "We do not send any personal information, device identifiers, or user data to AI services"
+msgstr ""
 
 #: privacy-policy.html.j2:83
 msgid "privacy.usage.title"
-msgstr "How We Use Your Information"
+msgstr ""
 
 #: privacy-policy.html.j2:84
 msgid "privacy.usage.local_storage.title"
-msgstr "Local Storage"
+msgstr ""
 
 #: privacy-policy.html.j2:86
 msgid "privacy.usage.local_storage.point1"
-msgstr "All your patterns, preferences, and app data are stored locally on your device"
+msgstr ""
 
 #: privacy-policy.html.j2:87
 msgid "privacy.usage.local_storage.point2"
-msgstr "We use this data to provide app functionality, save your creations, and maintain your preferences"
+msgstr ""
 
 #: privacy-policy.html.j2:88
 msgid "privacy.usage.local_storage.point3"
-msgstr "No personal data is transmitted to our servers"
+msgstr ""
 
 #: privacy-policy.html.j2:91
 msgid "privacy.usage.ai_naming.title"
-msgstr "AI Pattern Naming"
+msgstr ""
 
 #: privacy-policy.html.j2:93
 msgid "privacy.usage.ai_naming.point1"
-msgstr "When you request AI-generated pattern names, we send only your emoji sequence to Anthropic's Claude AI"
+msgstr ""
 
 #: privacy-policy.html.j2:94
 msgid "privacy.usage.ai_naming.point2"
-msgstr "This helps generate creative, relevant names for your patterns"
+msgstr ""
 
 #: privacy-policy.html.j2:95
 msgid "privacy.usage.ai_naming.point3"
-msgstr "No personal information or device identifiers are included in these requests"
+msgstr ""
 
 #: privacy-policy.html.j2:98
 msgid "privacy.usage.app_functionality.title"
-msgstr "App Functionality"
+msgstr ""
 
 #: privacy-policy.html.j2:100
 msgid "privacy.usage.app_functionality.point1"
-msgstr "We use your preferences to customize the app experience (language, theme)"
+msgstr ""
 
 #: privacy-policy.html.j2:101
 msgid "privacy.usage.app_functionality.point2"
-msgstr "Pattern data enables features like search, favorites, import/export, and organization"
+msgstr ""
 
 #: privacy-policy.html.j2:104
 msgid "privacy.storage.title"
-msgstr "Data Storage and Security"
+msgstr ""
 
 #: privacy-policy.html.j2:105
 msgid "privacy.storage.local.title"
-msgstr "Local Storage"
+msgstr ""
 
 #: privacy-policy.html.j2:107
 msgid "privacy.storage.local.point1"
-msgstr "All your data is stored locally on your device using Android's secure database systems"
+msgstr ""
 
 #: privacy-policy.html.j2:108
 msgid "privacy.storage.local.point2"
-msgstr "You have full control over your data and can delete it at any time"
+msgstr ""
 
 #: privacy-policy.html.j2:109
 msgid "privacy.storage.local.point3"
-msgstr "Data remains on your device unless you explicitly export or share it"
+msgstr ""
 
 #: privacy-policy.html.j2:112
 msgid "privacy.storage.transmission.title"
-msgstr "Data Transmission"
+msgstr ""
 
 #: privacy-policy.html.j2:114
 msgid "privacy.storage.transmission.point1"
-msgstr "Limited to AI naming requests (emoji sequences only)"
+msgstr ""
 
 #: privacy-policy.html.j2:115
 msgid "privacy.storage.transmission.point2"
-msgstr "All network communications use secure HTTPS encryption"
+msgstr ""
 
 #: privacy-policy.html.j2:116
 msgid "privacy.storage.transmission.point3"
-msgstr "No background data collection or transmission"
+msgstr ""
 
 #: privacy-policy.html.j2:119
 msgid "privacy.third_party.title"
-msgstr "Third-Party Services"
+msgstr ""
 
 #: privacy-policy.html.j2:120
 msgid "privacy.third_party.claude.title"
-msgstr "Anthropic Claude AI"
+msgstr ""
 
 #: privacy-policy.html.j2:122
 msgid "privacy.third_party.claude.purpose"
-msgstr "Purpose"
+msgstr ""
 
 #: privacy-policy.html.j2:122
 msgid "privacy.third_party.claude.purpose_desc"
-msgstr "Generate creative names for your emoji patterns"
+msgstr ""
 
 #: privacy-policy.html.j2:123
 msgid "privacy.third_party.claude.data_sent"
-msgstr "Data Sent"
+msgstr ""
 
 #: privacy-policy.html.j2:123
 msgid "privacy.third_party.claude.data_sent_desc"
-msgstr "Only emoji sequences (e.g., ❤️🌸🌟) when you request AI naming"
+msgstr ""
 
 #: privacy-policy.html.j2:124
 msgid "privacy.third_party.claude.data_not_sent"
-msgstr "Data Not Sent"
+msgstr ""
 
 #: privacy-policy.html.j2:124
 msgid "privacy.third_party.claude.data_not_sent_desc"
-msgstr "No personal information, device identifiers, or user data"
+msgstr ""
 
 #: privacy-policy.html.j2:125
 msgid "privacy.third_party.claude.privacy_policy"
-msgstr "Privacy Policy"
+msgstr ""
 
 #: privacy-policy.html.j2:128
 msgid "privacy.third_party.none.title"
-msgstr "No Other Third Parties"
+msgstr ""
 
 #: privacy-policy.html.j2:130
 msgid "privacy.third_party.none.point1"
-msgstr "We do not use analytics services, advertising networks, or tracking tools"
+msgstr ""
 
 #: privacy-policy.html.j2:131
 msgid "privacy.third_party.none.point2"
-msgstr "No data is shared with other third parties"
+msgstr ""
 
 #: privacy-policy.html.j2:134
 msgid "privacy.children.title"
-msgstr "Children's Privacy (COPPA Compliance)"
+msgstr ""
 
 #: privacy-policy.html.j2:135
 msgid "privacy.children.intro"
-msgstr "Emoty is safe for children under 13:"
+msgstr ""
 
 #: privacy-policy.html.j2:137
 msgid "privacy.children.no_collection"
-msgstr "No Personal Information Collection"
+msgstr ""
 
 #: privacy-policy.html.j2:137
 msgid "privacy.children.no_collection_desc"
-msgstr "We do not collect names, email addresses, phone numbers, or any personal identifiers"
+msgstr ""
 
 #: privacy-policy.html.j2:138
 msgid "privacy.children.no_social"
-msgstr "No Social Features"
+msgstr ""
 
 #: privacy-policy.html.j2:138
 msgid "privacy.children.no_social_desc"
-msgstr "No chat, messaging, or social interaction features"
+msgstr ""
 
 #: privacy-policy.html.j2:139
 msgid "privacy.children.local_data"
-msgstr "Local Data Only"
+msgstr ""
 
 #: privacy-policy.html.j2:139
 msgid "privacy.children.local_data_desc"
-msgstr "All data stays on the device under parental control"
+msgstr ""
 
 #: privacy-policy.html.j2:140
 msgid "privacy.children.safe_ai"
-msgstr "Safe AI Usage"
+msgstr ""
 
 #: privacy-policy.html.j2:140
 msgid "privacy.children.safe_ai_desc"
-msgstr "AI naming feature only processes emoji sequences, no personal data"
+msgstr ""
 
 #: privacy-policy.html.j2:141
 msgid "privacy.children.no_ads"
-msgstr "No Advertising"
+msgstr ""
 
 #: privacy-policy.html.j2:141
 msgid "privacy.children.no_ads_desc"
-msgstr "No third-party advertising or tracking"
+msgstr ""
 
 #: privacy-policy.html.j2:143
 msgid "privacy.children.parental"
-msgstr "Parents can review and delete all app data through the device's application settings."
+msgstr ""
 
 #: privacy-policy.html.j2:145
 msgid "privacy.rights.title"
-msgstr "Your Rights and Choices"
+msgstr ""
 
 #: privacy-policy.html.j2:146
 msgid "privacy.rights.control.title"
-msgstr "Data Control"
+msgstr ""
 
 #: privacy-policy.html.j2:148
 msgid "privacy.rights.control.delete"
-msgstr "Delete Data"
+msgstr ""
 
 #: privacy-policy.html.j2:148
 msgid "privacy.rights.control.delete_desc"
-msgstr "Uninstall the app to remove all data, or use device settings to clear app data"
+msgstr ""
 
 #: privacy-policy.html.j2:149
 msgid "privacy.rights.control.export"
-msgstr "Export Data"
+msgstr ""
 
 #: privacy-policy.html.j2:149
 msgid "privacy.rights.control.export_desc"
-msgstr "Use the app's export feature to save your patterns"
+msgstr ""
 
 #: privacy-policy.html.j2:150
 msgid "privacy.rights.control.opt_out"
-msgstr "Opt-Out of AI"
+msgstr ""
 
 #: privacy-policy.html.j2:150
 msgid "privacy.rights.control.opt_out_desc"
-msgstr "You can create patterns without using the AI naming feature"
+msgstr ""
 
 #: privacy-policy.html.j2:153
 msgid "privacy.rights.permissions.title"
-msgstr "App Permissions"
+msgstr ""
 
 #: privacy-policy.html.j2:155
 msgid "privacy.rights.permissions.internet"
-msgstr "Internet"
+msgstr ""
 
 #: privacy-policy.html.j2:155
 msgid "privacy.rights.permissions.internet_desc"
-msgstr "Required only for AI pattern naming feature"
+msgstr ""
 
 #: privacy-policy.html.j2:156
 msgid "privacy.rights.permissions.storage"
-msgstr "Storage"
+msgstr ""
 
 #: privacy-policy.html.j2:156
 msgid "privacy.rights.permissions.storage_desc"
-msgstr "For saving pattern images to your device gallery (with your permission)"
+msgstr ""
 
 #: privacy-policy.html.j2:157
 msgid "privacy.rights.permissions.notifications"
-msgstr "Notifications"
+msgstr ""
 
 #: privacy-policy.html.j2:157
 msgid "privacy.rights.permissions.notifications_desc"
-msgstr "For app-related notifications (can be disabled in device settings)"
+msgstr ""
 
 #: privacy-policy.html.j2:160
 msgid "privacy.retention.title"
-msgstr "Data Retention"
+msgstr ""
 
 #: privacy-policy.html.j2:162
 msgid "privacy.retention.local"
-msgstr "Local Data"
+msgstr ""
 
 #: privacy-policy.html.j2:162
 msgid "privacy.retention.local_desc"
-msgstr "Remains on your device until you delete the app or clear its data"
+msgstr ""
 
 #: privacy-policy.html.j2:163
 msgid "privacy.retention.ai"
-msgstr "AI Requests"
+msgstr ""
 
 #: privacy-policy.html.j2:163
 msgid "privacy.retention.ai_desc"
-msgstr "Emoji sequences sent to Anthropic are not stored by us (see Anthropic's privacy policy for their practices)"
+msgstr ""
 
 #: privacy-policy.html.j2:166
 msgid "privacy.international.title"
-msgstr "International Users"
+msgstr ""
 
 #: privacy-policy.html.j2:168
 msgid "privacy.international.point1"
-msgstr "Data processing occurs locally on your device"
+msgstr ""
 
 #: privacy-policy.html.j2:169
 msgid "privacy.international.point2"
-msgstr "AI requests are processed by Anthropic (see their privacy policy for international data handling)"
+msgstr ""
 
 #: privacy-policy.html.j2:172
 msgid "privacy.changes.title"
-msgstr "Changes to This Privacy Policy"
+msgstr ""
 
 #: privacy-policy.html.j2:173
 msgid "privacy.changes.intro"
-msgstr "We may update this Privacy Policy occasionally. We will notify users of material changes through:"
+msgstr ""
 
 #: privacy-policy.html.j2:175
 msgid "privacy.changes.point1"
-msgstr "App update descriptions"
+msgstr ""
 
 #: privacy-policy.html.j2:176
 msgid "privacy.changes.point2"
-msgstr "In-app notifications"
+msgstr ""
 
 #: privacy-policy.html.j2:177
 msgid "privacy.changes.point3"
-msgstr "Updated effective date on this policy"
+msgstr ""
 
 #: privacy-policy.html.j2:180
 msgid "privacy.contact.title"
-msgstr "Contact Us"
+msgstr ""
 
 #: privacy-policy.html.j2:181
 msgid "privacy.contact.intro"
-msgstr "If you have questions about this Privacy Policy or our data practices:"
+msgstr ""
 
 #: privacy-policy.html.j2:182
 msgid "privacy.contact.email"
-msgstr "Email"
+msgstr ""
 
 #: privacy-policy.html.j2:183
 msgid "privacy.contact.developer"
-msgstr "Developer"
+msgstr ""
 
 #: privacy-policy.html.j2:184
 msgid "privacy.contact.app"
-msgstr "App"
+msgstr ""
 
 #: privacy-policy.html.j2:184
 msgid "privacy.contact.app_name"
-msgstr "Emoty - Emoji Pattern Creator"
+msgstr ""
 
 #: privacy-policy.html.j2:186
 msgid "privacy.legal.title"
-msgstr "Legal Compliance"
+msgstr ""
 
 #: privacy-policy.html.j2:187
 msgid "privacy.legal.intro"
-msgstr "This Privacy Policy complies with:"
+msgstr ""
 
 #: privacy-policy.html.j2:189
 msgid "privacy.legal.point1"
-msgstr "Google Play Store policies"
+msgstr ""
 
 #: privacy-policy.html.j2:190
 msgid "privacy.legal.point2"
-msgstr "Children's Online Privacy Protection Act (COPPA)"
+msgstr ""
 
 #: privacy-policy.html.j2:191
 msgid "privacy.legal.point3"
-msgstr "General Data Protection Regulation (GDPR) where applicable"
+msgstr ""
 
 #: privacy-policy.html.j2:192
 msgid "privacy.legal.point4"
-msgstr "California Consumer Privacy Act (CCPA) where applicable"
+msgstr ""
+

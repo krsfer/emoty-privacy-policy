@@ -1,445 +1,635 @@
-# French translations for Emoty website
+# Translations template for Emoty Website.
 # Copyright (C) 2025 Christopher Archer
-# This file is distributed under the same license as the project.
-# Christopher Archer <support@emoty.fr>, 2025.
+# This file is distributed under the same license as the Emoty Website
+# project.
+# Automatically generated, 2025.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.0\n"
+"Project-Id-Version: Emoty Website 1.0\n"
 "Report-Msgid-Bugs-To: support@emoty.fr\n"
-"POT-Creation-Date: 2025-06-25 12:00+0000\n"
-"PO-Revision-Date: 2025-06-25 12:00+0000\n"
-"Last-Translator: Christopher Archer <support@emoty.fr>\n"
-"Language-Team: French\n"
-"Language: fr\n"
+"POT-Creation-Date: 2025-07-01 00:00+0200\n"
+"PO-Revision-Date: 2025-07-01 00:00+0200\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-# Meta tags
-msgid "meta.title"
-msgstr "Emoty - Créateur de Motifs d'Émojis"
-
+#: base.html.j2:6
 msgid "meta.description"
-msgstr "Emoty - Créez de magnifiques motifs d'émojis avec l'assistance IA. Disponible sur Android. Axé sur la confidentialité et conforme COPPA."
+msgstr "Emoty - Créez de magnifiques motifs d'emojis avec l'aide de l'IA. Disponible sur Android. Axé sur la confidentialité et conforme à la COPPA."
 
+#: base.html.j2:8
 msgid "meta.keywords"
-msgstr "Emoty, motifs d'émojis, application créative, Android, générateur de motifs IA, conforme COPPA"
+msgstr "Emoty, motifs d'emojis, application créative, Android, générateur de motifs IA, conforme COPPA"
 
-# Header
-msgid "header.tagline"
-msgstr "Créez de Magnifiques Motifs d'Émojis avec l'IA"
+#: base.html.j2:14
+msgid "meta.title"
+msgstr "Emoty - Créateur de Motifs d'Emojis"
 
-# Navigation
+#: base.html.j2:198 eli5.html.j2:5 privacy-policy.html.j2:8
 msgid "nav.lang_switch"
 msgstr "English"
 
-msgid "nav.home"
-msgstr "Accueil"
+#: base.html.j2:208
+msgid "header.tagline"
+msgstr "Créez de Magnifiques Motifs d'Emojis, avec une Aide Intelligente Disponible"
 
-# Features
-msgid "features.ai_creation.title"
-msgstr "Création Assistée par IA"
-
-msgid "features.ai_creation.description"
-msgstr "Générez des motifs d'émojis créatifs à partir de prompts texte et obtenez des noms suggérés par l'IA pour vos créations grâce à Claude AI."
-
-msgid "features.palettes.title"
-msgstr "15 Palettes Organisées"
-
-msgid "features.palettes.description"
-msgstr "Choisissez parmi Cœurs & Fleurs, Visages Souriants, Ambiance Nature, Animaux Mignons, Espace & Cosmos et 10 autres collections thématiques."
-
-msgid "features.privacy.title"
-msgstr "Confidentialité d'Abord"
-
-msgid "features.privacy.description"
-msgstr "Toutes les données restent sur votre appareil. Aucune information personnelle collectée. Conforme COPPA et sûr pour tous les âges."
-
-msgid "features.emotybot.title"
-msgstr "Assistant EmotyBot"
-
-msgid "features.emotybot.description"
-msgstr "Obtenez de l'aide et des suggestions créatives de notre assistant IA convivial avec des recommandations d'émojis contextuelles."
-
-msgid "features.share_export.title"
-msgstr "Partage & Export"
-
-msgid "features.share_export.description"
-msgstr "Sauvegardez en images, imprimez en PDF, partagez les motifs par codes, ou exportez toute votre collection en JSON."
-
-msgid "features.voice_commands.title"
-msgstr "Commandes Vocales"
-
-msgid "features.voice_commands.description"
-msgstr "Créez des motifs mains libres avec les commandes vocales en français et anglais avec détection automatique de la langue."
-
-# Call to Action
-msgid "cta.title"
-msgstr "Téléchargez Emoty pour Android"
-
-msgid "cta.description"
-msgstr "Transformez vos émojis en magnifiques motifs. Parfait pour les réseaux sociaux, les décorations ou l'expression créative !"
-
-msgid "cta.download_button"
-msgstr "Télécharger sur Google Play"
-
-msgid "cta.privacy_button"
-msgstr "Politique de Confidentialité"
-
-# Footer
+#: base.html.j2:214
 msgid "footer.rights"
 msgstr "Tous droits réservés."
 
+#: base.html.j2:216
 msgid "footer.privacy_policy"
 msgstr "Politique de Confidentialité"
 
+#: base.html.j2:217
 msgid "footer.contact"
 msgstr "Contact"
 
-# Privacy Policy Meta
-msgid "privacy.meta.title"
-msgstr "Politique de Confidentialité - Emoty"
+#: eli5.html.j2:11
+msgid "eli5.title"
+msgstr "Fais des Images Amusantes avec des Emojis ! "
 
-msgid "privacy.meta.description"
-msgstr "Politique de Confidentialité pour Emoty - Créateur de Motifs d'Émojis. Découvrez comment nous protégeons vos données et votre vie privée lors de l'utilisation de notre application."
+#: eli5.html.j2:13
+msgid "eli5.intro"
+msgstr "Tu as toujours voulu faire des motifs cools avec des emojis ? Emoty t'aide à faire exactement ça !"
 
-msgid "privacy.meta.keywords"
-msgstr "Emoty, politique de confidentialité, motifs d'émojis, protection des données, conforme COPPA"
+#: eli5.html.j2:15
+msgid "eli5.what_is_emoty.title"
+msgstr "C'est quoi Emoty ?"
+
+#: eli5.html.j2:16
+msgid "eli5.what_is_emoty.content"
+msgstr "C'est une application pour ton téléphone Android qui te permet d'être créatif avec les emojis. C'est comme un livre de coloriage, mais avec des emojis !"
+
+#: eli5.html.j2:18
+msgid "eli5.what_can_you_do.title"
+msgstr "Qu'est-ce que tu peux faire ?"
+
+#: eli5.html.j2:20
+msgid "eli5.what_can_you_do.patterns.title"
+msgstr "Faire des Motifs :"
+
+#: eli5.html.j2:20
+msgid "eli5.what_can_you_do.patterns.content"
+msgstr "Dis à l'application ce que tu veux, et notre assistant robot (IA) fera un motif pour toi."
+
+#: eli5.html.j2:21
+msgid "eli5.what_can_you_do.colors.title"
+msgstr "Utiliser des Couleurs Amusantes :"
+
+#: eli5.html.j2:21
+msgid "eli5.what_can_you_do.colors.content"
+msgstr "Choisis parmi plein de groupes d'emojis sympas comme les animaux, l'espace, ou les cœurs."
+
+#: eli5.html.j2:22
+msgid "eli5.what_can_you_do.safe.title"
+msgstr "C'est Sûr :"
+
+#: eli5.html.j2:22
+msgid "eli5.what_can_you_do.safe.content"
+msgstr "On ne regarde pas tes affaires. Ce que tu fais reste sur ton téléphone."
+
+#: eli5.html.j2:23
+msgid "eli5.what_can_you_do.share.title"
+msgstr "Partager Ton Art :"
+
+#: eli5.html.j2:23
+msgid "eli5.what_can_you_do.share.content"
+msgstr "Montre à tes amis tes images d'emojis super cool !"
+
+#: eli5.html.j2:26
+msgid "eli5.get_the_app.title"
+msgstr "Télécharge l'Application !"
+
+#: eli5.html.j2:27
+msgid "eli5.get_the_app.content"
+msgstr "C'est gratuit sur le Google Play Store. Clique sur le bouton pour la télécharger."
+
+#: eli5.html.j2:30
+msgid "eli5.download_button"
+msgstr "Télécharger Emoty"
+
+#: index.html.j2:35
+msgid "features.ai_creation.title"
+msgstr "Assistance Créative"
+
+#: index.html.j2:36
+msgid "features.ai_creation.description"
+msgstr "Vous manquez d'idées ? Demandez de l'aide pour générer un motif à partir d'un texte, ou obtenez des suggestions de noms astucieux pour votre art terminé."
+
+#: index.html.j2:40
+msgid "features.palettes.title"
+msgstr "15 Palettes Sélectionnées"
+
+#: index.html.j2:41
+msgid "features.palettes.description"
+msgstr "Choisissez parmi Cœurs & Fleurs, Visages Heureux, Ambiance Nature, Animaux Mignons, Espace & Cosmos, et 10 autres collections thématiques."
+
+#: index.html.j2:45
+msgid "features.privacy.title"
+msgstr "Confidentialité d'Abord"
+
+#: index.html.j2:46
+msgid "features.privacy.description"
+msgstr "Toutes les données restent sur votre appareil. Aucune information personnelle collectée. Conforme à la COPPA et sûr pour tous les âges."
+
+#: index.html.j2:50
+msgid "features.emotybot.title"
+msgstr "Votre Assistant EmotyBot"
+
+#: index.html.j2:51
+msgid "features.emotybot.description"
+msgstr "Votre sympathique EmotyBot est toujours prêt à vous aider. Demandez des idées créatives, trouvez des fonctionnalités de l'application, ou obtenez des recommandations d'emojis via un simple chat."
+
+#: index.html.j2:55
+msgid "features.share_export.title"
+msgstr "Partager & Exporter"
+
+#: index.html.j2:56
+msgid "features.share_export.description"
+msgstr "Enregistrez en images, imprimez en PDF, partagez des motifs sous forme de codes, ou exportez toute votre collection en JSON."
+
+#: index.html.j2:60
+msgid "features.voice_commands.title"
+msgstr "Commandes Vocales"
+
+#: index.html.j2:61
+msgid "features.voice_commands.description"
+msgstr "Créez des motifs mains-libres avec des commandes vocales en anglais et en français avec détection automatique de la langue."
+
+# Call to Action
+#: index.html.j2:66
+msgid "cta.title"
+msgstr "Obtenez Emoty pour Android"
+
+#: index.html.j2:67
+msgid "cta.description"
+msgstr "Transformez vos emojis en magnifiques motifs. Parfait pour les réseaux sociaux, les décorations, ou l'expression créative !"
+
+#: index.html.j2:69
+msgid "cta.download_button"
+msgstr "Télécharger sur Google Play"
+
+#: index.html.j2:72
+msgid "cta.privacy_button"
+msgstr "Politique de Confidentialité"
+
+#: privacy-policy.html.j2:5
+msgid "nav.home"
+msgstr "Accueil"
 
 # Privacy Policy
+#: privacy-policy.html.j2:55
 msgid "privacy.title"
 msgstr "Politique de Confidentialité pour Emoty"
 
+#: privacy-policy.html.j2:56 privacy-policy.html.j2:197
 msgid "privacy.effective_date"
-msgstr "Date d'entrée en vigueur"
+msgstr "Date d'Entrée en Vigueur"
 
-msgid "privacy.last_updated"
-msgstr "Dernière mise à jour"
-
+#: privacy-policy.html.j2:56 privacy-policy.html.j2:57
+#: privacy-policy.html.j2:196 privacy-policy.html.j2:197
 msgid "privacy.date"
 msgstr "15 juin 2025"
 
+#: privacy-policy.html.j2:57 privacy-policy.html.j2:196
+msgid "privacy.last_updated"
+msgstr "Dernière Mise à Jour"
+
+#: privacy-policy.html.j2:59
 msgid "privacy.intro.title"
 msgstr "Introduction"
 
+#: privacy-policy.html.j2:60
 msgid "privacy.intro.content"
-msgstr "Bienvenue sur Emoty ! Cette Politique de Confidentialité explique comment nous collectons, utilisons et protégeons vos informations lorsque vous utilisez notre application de création de motifs d'émojis. Nous nous engageons à protéger votre vie privée et à être transparents sur nos pratiques de données."
+msgstr "Bienvenue sur Emoty ! Cette Politique de Confidentialité explique comment nous collectons, utilisons et protégeons vos informations lorsque vous utilisez notre application de création de motifs d'emojis. Nous nous engageons à protéger votre vie privée et à être transparents sur nos pratiques de données."
 
+#: privacy-policy.html.j2:62
 msgid "privacy.collection.title"
 msgstr "Informations que Nous Collectons"
 
+#: privacy-policy.html.j2:63
 msgid "privacy.collection.user_content.title"
 msgstr "Contenu Créé par l'Utilisateur"
 
+#: privacy-policy.html.j2:65
 msgid "privacy.collection.user_content.patterns"
-msgstr "Motifs d'Émojis"
+msgstr "Motifs d'Emojis"
 
+#: privacy-policy.html.j2:65
 msgid "privacy.collection.user_content.patterns_desc"
-msgstr "Les séquences et motifs d'émojis que vous créez"
+msgstr "Les séquences et motifs d'emojis que vous créez"
 
+#: privacy-policy.html.j2:66
 msgid "privacy.collection.user_content.names"
 msgstr "Noms de Motifs"
 
+#: privacy-policy.html.j2:66
 msgid "privacy.collection.user_content.names_desc"
 msgstr "Les noms que vous donnez à vos motifs sauvegardés (y compris les suggestions générées par l'IA que vous choisissez)"
 
+#: privacy-policy.html.j2:67
 msgid "privacy.collection.user_content.tags"
-msgstr "Tags et Organisation"
+msgstr "Étiquettes et Organisation"
 
+#: privacy-policy.html.j2:67
 msgid "privacy.collection.user_content.tags_desc"
-msgstr "Les tags, favoris et données d'organisation que vous ajoutez aux motifs"
+msgstr "Étiquettes, favoris et données d'organisation que vous ajoutez aux motifs"
 
+#: privacy-policy.html.j2:68
 msgid "privacy.collection.user_content.timestamps"
 msgstr "Horodatages de Création"
 
+#: privacy-policy.html.j2:68
 msgid "privacy.collection.user_content.timestamps_desc"
 msgstr "Quand les motifs ont été créés ou modifiés"
 
+#: privacy-policy.html.j2:71
 msgid "privacy.collection.app_usage.title"
 msgstr "Informations d'Utilisation de l'Application"
 
+#: privacy-policy.html.j2:73
 msgid "privacy.collection.app_usage.preferences"
 msgstr "Préférences"
 
+#: privacy-policy.html.j2:73
 msgid "privacy.collection.app_usage.preferences_desc"
-msgstr "Votre paramètre de langue (Anglais/Français), préférence de thème (clair/sombre)"
+msgstr "Votre paramètre de langue (anglais/français), préférence de thème (clair/sombre)"
 
+#: privacy-policy.html.j2:74
 msgid "privacy.collection.app_usage.state"
 msgstr "État de l'Application"
 
+#: privacy-policy.html.j2:74
 msgid "privacy.collection.app_usage.state_desc"
-msgstr "Le motif en cours de travail (sauvegardé localement pour la continuité de l'application)"
+msgstr "Motif en cours de travail (sauvegardé localement pour la continuité de l'application)"
 
+#: privacy-policy.html.j2:77
 msgid "privacy.collection.ai_service.title"
 msgstr "Données du Service IA"
 
+#: privacy-policy.html.j2:79
 msgid "privacy.collection.ai_service.sequences"
-msgstr "Séquences d'Émojis"
+msgstr "Séquences d'Emojis"
 
+#: privacy-policy.html.j2:79
 msgid "privacy.collection.ai_service.sequences_desc"
-msgstr "Lorsque vous utilisez notre fonction de nommage IA, nous envoyons vos séquences d'émojis au service Claude AI d'Anthropic pour générer des noms de motifs créatifs"
+msgstr "Lorsque vous utilisez notre fonction de nommage IA, nous envoyons vos séquences d'emojis au service Claude AI d'Anthropic pour générer des noms de motifs créatifs"
 
+#: privacy-policy.html.j2:80
 msgid "privacy.collection.ai_service.no_personal"
 msgstr "Aucune Information Personnelle"
 
+#: privacy-policy.html.j2:80
 msgid "privacy.collection.ai_service.no_personal_desc"
 msgstr "Nous n'envoyons aucune information personnelle, identifiant d'appareil ou donnée utilisateur aux services IA"
 
+#: privacy-policy.html.j2:83
 msgid "privacy.usage.title"
 msgstr "Comment Nous Utilisons Vos Informations"
 
+#: privacy-policy.html.j2:84
 msgid "privacy.usage.local_storage.title"
 msgstr "Stockage Local"
 
+#: privacy-policy.html.j2:86
 msgid "privacy.usage.local_storage.point1"
 msgstr "Tous vos motifs, préférences et données d'application sont stockés localement sur votre appareil"
 
+#: privacy-policy.html.j2:87
 msgid "privacy.usage.local_storage.point2"
 msgstr "Nous utilisons ces données pour fournir les fonctionnalités de l'application, sauvegarder vos créations et maintenir vos préférences"
 
+#: privacy-policy.html.j2:88
 msgid "privacy.usage.local_storage.point3"
 msgstr "Aucune donnée personnelle n'est transmise à nos serveurs"
 
+#: privacy-policy.html.j2:91
 msgid "privacy.usage.ai_naming.title"
 msgstr "Nommage de Motifs par IA"
 
+#: privacy-policy.html.j2:93
 msgid "privacy.usage.ai_naming.point1"
-msgstr "Lorsque vous demandez des noms de motifs générés par l'IA, nous envoyons uniquement votre séquence d'émojis à Claude AI d'Anthropic"
+msgstr "Lorsque vous demandez des noms de motifs générés par l'IA, nous envoyons uniquement votre séquence d'emojis à Claude AI d'Anthropic"
 
+#: privacy-policy.html.j2:94
 msgid "privacy.usage.ai_naming.point2"
 msgstr "Cela aide à générer des noms créatifs et pertinents pour vos motifs"
 
+#: privacy-policy.html.j2:95
 msgid "privacy.usage.ai_naming.point3"
 msgstr "Aucune information personnelle ou identifiant d'appareil n'est inclus dans ces requêtes"
 
+#: privacy-policy.html.j2:98
 msgid "privacy.usage.app_functionality.title"
 msgstr "Fonctionnalité de l'Application"
 
+#: privacy-policy.html.j2:100
 msgid "privacy.usage.app_functionality.point1"
 msgstr "Nous utilisons vos préférences pour personnaliser l'expérience de l'application (langue, thème)"
 
+#: privacy-policy.html.j2:101
 msgid "privacy.usage.app_functionality.point2"
 msgstr "Les données de motifs permettent des fonctionnalités comme la recherche, les favoris, l'import/export et l'organisation"
 
+#: privacy-policy.html.j2:104
 msgid "privacy.storage.title"
 msgstr "Stockage et Sécurité des Données"
 
+#: privacy-policy.html.j2:105
 msgid "privacy.storage.local.title"
 msgstr "Stockage Local"
 
+#: privacy-policy.html.j2:107
 msgid "privacy.storage.local.point1"
 msgstr "Toutes vos données sont stockées localement sur votre appareil en utilisant les systèmes de base de données sécurisés d'Android"
 
+#: privacy-policy.html.j2:108
 msgid "privacy.storage.local.point2"
 msgstr "Vous avez un contrôle total sur vos données et pouvez les supprimer à tout moment"
 
+#: privacy-policy.html.j2:109
 msgid "privacy.storage.local.point3"
-msgstr "Les données restent sur votre appareil sauf si vous les exportez ou les partagez explicitement"
+msgstr "Les données restent sur votre appareil sauf si vous les exportez ou partagez explicitement"
 
+#: privacy-policy.html.j2:112
 msgid "privacy.storage.transmission.title"
 msgstr "Transmission de Données"
 
+#: privacy-policy.html.j2:114
 msgid "privacy.storage.transmission.point1"
-msgstr "Limitée aux demandes de nommage IA (séquences d'émojis uniquement)"
+msgstr "Limitée aux requêtes de nommage IA (séquences d'emojis uniquement)"
 
+#: privacy-policy.html.j2:115
 msgid "privacy.storage.transmission.point2"
-msgstr "Toutes les communications réseau utilisent le cryptage HTTPS sécurisé"
+msgstr "Toutes les communications réseau utilisent le chiffrement HTTPS sécurisé"
 
+#: privacy-policy.html.j2:116
 msgid "privacy.storage.transmission.point3"
 msgstr "Aucune collecte ou transmission de données en arrière-plan"
 
+#: privacy-policy.html.j2:119
 msgid "privacy.third_party.title"
 msgstr "Services Tiers"
 
+#: privacy-policy.html.j2:120
 msgid "privacy.third_party.claude.title"
 msgstr "Anthropic Claude AI"
 
+#: privacy-policy.html.j2:122
 msgid "privacy.third_party.claude.purpose"
 msgstr "Objectif"
 
+#: privacy-policy.html.j2:122
 msgid "privacy.third_party.claude.purpose_desc"
-msgstr "Générer des noms créatifs pour vos motifs d'émojis"
+msgstr "Générer des noms créatifs pour vos motifs d'emojis"
 
+#: privacy-policy.html.j2:123
 msgid "privacy.third_party.claude.data_sent"
 msgstr "Données Envoyées"
 
+#: privacy-policy.html.j2:123
 msgid "privacy.third_party.claude.data_sent_desc"
-msgstr "Uniquement les séquences d'émojis (par ex., \"❤️🌸🌟\") lorsque vous demandez un nommage IA"
+msgstr "Uniquement les séquences d'emojis (par ex., ❤️🌸🌟) lorsque vous demandez un nommage IA"
 
+#: privacy-policy.html.j2:124
 msgid "privacy.third_party.claude.data_not_sent"
 msgstr "Données Non Envoyées"
 
+#: privacy-policy.html.j2:124
 msgid "privacy.third_party.claude.data_not_sent_desc"
 msgstr "Aucune information personnelle, identifiant d'appareil ou donnée utilisateur"
 
+#: privacy-policy.html.j2:125
 msgid "privacy.third_party.claude.privacy_policy"
 msgstr "Politique de Confidentialité"
 
+#: privacy-policy.html.j2:128
 msgid "privacy.third_party.none.title"
 msgstr "Aucun Autre Tiers"
 
+#: privacy-policy.html.j2:130
 msgid "privacy.third_party.none.point1"
 msgstr "Nous n'utilisons pas de services d'analyse, de réseaux publicitaires ou d'outils de suivi"
 
+#: privacy-policy.html.j2:131
 msgid "privacy.third_party.none.point2"
 msgstr "Aucune donnée n'est partagée avec d'autres tiers"
 
+#: privacy-policy.html.j2:134
 msgid "privacy.children.title"
 msgstr "Confidentialité des Enfants (Conformité COPPA)"
 
+#: privacy-policy.html.j2:135
 msgid "privacy.children.intro"
 msgstr "Emoty est sûr pour les enfants de moins de 13 ans :"
 
+#: privacy-policy.html.j2:137
 msgid "privacy.children.no_collection"
 msgstr "Aucune Collecte d'Informations Personnelles"
 
+#: privacy-policy.html.j2:137
 msgid "privacy.children.no_collection_desc"
-msgstr "Nous ne collectons pas de noms, adresses e-mail, numéros de téléphone ou tout identifiant personnel"
+msgstr "Nous ne collectons pas de noms, adresses e-mail, numéros de téléphone ou identifiants personnels"
 
+#: privacy-policy.html.j2:138
 msgid "privacy.children.no_social"
 msgstr "Aucune Fonctionnalité Sociale"
 
+#: privacy-policy.html.j2:138
 msgid "privacy.children.no_social_desc"
 msgstr "Pas de chat, messagerie ou fonctionnalités d'interaction sociale"
 
+#: privacy-policy.html.j2:139
 msgid "privacy.children.local_data"
 msgstr "Données Locales Uniquement"
 
+#: privacy-policy.html.j2:139
 msgid "privacy.children.local_data_desc"
 msgstr "Toutes les données restent sur l'appareil sous contrôle parental"
 
+#: privacy-policy.html.j2:140
 msgid "privacy.children.safe_ai"
 msgstr "Utilisation Sûre de l'IA"
 
+#: privacy-policy.html.j2:140
 msgid "privacy.children.safe_ai_desc"
-msgstr "La fonction de nommage IA traite uniquement les séquences d'émojis, aucune donnée personnelle"
+msgstr "La fonction de nommage IA traite uniquement les séquences d'emojis, aucune donnée personnelle"
 
+#: privacy-policy.html.j2:141
 msgid "privacy.children.no_ads"
-msgstr "Pas de Publicité"
+msgstr "Aucune Publicité"
 
+#: privacy-policy.html.j2:141
 msgid "privacy.children.no_ads_desc"
 msgstr "Aucune publicité ou suivi tiers"
 
+#: privacy-policy.html.j2:143
 msgid "privacy.children.parental"
-msgstr "Les parents peuvent examiner et supprimer toutes les données de l'application via les paramètres d'application de l'appareil."
+msgstr "Les parents peuvent consulter et supprimer toutes les données de l'application via les paramètres d'application de l'appareil."
 
+#: privacy-policy.html.j2:145
 msgid "privacy.rights.title"
 msgstr "Vos Droits et Choix"
 
+#: privacy-policy.html.j2:146
 msgid "privacy.rights.control.title"
 msgstr "Contrôle des Données"
 
+#: privacy-policy.html.j2:148
 msgid "privacy.rights.control.delete"
 msgstr "Supprimer les Données"
 
+#: privacy-policy.html.j2:148
 msgid "privacy.rights.control.delete_desc"
 msgstr "Désinstallez l'application pour supprimer toutes les données, ou utilisez les paramètres de l'appareil pour effacer les données de l'application"
 
+#: privacy-policy.html.j2:149
 msgid "privacy.rights.control.export"
 msgstr "Exporter les Données"
 
+#: privacy-policy.html.j2:149
 msgid "privacy.rights.control.export_desc"
-msgstr "Utilisez la fonction d'exportation de l'application pour sauvegarder vos motifs"
+msgstr "Utilisez la fonction d'export de l'application pour sauvegarder vos motifs"
 
+#: privacy-policy.html.j2:150
 msgid "privacy.rights.control.opt_out"
 msgstr "Refuser l'IA"
 
+#: privacy-policy.html.j2:150
 msgid "privacy.rights.control.opt_out_desc"
 msgstr "Vous pouvez créer des motifs sans utiliser la fonction de nommage IA"
 
+#: privacy-policy.html.j2:153
 msgid "privacy.rights.permissions.title"
 msgstr "Permissions de l'Application"
 
+#: privacy-policy.html.j2:155
 msgid "privacy.rights.permissions.internet"
 msgstr "Internet"
 
+#: privacy-policy.html.j2:155
 msgid "privacy.rights.permissions.internet_desc"
 msgstr "Requis uniquement pour la fonction de nommage de motifs par IA"
 
+#: privacy-policy.html.j2:156
 msgid "privacy.rights.permissions.storage"
 msgstr "Stockage"
 
+#: privacy-policy.html.j2:156
 msgid "privacy.rights.permissions.storage_desc"
 msgstr "Pour sauvegarder les images de motifs dans la galerie de votre appareil (avec votre permission)"
 
+#: privacy-policy.html.j2:157
 msgid "privacy.rights.permissions.notifications"
 msgstr "Notifications"
 
+#: privacy-policy.html.j2:157
 msgid "privacy.rights.permissions.notifications_desc"
 msgstr "Pour les notifications liées à l'application (peuvent être désactivées dans les paramètres de l'appareil)"
 
+#: privacy-policy.html.j2:160
 msgid "privacy.retention.title"
 msgstr "Conservation des Données"
 
+#: privacy-policy.html.j2:162
 msgid "privacy.retention.local"
 msgstr "Données Locales"
 
+#: privacy-policy.html.j2:162
 msgid "privacy.retention.local_desc"
 msgstr "Restent sur votre appareil jusqu'à ce que vous supprimiez l'application ou effaciez ses données"
 
+#: privacy-policy.html.j2:163
 msgid "privacy.retention.ai"
 msgstr "Requêtes IA"
 
+#: privacy-policy.html.j2:163
 msgid "privacy.retention.ai_desc"
-msgstr "Les séquences d'émojis envoyées à Anthropic ne sont pas stockées par nous (voir la politique de confidentialité d'Anthropic pour leurs pratiques)"
+msgstr "Les séquences d'emojis envoyées à Anthropic ne sont pas stockées par nous (voir la politique de confidentialité d'Anthropic pour leurs pratiques)"
 
+#: privacy-policy.html.j2:166
 msgid "privacy.international.title"
 msgstr "Utilisateurs Internationaux"
 
+#: privacy-policy.html.j2:168
 msgid "privacy.international.point1"
 msgstr "Le traitement des données s'effectue localement sur votre appareil"
 
+#: privacy-policy.html.j2:169
 msgid "privacy.international.point2"
-msgstr "Les requêtes IA sont traitées par Anthropic (voir leur politique de confidentialité pour le traitement des données internationales)"
+msgstr "Les requêtes IA sont traitées par Anthropic (voir leur politique de confidentialité pour la gestion des données internationales)"
 
+#: privacy-policy.html.j2:172
 msgid "privacy.changes.title"
 msgstr "Modifications de Cette Politique de Confidentialité"
 
+#: privacy-policy.html.j2:173
 msgid "privacy.changes.intro"
 msgstr "Nous pouvons mettre à jour cette Politique de Confidentialité occasionnellement. Nous informerons les utilisateurs des changements importants via :"
 
+#: privacy-policy.html.j2:175
 msgid "privacy.changes.point1"
-msgstr "Les descriptions de mise à jour de l'application"
+msgstr "Descriptions de mise à jour de l'application"
 
+#: privacy-policy.html.j2:176
 msgid "privacy.changes.point2"
-msgstr "Les notifications dans l'application"
+msgstr "Notifications dans l'application"
 
+#: privacy-policy.html.j2:177
 msgid "privacy.changes.point3"
-msgstr "La date d'entrée en vigueur mise à jour sur cette politique"
+msgstr "Date d'entrée en vigueur mise à jour sur cette politique"
 
+#: privacy-policy.html.j2:180
 msgid "privacy.contact.title"
 msgstr "Nous Contacter"
 
+#: privacy-policy.html.j2:181
 msgid "privacy.contact.intro"
 msgstr "Si vous avez des questions sur cette Politique de Confidentialité ou nos pratiques de données :"
 
+#: privacy-policy.html.j2:182
 msgid "privacy.contact.email"
 msgstr "Email"
 
+#: privacy-policy.html.j2:183
 msgid "privacy.contact.developer"
 msgstr "Développeur"
 
+#: privacy-policy.html.j2:184
 msgid "privacy.contact.app"
 msgstr "Application"
 
+#: privacy-policy.html.j2:184
 msgid "privacy.contact.app_name"
-msgstr "Emoty - Créateur de Motifs d'Émojis"
+msgstr "Emoty - Créateur de Motifs d'Emojis"
 
+#: privacy-policy.html.j2:186
 msgid "privacy.legal.title"
 msgstr "Conformité Légale"
 
+#: privacy-policy.html.j2:187
 msgid "privacy.legal.intro"
 msgstr "Cette Politique de Confidentialité est conforme à :"
 
+#: privacy-policy.html.j2:189
 msgid "privacy.legal.point1"
-msgstr "Les politiques de Google Play Store"
+msgstr "Politiques du Google Play Store"
 
+#: privacy-policy.html.j2:190
 msgid "privacy.legal.point2"
-msgstr "La Loi sur la Protection de la Vie Privée en Ligne des Enfants (COPPA)"
+msgstr "Children's Online Privacy Protection Act (COPPA)"
 
+#: privacy-policy.html.j2:191
 msgid "privacy.legal.point3"
-msgstr "Le Règlement Général sur la Protection des Données (RGPD) le cas échéant"
+msgstr "Règlement Général sur la Protection des Données (RGPD) le cas échéant"
 
+#: privacy-policy.html.j2:192
 msgid "privacy.legal.point4"
-msgstr "La Loi Californienne sur la Protection de la Vie Privée des Consommateurs (CCPA) le cas échéant"
+msgstr "California Consumer Privacy Act (CCPA) le cas échéant"

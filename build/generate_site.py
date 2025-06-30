@@ -54,7 +54,14 @@ class SiteGenerator:
         lang_config = self.config['languages'][locale].copy()
         
         # Add alternate language info
-        other_locale = 'fr' if locale == 'en' else 'en'
+        if locale == 'en':
+            other_locale = 'fr'
+        elif locale == 'fr':
+            other_locale = 'en'
+        elif locale == 'fr-tu':
+            other_locale = 'en' # Assuming fr-tu switches to English
+        else:
+            other_locale = 'en' # Default to English if unknown locale
         other_lang = self.config['languages'][other_locale]
         
         lang_config.update({
@@ -162,6 +169,45 @@ class SiteGenerator:
         
         return html
     
+    def generate_eli5_page(self, locale: str) -> str:
+        """Generate eli5.html for a specific locale."""
+        # Load translations
+        translations = self._get_translations(locale)
+        self.env.install_gettext_translations(translations)
+
+        # Load template
+        template = self.env.get_template('eli5.html.j2')
+        
+        # Get language configuration
+        lang_config = self._get_language_config(locale)
+
+        # Determine alternate ELI5 URL and path
+        if locale == 'en':
+            eli5_alternate_locale = 'fr'
+        elif locale == 'fr':
+            eli5_alternate_locale = 'en'
+        elif locale == 'fr-tu':
+            eli5_alternate_locale = 'en' # fr-tu switches to English ELI5
+        else:
+            eli5_alternate_locale = 'en' # Default to English ELI5
+
+        eli5_other_lang = self.config['languages'][eli5_alternate_locale]
+        eli5_alternate_url = f"{eli5_other_lang['alternate_url']}eli5/"
+        eli5_alternate_path = f"{eli5_other_lang['path']}eli5/"
+
+        # Render template
+        html = template.render(
+            locale=locale,
+            config=self.config,
+            alternate_lang=lang_config['alternate_lang'],
+            alternate_url=eli5_alternate_url,
+            alternate_path=eli5_alternate_path,
+            privacy_policy_url=lang_config['privacy_policy_url'],
+            path=f"{lang_config['path']}eli5/"
+        )
+        
+        return html
+    
     def build_site(self) -> None:
         """Build the complete site for all locales."""
         click.echo("Building site...")
@@ -182,6 +228,10 @@ class SiteGenerator:
             # Determine output path
             if locale == 'en':
                 output_path = self.output_dir / 'index.html'
+            elif locale == 'fr-tu':
+                locale_dir = self.output_dir / 'fr-FR' / 'tu'
+                locale_dir.mkdir(parents=True, exist_ok=True)
+                output_path = locale_dir / 'index.html'
             else:
                 locale_dir = self.output_dir / 'fr-FR'
                 locale_dir.mkdir(exist_ok=True)
@@ -201,6 +251,10 @@ class SiteGenerator:
                 privacy_dir = self.output_dir / 'privacy-policy'
                 privacy_dir.mkdir(exist_ok=True)
                 privacy_output_path = privacy_dir / 'index.html'
+            elif locale == 'fr-tu':
+                privacy_dir = self.output_dir / 'fr-FR' / 'tu' / 'privacy-policy'
+                privacy_dir.mkdir(parents=True, exist_ok=True)
+                privacy_output_path = privacy_dir / 'index.html'
             else:
                 privacy_dir = self.output_dir / 'fr-FR' / 'privacy-policy'
                 privacy_dir.mkdir(parents=True, exist_ok=True)
@@ -211,6 +265,23 @@ class SiteGenerator:
                 f.write(privacy_html)
             
             click.echo(f"    Created: {privacy_output_path}")
+
+            # Generate ELI5 page
+            eli5_html = self.generate_eli5_page(locale)
+            
+            # Determine ELI5 output path
+            if locale == 'en':
+                eli5_dir = self.output_dir / 'eli5'
+                eli5_dir.mkdir(exist_ok=True)
+                eli5_output_path = eli5_dir / 'index.html'
+            else:
+                eli5_dir = self.output_dir / 'fr-FR' / 'eli5'
+                eli5_dir.mkdir(parents=True, exist_ok=True)
+                eli5_output_path = eli5_dir / 'index.html'
+
+            with open(eli5_output_path, 'w', encoding='utf-8') as f:
+                f.write(eli5_html)
+            click.echo(f"    Created: {eli5_output_path}")
     
     def validate_build(self) -> bool:
         """Validate the generated site."""
@@ -221,7 +292,11 @@ class SiteGenerator:
             self.output_dir / 'index.html',
             self.output_dir / 'fr-FR' / 'index.html',
             self.output_dir / 'privacy-policy' / 'index.html',
-            self.output_dir / 'fr-FR' / 'privacy-policy' / 'index.html'
+            self.output_dir / 'fr-FR' / 'privacy-policy' / 'index.html',
+            self.output_dir / 'eli5' / 'index.html',
+            self.output_dir / 'fr-FR' / 'eli5' / 'index.html',
+            self.output_dir / 'fr-FR' / 'tu' / 'index.html',
+            self.output_dir / 'fr-FR' / 'tu' / 'privacy-policy' / 'index.html'
         ]
         
         all_valid = True
@@ -265,8 +340,8 @@ class SiteGenerator:
         # Extract strings from templates
         extracted = extract_from_dir(
             str(self.templates_dir), 
-            [('*.j2', 'jinja2')],
-            options={'jinja2': {'extensions': 'jinja2.ext.i18n'}}
+            method_map=[('*.j2', 'jinja2')],
+            options_map={'*.j2': {'extensions': 'jinja2.ext.i18n'}}
         )
         
         for message in extracted:
@@ -294,6 +369,26 @@ def cli(ctx):
 def extract(ctx):
     """Extract translatable strings from templates."""
     ctx.obj['generator'].extract_strings()
+
+
+@cli.command()
+@click.pass_context
+def merge(ctx):
+    """Merge new strings into PO files."""
+    generator = ctx.obj['generator']
+    pot_file = generator.build_dir / 'messages.pot'
+    if not pot_file.exists():
+        click.echo("✗ POT file not found. Run 'extract' first.")
+        sys.exit(1)
+
+    for locale in generator.config['languages'].keys():
+        po_file = generator.locales_dir / locale / 'LC_MESSAGES' / 'messages.po'
+        if po_file.exists():
+            click.echo(f"Merging strings into {po_file}...")
+            os.system(f"msgmerge --update {po_file} {pot_file}")
+        else:
+            click.echo(f"Creating {po_file} from {pot_file}...")
+            os.system(f"msginit --no-translator --locale={locale} --input={pot_file} --output-file={po_file}")
 
 
 @cli.command()
@@ -365,6 +460,15 @@ def deploy(ctx, target):
                 shutil.rmtree(target_privacy)
             shutil.copytree(src_privacy, target_privacy)
             click.echo(f"  Copied: privacy-policy/")
+        
+        # Copy eli5 directory
+        src_eli5 = generator.output_dir / 'eli5'
+        target_eli5 = target_path / 'eli5'
+        if src_eli5.exists():
+            if target_eli5.exists():
+                shutil.rmtree(target_eli5)
+            shutil.copytree(src_eli5, target_eli5)
+            click.echo(f"  Copied: eli5/")
         
         click.echo("✓ Deployment completed!")
     else:
