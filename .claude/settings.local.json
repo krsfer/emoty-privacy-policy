@@ -23,7 +23,9 @@
       "Bash(msgfmt:*)",
       "Bash(rm:*)",
       "Bash(/bin/bash:*)",
-      "Bash(open:*)"
+      "Bash(open:*)",
+      "Bash(mv:*)",
+      "Bash(rg:*)"
     ],
     "deny": []
   }
