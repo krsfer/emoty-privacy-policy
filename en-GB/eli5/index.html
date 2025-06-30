@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Emoty - Create beautiful emoji patterns with AI assistance. Available for Android. Privacy-focused and COPPA compliant.">
+    <meta name="description" content="Emoty explained simply - Create beautiful emoji patterns with AI assistance. Safe Android app for all ages, easy to understand.">
     <meta name="author" content="Christopher Archer">
     <meta name="keywords" content="Emoty, emoji patterns, creative app, Android, AI pattern generator, COPPA compliant">
     <link rel="alternate" hreflang="fr-FR" href="https://emoty.fr/eli5/">
@@ -174,6 +174,27 @@
             word-spacing: clamp(0.05em, 0.3vw, 0.15em); /* Dynamic word spacing */
         }
         
+        .home-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        
+        .home-button a {
+            color: white;
+            text-decoration: none;
+            background: rgba(255,255,255,0.3);
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: background 0.3s;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .home-button a:hover {
+            background: rgba(255,255,255,0.4);
+            border-color: rgba(255,255,255,0.3);
+        }
+        
         @media (max-width: 600px) {
             .emoty-text { font-size: 2em; }
             .tagline { font-size: 1.1em; }
@@ -187,6 +208,15 @@
                 padding: 6px 12px;
                 font-size: 0.9em;
             }
+            .home-button {
+                position: absolute;
+                top: 15px;
+                left: 15px;
+            }
+            .home-button a {
+                padding: 6px 12px;
+                font-size: 0.9em;
+            }
         }
     </style>
 </head>
@@ -194,8 +224,11 @@
     <div class="container">
         <header>
             
+<div class="home-button">
+    <a href="/en-GB/">Home</a>
+</div>
 <div class="lang-switch">
-    <a href="">Français</a>
+    <a href="/eli5">Français</a>
 </div>
 
             <div class="emoty-logo">
@@ -209,6 +242,12 @@
         </header>
 
         
+<div style="text-align: center; margin: -10px 0 20px 0;">
+    <span style="background: #667eea; color: white; padding: 4px 12px; border-radius: 15px; font-size: 0.9em;">
+        📚 Simple Version
+    </span>
+</div>
+
 <div class="container">
     <h1>Make Fun Emoji Pictures!  &#x1F3A8;</h1>
     
