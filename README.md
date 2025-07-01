@@ -4,37 +4,51 @@ Static website for the Emoty app privacy policy, available in French and English
 
 ## 🌐 Live Site
 
+### Main Pages
 - **French (Default)**: [emoty.fr](https://emoty.fr)
 - **English**: [emoty.fr/en-GB/](https://emoty.fr/en-GB/)
-- **French Informal**: [emoty.fr/tu/](https://emoty.fr/tu/)
-- **French ELI5**: [emoty.fr/eli5/](https://emoty.fr/eli5/)
-- **English ELI5**: [emoty.fr/en-GB/eli5/](https://emoty.fr/en-GB/eli5/)
+- **French Informal (tu)**: [emoty.fr/tu/](https://emoty.fr/tu/)
+
+### Simplified Versions (ELI5)
+- **French Simplified**: [emoty.fr/eli5/](https://emoty.fr/eli5/)
+- **English Simplified**: [emoty.fr/en-GB/eli5/](https://emoty.fr/en-GB/eli5/)
+
+### Privacy Policies
+- **French Privacy Policy**: [emoty.fr/privacy-policy/](https://emoty.fr/privacy-policy/)
+- **English Privacy Policy**: [emoty.fr/en-GB/privacy-policy/](https://emoty.fr/en-GB/privacy-policy/)
+- **French Informal Privacy Policy**: [emoty.fr/tu/privacy-policy/](https://emoty.fr/tu/privacy-policy/)
 
 ## 📁 Project Structure
 
 ```
-├── index.html              # French homepage (default)
+emoty-privacy-policy/
+├── index.html              # French homepage (default language at root)
 ├── privacy-policy/         
 │   └── index.html          # French privacy policy
 ├── eli5/
-│   └── index.html          # French ELI5 simplified page
-├── en-GB/                  # English content
+│   └── index.html          # French simplified (ELI5) version
+├── en-GB/                  # English content directory
 │   ├── index.html          # English homepage
 │   ├── privacy-policy/
 │   │   └── index.html      # English privacy policy
 │   └── eli5/
-│       └── index.html      # English ELI5 simplified page
-├── tu/                     # French informal content
+│       └── index.html      # English simplified (ELI5) version
+├── tu/                     # French informal content (tutoiement)
 │   ├── index.html          # French informal homepage
 │   └── privacy-policy/
 │       └── index.html      # French informal privacy policy
-├── fr-FR/                  # Build system output (backup)
-└── build/                  # Localization build system
-    ├── generate_site.py    # Python generator script
-    ├── templates/          # Jinja2 templates
-    ├── locales/           # Translation files (PO/MO)
-    └── README.md          # Build system documentation
+├── build/                  # Localization build system
+│   ├── generate_site.py    # Python site generator
+│   ├── templates/          # Jinja2 templates
+│   ├── locales/           # Translation files (.po/.mo)
+│   ├── output/            # Generated files (not deployed)
+│   └── config/            # Build configuration
+├── _config.yml            # Jekyll configuration for GitHub Pages
+├── CNAME                  # Custom domain configuration
+└── .nojekyll              # Ensures proper directory serving
 ```
+
+Note: The `/fr-FR/` directory may exist but is no longer needed since French content is served from the root.
 
 ## 🛠️ Development
 
