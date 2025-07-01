@@ -31,8 +31,10 @@ class StyleVerifier:
         return [
             self.project_root / 'index.html',
             self.project_root / 'privacy-policy' / 'index.html',
-            self.project_root / 'tu' / 'index.html',
-            self.project_root / 'tu' / 'privacy-policy' / 'index.html'
+            self.project_root / 'eli5' / 'index.html',
+            self.project_root / 'en-GB' / 'index.html',
+            self.project_root / 'en-GB' / 'privacy-policy' / 'index.html',
+            self.project_root / 'en-GB' / 'eli5' / 'index.html',
         ]
     
     def extract_styles(self, html_file):
@@ -171,7 +173,7 @@ class StyleVerifier:
 
 @click.command()
 @click.option('--details', '-d', is_flag=True, help='Show detailed analysis')
-@click.option('--project-root', default='..', help='Project root directory')
+@click.option('--project-root', default='build/output', help='Project root directory')
 def main(details, project_root):
     """Verify styling consistency across all deployed HTML files."""
     verifier = StyleVerifier(project_root)
