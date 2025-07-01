@@ -45,6 +45,9 @@ jobs:
         pip install -r build/requirements.txt
         python build/generate_site.py build
     
+    - name: List build output
+      run: ls -lR build/output
+    
     - name: Prepare deployment artifact
       run: |
         set -e
