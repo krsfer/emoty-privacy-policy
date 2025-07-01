@@ -50,6 +50,10 @@ msgstr "Privacy Policy"
 msgid "footer.contact"
 msgstr "Contact"
 
+#: base.html.j2:217
+msgid "footer.eli5"
+msgstr "Simplified Version"
+
 #: eli5.html.j2:11
 msgid "eli5.title"
 msgstr "Make Fun Emoji Pictures! "
@@ -178,6 +182,10 @@ msgstr "Download on Google Play"
 #: index.html.j2:72
 msgid "cta.privacy_button"
 msgstr "Privacy Policy"
+
+#: index.html.j2:71
+msgid "cta.eli5_button"
+msgstr "Kids Version"
 
 #: privacy-policy.html.j2:5
 msgid "nav.home"

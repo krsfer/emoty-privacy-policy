@@ -51,6 +51,10 @@ msgstr "Politique de Confidentialité"
 msgid "footer.contact"
 msgstr "Contact"
 
+#: base.html.j2:217
+msgid "footer.eli5"
+msgstr "Version Simplifiée"
+
 #: eli5.html.j2:11
 msgid "eli5.title"
 msgstr "Fais des Images Amusantes avec des Emojis ! "
@@ -179,6 +183,10 @@ msgstr "Télécharger sur Google Play"
 #: index.html.j2:72
 msgid "cta.privacy_button"
 msgstr "Politique de Confidentialité"
+
+#: index.html.j2:71
+msgid "cta.eli5_button"
+msgstr "Version pour Enfants"
 
 #: privacy-policy.html.j2:5
 msgid "nav.home"

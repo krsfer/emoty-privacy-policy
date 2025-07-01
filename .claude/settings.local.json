@@ -1,32 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git add:*)",
-      "Bash(git commit:*)",
-      "Bash(git push:*)",
-      "Bash(git pull:*)",
-      "Bash(git stash:*)",
-      "Bash(touch:*)",
-      "Bash(mkdir:*)",
-      "Bash(python3 -m pip install:*)",
-      "Bash(python3:*)",
-      "Bash(source:*)",
-      "Bash(pip install:*)",
-      "Bash(python generate_site.py:*)",
-      "WebFetch(domain:emoty.fr)",
-      "Bash(ls:*)",
-      "Bash(grep:*)",
-      "Bash(git rm:*)",
-      "Bash(python:*)",
-      "Bash(cp:*)",
-      "Bash(find:*)",
-      "Bash(msgfmt:*)",
-      "Bash(rm:*)",
-      "Bash(/bin/bash:*)",
-      "Bash(open:*)",
-      "Bash(mv:*)",
-      "Bash(rg:*)",
-      "Bash(tree:*)"
+      "Bash(git checkout:*)",
+      "Bash(git restore:*)"
     ],
     "deny": []
   }

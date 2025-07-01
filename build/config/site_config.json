@@ -11,17 +11,17 @@
     },
     "fr": {
       "code": "fr", 
-      "name": "Français",
-      "path": "/",
+      "name": "Français (formel)",
+      "path": "/fr-FR/",
       "hreflang": "fr-FR",
-      "alternate_url": "https://emoty.fr/"
+      "alternate_url": "https://emoty.fr/fr-FR/"
     },
     "fr-tu": {
       "code": "fr-tu",
-      "name": "Français (informel)",
-      "path": "/tu/",
-      "hreflang": "fr-FR-tu",
-      "alternate_url": "https://emoty.fr/tu/"
+      "name": "Français",
+      "path": "/",
+      "hreflang": "fr",
+      "alternate_url": "https://emoty.fr/"
     }
   },
   "google_play_url": "https://play.google.com/store/apps/details?id=com.carcher.emoty",
@@ -32,6 +32,7 @@
     "enabled": true,
     "french_language_codes": ["fr", "fr-FR", "fr-CA", "fr-BE", "fr-CH"],
     "storage_key": "emoty_language_preference",
-    "redirect_delay": 0
+    "redirect_delay": 0,
+    "default_french_locale": "fr-tu"
   }
 }
