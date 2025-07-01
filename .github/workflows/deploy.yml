@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [ main ]
 
+env:
+  ACTIONS_STEP_DEBUG: true
+  ACTIONS_RUNNER_DEBUG: true
+
 permissions:
   contents: read
   pages: write
@@ -23,18 +27,56 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
     
+    - name: List repository contents
+      run: |
+        set -e
+        set -x
+        echo "=== Repository contents ==="
+        ls -la
+        echo "=== Checking for key files ==="
+        test -f index.html && echo "✓ index.html exists" || echo "✗ index.html missing"
+        test -f .nojekyll && echo "✓ .nojekyll exists" || echo "✗ .nojekyll missing"
+        test -f CNAME && echo "✓ CNAME exists" || echo "✗ CNAME missing"
+        test -d en-GB && echo "✓ en-GB/ exists" || echo "✗ en-GB/ missing"
+        test -d fr-FR && echo "✓ fr-FR/ exists" || echo "✗ fr-FR/ missing"
+    
     - name: Prepare site files
       run: |
+        set -e
+        set -x
+        echo "=== Creating _site directory ==="
         mkdir -p _site
-        # Copy all HTML files and directories, excluding build system
-        cp -r *.html _site/ 2>/dev/null || true
-        cp -r en-GB/ _site/ 2>/dev/null || true
-        cp -r fr-FR/ _site/ 2>/dev/null || true
-        cp -r tu/ _site/ 2>/dev/null || true
-        cp -r eli5/ _site/ 2>/dev/null || true
-        cp -r privacy-policy/ _site/ 2>/dev/null || true
-        cp .nojekyll _site/ 2>/dev/null || true
-        cp CNAME _site/ 2>/dev/null || true
+        
+        echo "=== Copying HTML files ==="
+        if ls *.html 1> /dev/null 2>&1; then
+            cp *.html _site/
+            echo "Copied HTML files"
+        else
+            echo "No HTML files found in root"
+        fi
+        
+        echo "=== Copying directories ==="
+        for dir in en-GB fr-FR tu eli5 privacy-policy; do
+            if [ -d "$dir" ]; then
+                cp -r "$dir" _site/
+                echo "Copied $dir/"
+            else
+                echo "Directory $dir not found"
+            fi
+        done
+        
+        echo "=== Copying special files ==="
+        for file in .nojekyll CNAME; do
+            if [ -f "$file" ]; then
+                cp "$file" _site/
+                echo "Copied $file"
+            else
+                echo "File $file not found"
+            fi
+        done
+        
+        echo "=== Final _site contents ==="
+        ls -la _site/
         
     - name: Setup Pages
       uses: actions/configure-pages@v4
