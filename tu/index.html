@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Emoty - Crée de magnifiques motifs d'emojis avec l'aide de l'IA. Dispo sur Android. Hyper respectueux de ta vie privée et conforme à la COPPA. Version simple dispo.">
+    <meta name="description" content="Emoty - Crée de magnifiques motifs d'emojis avec l'aide de l'IA. Dispo sur Android. Hyper respectueux de ta vie privée et conforme à la COPPA.">
     <meta name="author" content="Christopher Archer">
     <meta name="keywords" content="Emoty, motifs d'emojis, app créative, Android, générateur de motifs IA, conforme COPPA">
     <link rel="alternate" hreflang="en" href="https://emoty.fr/en-GB/">
@@ -195,7 +195,7 @@
         <header>
             
             <div class="lang-switch">
-                <a href="/">English</a>
+                <a href="/en-GB/">English</a>
             </div>
             
             <div class="emoty-logo">
@@ -279,9 +279,6 @@
         <a href="/tu/privacy-policy" class="button secondary">
             Politique de Confidentialité
         </a>
-        <a href="/eli5" class="button secondary">
-            📚 Version Simple
-        </a>
     </div>
 
 
@@ -289,7 +286,6 @@
             <p>&copy; 2025 Christopher Archer. Tous droits réservés.</p>
             <p>
                 <a href="/tu/privacy-policy">Politique de Confidentialité</a> | 
-                <a href="/eli5">Version Simple</a> | 
                 <a href="mailto:support@emoty.fr">Contact</a>
             </p>
         </footer>
@@ -311,8 +307,8 @@
         frenchLanguageCodes: ["fr", "fr-FR", "fr-CA", "fr-BE", "fr-CH"],
         storageKey: 'emoty_language_preference',
         redirectDelay: 0,
-        frenchUrl: '/'
-        englishUrl: '/'
+        frenchUrl: '/',
+        englishUrl: '/en-GB/'
     };
     
     // Don't run detection if disabled
@@ -344,7 +340,7 @@
         // User has made a choice, respect it unless they're on wrong page
         if (storedPreference === 'fr' && window.location.pathname === '/') {
             redirect(config.frenchUrl);
-        } else if (storedPreference === 'en' && window.location.pathname.startsWith('/tu/')) {
+        } else if (storedPreference === 'en' && window.location.pathname.startsWith('/fr-FR/')) {
             redirect(config.englishUrl);
         }
         return;
@@ -354,7 +350,7 @@
     const referrer = document.referrer;
     if (referrer && (referrer.includes('emoty.fr') || referrer.includes('localhost'))) {
         // User clicked language switcher, store their choice
-        if (referrer.includes('/tu/')) {
+        if (referrer.includes('/fr-FR/')) {
             // Coming from French page, user wants English
             localStorage.setItem(config.storageKey, 'en');
         }
@@ -396,14 +392,14 @@
     // Add language switcher event listeners to store preferences
     document.addEventListener('DOMContentLoaded', function() {
         // Find language switcher links
-        const langLinks = document.querySelectorAll('a[href="/"], a[href="/tu/"], a[href^="/tu"], a[href="https://emoty.fr/"], a[href="https://emoty.fr/tu/"]');
+        const langLinks = document.querySelectorAll('a[href="/"], a[href="/fr-FR/"], a[href^="/fr-FR"], a[href="https://emoty.fr/"], a[href="https://emoty.fr/fr-FR/"]');
         
         langLinks.forEach(link => {
             link.addEventListener('click', function(e) {
                 const href = this.getAttribute('href');
                 if (href === '/' || href === 'https://emoty.fr/') {
                     localStorage.setItem(config.storageKey, 'en');
-                } else if (href.includes('/tu')) {
+                } else if (href.includes('/fr-FR')) {
                     localStorage.setItem(config.storageKey, 'fr');
                 }
             });

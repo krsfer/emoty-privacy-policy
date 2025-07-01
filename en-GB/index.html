@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Emoty - Create beautiful emoji patterns with AI assistance. Available for Android. Privacy-focused and COPPA compliant. Simple version available.">
+    <meta name="description" content="Emoty - Create beautiful emoji patterns with AI assistance. Available for Android. Privacy-focused and COPPA compliant.">
     <meta name="author" content="Christopher Archer">
     <meta name="keywords" content="Emoty, emoji patterns, creative app, Android, AI pattern generator, COPPA compliant">
     <link rel="alternate" hreflang="fr-FR" href="https://emoty.fr/">
@@ -279,9 +279,6 @@
         <a href="/en-GB/privacy-policy" class="button secondary">
             Privacy Policy
         </a>
-        <a href="/en-GB/eli5" class="button secondary">
-            📚 Simple Version
-        </a>
     </div>
 
 
@@ -289,7 +286,6 @@
             <p>&copy; 2025 Christopher Archer. All rights reserved.</p>
             <p>
                 <a href="/en-GB/privacy-policy">Privacy Policy</a> | 
-                <a href="/en-GB/eli5">Simple Version</a> | 
                 <a href="mailto:support@emoty.fr">Contact</a>
             </p>
         </footer>
@@ -311,7 +307,7 @@
         frenchLanguageCodes: ["fr", "fr-FR", "fr-CA", "fr-BE", "fr-CH"],
         storageKey: 'emoty_language_preference',
         redirectDelay: 0,
-        frenchUrl: '/'
+        frenchUrl: '/',
         englishUrl: '/en-GB/'
     };
     
@@ -319,7 +315,7 @@
     if (!config.enabled) return;
     
     // Don't redirect if this is already a language-specific page
-    if (window.location.pathname !== '/en-GB/') return;
+    if (window.location.pathname !== '/') return;
     
     // Check for explicit language choice via URL parameter
     const urlParams = new URLSearchParams(window.location.search);
@@ -342,9 +338,9 @@
     const storedPreference = localStorage.getItem(config.storageKey);
     if (storedPreference) {
         // User has made a choice, respect it unless they're on wrong page
-        if (storedPreference === 'fr' && window.location.pathname === '/en-GB/') {
+        if (storedPreference === 'fr' && window.location.pathname === '/') {
             redirect(config.frenchUrl);
-        } else if (storedPreference === 'en' && window.location.pathname.startsWith('/')) {
+        } else if (storedPreference === 'en' && window.location.pathname.startsWith('/fr-FR/')) {
             redirect(config.englishUrl);
         }
         return;
@@ -354,7 +350,7 @@
     const referrer = document.referrer;
     if (referrer && (referrer.includes('emoty.fr') || referrer.includes('localhost'))) {
         // User clicked language switcher, store their choice
-        if (referrer.includes('/')) {
+        if (referrer.includes('/fr-FR/')) {
             // Coming from French page, user wants English
             localStorage.setItem(config.storageKey, 'en');
         }
@@ -374,11 +370,11 @@
     });
     
     // Redirect to French if preferred
-    if (prefersFrench && window.location.pathname === '/en-GB/') {
+    if (prefersFrench && window.location.pathname === '/') {
         // Store the automatic detection result
         localStorage.setItem(config.storageKey, 'fr');
         redirect(config.frenchUrl);
-    } else if (!prefersFrench && window.location.pathname === '/en-GB/') {
+    } else if (!prefersFrench && window.location.pathname === '/') {
         // Store English preference for consistency
         localStorage.setItem(config.storageKey, 'en');
     }
@@ -396,15 +392,15 @@
     // Add language switcher event listeners to store preferences
     document.addEventListener('DOMContentLoaded', function() {
         // Find language switcher links
-        const langLinks = document.querySelectorAll('a[href="/"], a[href="/en-GB/"], a[href^="/en-GB"], a[href="https://emoty.fr/"], a[href="https://emoty.fr/en-GB/"]');
+        const langLinks = document.querySelectorAll('a[href="/"], a[href="/fr-FR/"], a[href^="/fr-FR"], a[href="https://emoty.fr/"], a[href="https://emoty.fr/fr-FR/"]');
         
         langLinks.forEach(link => {
             link.addEventListener('click', function(e) {
                 const href = this.getAttribute('href');
                 if (href === '/' || href === 'https://emoty.fr/') {
-                    localStorage.setItem(config.storageKey, 'fr');
-                } else if (href.includes('/en-GB')) {
                     localStorage.setItem(config.storageKey, 'en');
+                } else if (href.includes('/fr-FR')) {
+                    localStorage.setItem(config.storageKey, 'fr');
                 }
             });
         });
