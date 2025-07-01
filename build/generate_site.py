@@ -225,16 +225,19 @@ class SiteGenerator:
             # Generate index page
             html = self.generate_index_page(locale)
             
-            # Determine output path
+            # Determine output path based on new structure
             if locale == 'en':
+                # English goes to en-GB directory
+                locale_dir = self.output_dir / 'en-GB'
+                locale_dir.mkdir(exist_ok=True)
+                output_path = locale_dir / 'index.html'
+            elif locale == 'fr':
+                # French is at root
                 output_path = self.output_dir / 'index.html'
             elif locale == 'fr-tu':
-                locale_dir = self.output_dir / 'fr-FR' / 'tu'
+                # Informal French goes to tu directory
+                locale_dir = self.output_dir / 'tu'
                 locale_dir.mkdir(parents=True, exist_ok=True)
-                output_path = locale_dir / 'index.html'
-            else:
-                locale_dir = self.output_dir / 'fr-FR'
-                locale_dir.mkdir(exist_ok=True)
                 output_path = locale_dir / 'index.html'
             
             # Write HTML file
@@ -246,17 +249,20 @@ class SiteGenerator:
             # Generate privacy policy page
             privacy_html = self.generate_privacy_policy_page(locale)
             
-            # Determine privacy policy output path
+            # Determine privacy policy output path based on new structure
             if locale == 'en':
+                # English privacy policy goes to en-GB/privacy-policy
+                privacy_dir = self.output_dir / 'en-GB' / 'privacy-policy'
+                privacy_dir.mkdir(parents=True, exist_ok=True)
+                privacy_output_path = privacy_dir / 'index.html'
+            elif locale == 'fr':
+                # French privacy policy is at root privacy-policy
                 privacy_dir = self.output_dir / 'privacy-policy'
                 privacy_dir.mkdir(exist_ok=True)
                 privacy_output_path = privacy_dir / 'index.html'
             elif locale == 'fr-tu':
-                privacy_dir = self.output_dir / 'fr-FR' / 'tu' / 'privacy-policy'
-                privacy_dir.mkdir(parents=True, exist_ok=True)
-                privacy_output_path = privacy_dir / 'index.html'
-            else:
-                privacy_dir = self.output_dir / 'fr-FR' / 'privacy-policy'
+                # Informal French privacy policy goes to tu/privacy-policy
+                privacy_dir = self.output_dir / 'tu' / 'privacy-policy'
                 privacy_dir.mkdir(parents=True, exist_ok=True)
                 privacy_output_path = privacy_dir / 'index.html'
             
@@ -269,15 +275,22 @@ class SiteGenerator:
             # Generate ELI5 page
             eli5_html = self.generate_eli5_page(locale)
             
-            # Determine ELI5 output path
+            # Determine ELI5 output path based on new structure
             if locale == 'en':
+                # English ELI5 goes to en-GB/eli5
+                eli5_dir = self.output_dir / 'en-GB' / 'eli5'
+                eli5_dir.mkdir(parents=True, exist_ok=True)
+                eli5_output_path = eli5_dir / 'index.html'
+            elif locale == 'fr':
+                # French ELI5 is at root eli5
                 eli5_dir = self.output_dir / 'eli5'
                 eli5_dir.mkdir(exist_ok=True)
                 eli5_output_path = eli5_dir / 'index.html'
-            else:
-                eli5_dir = self.output_dir / 'fr-FR' / 'eli5'
-                eli5_dir.mkdir(parents=True, exist_ok=True)
-                eli5_output_path = eli5_dir / 'index.html'
+            elif locale == 'fr-tu':
+                # Informal French uses the same ELI5 as formal French (at root)
+                # Skip generating duplicate ELI5 for fr-tu
+                click.echo(f"    Skipping ELI5 for {locale} (uses main French ELI5)")
+                continue
 
             with open(eli5_output_path, 'w', encoding='utf-8') as f:
                 f.write(eli5_html)
@@ -287,16 +300,16 @@ class SiteGenerator:
         """Validate the generated site."""
         click.echo("Validating build...")
         
-        # Check that all expected files exist
+        # Check that all expected files exist (new structure)
         expected_files = [
-            self.output_dir / 'index.html',
-            self.output_dir / 'fr-FR' / 'index.html',
-            self.output_dir / 'privacy-policy' / 'index.html',
-            self.output_dir / 'fr-FR' / 'privacy-policy' / 'index.html',
-            self.output_dir / 'eli5' / 'index.html',
-            self.output_dir / 'fr-FR' / 'eli5' / 'index.html',
-            self.output_dir / 'fr-FR' / 'tu' / 'index.html',
-            self.output_dir / 'fr-FR' / 'tu' / 'privacy-policy' / 'index.html'
+            self.output_dir / 'index.html',                           # French homepage (root)
+            self.output_dir / 'privacy-policy' / 'index.html',       # French privacy policy (root)
+            self.output_dir / 'eli5' / 'index.html',                 # French ELI5 (root)
+            self.output_dir / 'en-GB' / 'index.html',                # English homepage
+            self.output_dir / 'en-GB' / 'privacy-policy' / 'index.html', # English privacy policy
+            self.output_dir / 'en-GB' / 'eli5' / 'index.html',       # English ELI5
+            self.output_dir / 'tu' / 'index.html',                   # Informal French homepage
+            self.output_dir / 'tu' / 'privacy-policy' / 'index.html' # Informal French privacy policy
         ]
         
         all_valid = True
@@ -435,40 +448,49 @@ def deploy(ctx, target):
     
     click.echo(f"Deploying to: {target_path}")
     
-    # Copy files
+    # Copy files based on new structure
     if target_path.exists():
-        # Copy index.html to root
+        # Copy French index.html to root (default language)
         src_index = generator.output_dir / 'index.html'
         if src_index.exists():
             shutil.copy2(src_index, target_path / 'index.html')
-            click.echo(f"  Copied: index.html")
+            click.echo(f"  Copied: index.html (French)")
         
-        # Copy fr-FR directory
-        src_fr = generator.output_dir / 'fr-FR'
-        target_fr = target_path / 'fr-FR'
-        if src_fr.exists():
-            if target_fr.exists():
-                shutil.rmtree(target_fr)
-            shutil.copytree(src_fr, target_fr)
-            click.echo(f"  Copied: fr-FR/")
-        
-        # Copy privacy-policy directory
+        # Copy French privacy-policy directory to root
         src_privacy = generator.output_dir / 'privacy-policy'
         target_privacy = target_path / 'privacy-policy'
         if src_privacy.exists():
             if target_privacy.exists():
                 shutil.rmtree(target_privacy)
             shutil.copytree(src_privacy, target_privacy)
-            click.echo(f"  Copied: privacy-policy/")
+            click.echo(f"  Copied: privacy-policy/ (French)")
         
-        # Copy eli5 directory
+        # Copy French eli5 directory to root
         src_eli5 = generator.output_dir / 'eli5'
         target_eli5 = target_path / 'eli5'
         if src_eli5.exists():
             if target_eli5.exists():
                 shutil.rmtree(target_eli5)
             shutil.copytree(src_eli5, target_eli5)
-            click.echo(f"  Copied: eli5/")
+            click.echo(f"  Copied: eli5/ (French)")
+        
+        # Copy en-GB directory
+        src_en = generator.output_dir / 'en-GB'
+        target_en = target_path / 'en-GB'
+        if src_en.exists():
+            if target_en.exists():
+                shutil.rmtree(target_en)
+            shutil.copytree(src_en, target_en)
+            click.echo(f"  Copied: en-GB/ (English)")
+        
+        # Copy tu directory (informal French)
+        src_tu = generator.output_dir / 'tu'
+        target_tu = target_path / 'tu'
+        if src_tu.exists():
+            if target_tu.exists():
+                shutil.rmtree(target_tu)
+            shutil.copytree(src_tu, target_tu)
+            click.echo(f"  Copied: tu/ (Informal French)")
         
         click.echo("✓ Deployment completed!")
     else:
