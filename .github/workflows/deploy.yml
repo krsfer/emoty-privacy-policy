@@ -6,9 +6,6 @@ on:
   pull_request:
     branches: [ main ]
 
-env:
-  ACTIONS_STEP_DEBUG: true
-  ACTIONS_RUNNER_DEBUG: true
 
 permissions:
   contents: read
@@ -20,8 +17,14 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     
     steps:
     - name: Checkout
@@ -29,8 +32,6 @@ jobs:
     
     - name: List repository contents
       run: |
-        set -e
-        set -x
         echo "=== Repository contents ==="
         ls -la
         echo "=== Checking for key files ==="
@@ -40,43 +41,25 @@ jobs:
         test -d en-GB && echo "✓ en-GB/ exists" || echo "✗ en-GB/ missing"
         test -d fr-FR && echo "✓ fr-FR/ exists" || echo "✗ fr-FR/ missing"
     
-    - name: Prepare site files
+    - name: Prepare site for deployment
       run: |
-        set -e
-        set -x
-        echo "=== Creating _site directory ==="
-        mkdir -p _site
+        echo "=== Creating deployment directory ==="
+        mkdir -p _deploy
         
-        echo "=== Copying HTML files ==="
-        if ls *.html 1> /dev/null 2>&1; then
-            cp *.html _site/
-            echo "Copied HTML files"
-        else
-            echo "No HTML files found in root"
-        fi
+        echo "=== Copying site files ==="
+        cp index.html _deploy/
+        cp -r eli5/ _deploy/
+        cp -r en-GB/ _deploy/
+        cp -r fr-FR/ _deploy/
+        cp -r tu/ _deploy/
+        cp -r privacy-policy/ _deploy/
         
-        echo "=== Copying directories ==="
-        for dir in en-GB fr-FR tu eli5 privacy-policy; do
-            if [ -d "$dir" ]; then
-                cp -r "$dir" _site/
-                echo "Copied $dir/"
-            else
-                echo "Directory $dir not found"
-            fi
-        done
+        # Copy special files if they exist
+        [ -f .nojekyll ] && cp .nojekyll _deploy/
+        [ -f CNAME ] && cp CNAME _deploy/
         
-        echo "=== Copying special files ==="
-        for file in .nojekyll CNAME; do
-            if [ -f "$file" ]; then
-                cp "$file" _site/
-                echo "Copied $file"
-            else
-                echo "File $file not found"
-            fi
-        done
-        
-        echo "=== Final _site contents ==="
-        ls -la _site/
+        echo "=== Deployment directory contents ==="
+        ls -la _deploy/
         
     - name: Setup Pages
       uses: actions/configure-pages@v4
@@ -84,17 +67,8 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
       with:
-        path: _site
+        path: _deploy
         
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    if: github.ref == 'refs/heads/main'
-    
-    steps:
     - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v4
