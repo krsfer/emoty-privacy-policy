@@ -185,7 +185,7 @@ msgstr "Privacy Policy"
 
 #: index.html.j2:71
 msgid "cta.eli5_button"
-msgstr "Kids Version"
+msgstr "Simplified Version"
 
 #: privacy-policy.html.j2:5
 msgid "nav.home"

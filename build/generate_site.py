@@ -117,7 +117,7 @@ class SiteGenerator:
             privacy_policy_url=lang_config['privacy_policy_url'],
             path=lang_config['path'],
             language_detection=self.config.get('language_detection', {}),
-            french_path=self.config['languages']['fr']['path'],
+            french_path=self.config['languages']['fr-tu']['path'],
             english_path=self.config['languages']['en']['path']
         )
         
@@ -282,15 +282,15 @@ class SiteGenerator:
                 eli5_dir.mkdir(parents=True, exist_ok=True)
                 eli5_output_path = eli5_dir / 'index.html'
             elif locale == 'fr':
-                # French ELI5 is at root eli5
+                # Formal French ELI5 goes to fr-FR/eli5
+                eli5_dir = self.output_dir / 'fr-FR' / 'eli5'
+                eli5_dir.mkdir(parents=True, exist_ok=True)
+                eli5_output_path = eli5_dir / 'index.html'
+            elif locale == 'fr-tu':
+                # Informal French ELI5 is at root eli5 (default French)
                 eli5_dir = self.output_dir / 'eli5'
                 eli5_dir.mkdir(exist_ok=True)
                 eli5_output_path = eli5_dir / 'index.html'
-            elif locale == 'fr-tu':
-                # Informal French uses the same ELI5 as formal French (at root)
-                # Skip generating duplicate ELI5 for fr-tu
-                click.echo(f"    Skipping ELI5 for {locale} (uses main French ELI5)")
-                continue
 
             with open(eli5_output_path, 'w', encoding='utf-8') as f:
                 f.write(eli5_html)
@@ -302,14 +302,17 @@ class SiteGenerator:
         
         # Check that all expected files exist (new structure)
         expected_files = [
-            self.output_dir / 'index.html',                           # French homepage (root)
-            self.output_dir / 'privacy-policy' / 'index.html',       # French privacy policy (root)
-            self.output_dir / 'eli5' / 'index.html',                 # French ELI5 (root)
+            self.output_dir / 'index.html',                           # Informal French homepage (root)
+            self.output_dir / 'privacy-policy' / 'index.html',       # Informal French privacy policy (root)
+            self.output_dir / 'eli5' / 'index.html',                 # Informal French ELI5 (root)
             self.output_dir / 'en-GB' / 'index.html',                # English homepage
             self.output_dir / 'en-GB' / 'privacy-policy' / 'index.html', # English privacy policy
             self.output_dir / 'en-GB' / 'eli5' / 'index.html',       # English ELI5
-            self.output_dir / 'tu' / 'index.html',                   # Informal French homepage
-            self.output_dir / 'tu' / 'privacy-policy' / 'index.html' # Informal French privacy policy
+            self.output_dir / 'fr-FR' / 'index.html',                # Formal French homepage
+            self.output_dir / 'fr-FR' / 'privacy-policy' / 'index.html', # Formal French privacy policy
+            self.output_dir / 'fr-FR' / 'eli5' / 'index.html',       # Formal French ELI5
+            self.output_dir / 'tu' / 'index.html',                   # Informal French tu homepage (redirect)
+            self.output_dir / 'tu' / 'privacy-policy' / 'index.html' # Informal French tu privacy policy (redirect)
         ]
         
         all_valid = True
