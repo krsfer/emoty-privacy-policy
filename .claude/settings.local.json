@@ -25,7 +25,8 @@
       "Bash(/bin/bash:*)",
       "Bash(open:*)",
       "Bash(mv:*)",
-      "Bash(rg:*)"
+      "Bash(rg:*)",
+      "Bash(tree:*)"
     ],
     "deny": []
   }
