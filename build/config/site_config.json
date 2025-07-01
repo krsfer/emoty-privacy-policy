@@ -9,13 +9,6 @@
       "hreflang": "en",
       "alternate_url": "https://emoty.fr/en-GB/"
     },
-    "fr": {
-      "code": "fr", 
-      "name": "Français (formel)",
-      "path": "/fr-FR/",
-      "hreflang": "fr-FR",
-      "alternate_url": "https://emoty.fr/fr-FR/"
-    },
     "fr-tu": {
       "code": "fr-tu",
       "name": "Français",

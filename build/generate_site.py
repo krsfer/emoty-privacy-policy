@@ -55,11 +55,9 @@ class SiteGenerator:
         
         # Add alternate language info
         if locale == 'en':
-            other_locale = 'fr'
-        elif locale == 'fr':
-            other_locale = 'en'
+            other_locale = 'fr-tu'
         elif locale == 'fr-tu':
-            other_locale = 'en' # Assuming fr-tu switches to English
+            other_locale = 'en'
         else:
             other_locale = 'en' # Default to English if unknown locale
         other_lang = self.config['languages'][other_locale]
@@ -137,7 +135,7 @@ class SiteGenerator:
         config['author_email'] = 'archer.chris@gmail.com'
         
         # Update privacy policy URL for alternate language
-        other_locale = 'fr' if locale == 'en' else 'en'
+        other_locale = 'fr-tu' if locale == 'en' else 'en'
         other_lang = self.config['languages'][other_locale]
         privacy_alternate_url = f"{other_lang['alternate_url']}privacy-policy"
         
@@ -183,11 +181,9 @@ class SiteGenerator:
 
         # Determine alternate ELI5 URL and path
         if locale == 'en':
-            eli5_alternate_locale = 'fr'
-        elif locale == 'fr':
-            eli5_alternate_locale = 'en'
+            eli5_alternate_locale = 'fr-tu'
         elif locale == 'fr-tu':
-            eli5_alternate_locale = 'en' # fr-tu switches to English ELI5
+            eli5_alternate_locale = 'en'
         else:
             eli5_alternate_locale = 'en' # Default to English ELI5
 
@@ -231,14 +227,9 @@ class SiteGenerator:
                 locale_dir = self.output_dir / 'en-GB'
                 locale_dir.mkdir(exist_ok=True)
                 output_path = locale_dir / 'index.html'
-            elif locale == 'fr':
-                # French is at root
-                output_path = self.output_dir / 'index.html'
             elif locale == 'fr-tu':
-                # Informal French goes to tu directory
-                locale_dir = self.output_dir / 'tu'
-                locale_dir.mkdir(parents=True, exist_ok=True)
-                output_path = locale_dir / 'index.html'
+                # Informal French goes to root (default)
+                output_path = self.output_dir / 'index.html'
             
             # Write HTML file
             with open(output_path, 'w', encoding='utf-8') as f:
@@ -255,15 +246,10 @@ class SiteGenerator:
                 privacy_dir = self.output_dir / 'en-GB' / 'privacy-policy'
                 privacy_dir.mkdir(parents=True, exist_ok=True)
                 privacy_output_path = privacy_dir / 'index.html'
-            elif locale == 'fr':
-                # French privacy policy is at root privacy-policy
+            elif locale == 'fr-tu':
+                # Informal French privacy policy goes to root privacy-policy
                 privacy_dir = self.output_dir / 'privacy-policy'
                 privacy_dir.mkdir(exist_ok=True)
-                privacy_output_path = privacy_dir / 'index.html'
-            elif locale == 'fr-tu':
-                # Informal French privacy policy goes to tu/privacy-policy
-                privacy_dir = self.output_dir / 'tu' / 'privacy-policy'
-                privacy_dir.mkdir(parents=True, exist_ok=True)
                 privacy_output_path = privacy_dir / 'index.html'
             
             # Write privacy policy HTML file
@@ -279,11 +265,6 @@ class SiteGenerator:
             if locale == 'en':
                 # English ELI5 goes to en-GB/eli5
                 eli5_dir = self.output_dir / 'en-GB' / 'eli5'
-                eli5_dir.mkdir(parents=True, exist_ok=True)
-                eli5_output_path = eli5_dir / 'index.html'
-            elif locale == 'fr':
-                # Formal French ELI5 goes to fr-FR/eli5
-                eli5_dir = self.output_dir / 'fr-FR' / 'eli5'
                 eli5_dir.mkdir(parents=True, exist_ok=True)
                 eli5_output_path = eli5_dir / 'index.html'
             elif locale == 'fr-tu':
@@ -302,17 +283,12 @@ class SiteGenerator:
         
         # Check that all expected files exist (new structure)
         expected_files = [
-            self.output_dir / 'index.html',                           # Informal French homepage (root)
-            self.output_dir / 'privacy-policy' / 'index.html',       # Informal French privacy policy (root)
-            self.output_dir / 'eli5' / 'index.html',                 # Informal French ELI5 (root)
+            self.output_dir / 'index.html',                           # French homepage (root)
+            self.output_dir / 'privacy-policy' / 'index.html',       # French privacy policy (root)
+            self.output_dir / 'eli5' / 'index.html',                 # French ELI5 (root)
             self.output_dir / 'en-GB' / 'index.html',                # English homepage
             self.output_dir / 'en-GB' / 'privacy-policy' / 'index.html', # English privacy policy
             self.output_dir / 'en-GB' / 'eli5' / 'index.html',       # English ELI5
-            self.output_dir / 'fr-FR' / 'index.html',                # Formal French homepage
-            self.output_dir / 'fr-FR' / 'privacy-policy' / 'index.html', # Formal French privacy policy
-            self.output_dir / 'fr-FR' / 'eli5' / 'index.html',       # Formal French ELI5
-            self.output_dir / 'tu' / 'index.html',                   # Informal French tu homepage (redirect)
-            self.output_dir / 'tu' / 'privacy-policy' / 'index.html' # Informal French tu privacy policy (redirect)
         ]
         
         all_valid = True
