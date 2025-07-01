@@ -34,6 +34,11 @@ msgstr "Emoty - Emoji Pattern Creator"
 msgid "nav.lang_switch"
 msgstr "Français"
 
+#: eli5.html.j2:4
+msgid "nav.home"
+msgstr "Home"
+
+
 #: base.html.j2:208
 msgid "header.tagline"
 msgstr "Create Beautiful Emoji Patterns, with Smart Help Available"

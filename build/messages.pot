@@ -34,6 +34,11 @@ msgstr ""
 msgid "nav.lang_switch"
 msgstr ""
 
+#: eli5.html.j2:4
+msgid "nav.home"
+msgstr ""
+
+
 #: base.html.j2:208
 msgid "header.tagline"
 msgstr ""

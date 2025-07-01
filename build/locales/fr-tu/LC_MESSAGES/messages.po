@@ -35,6 +35,11 @@ msgstr "Emoty - Créateur de Motifs d'Emojis"
 msgid "nav.lang_switch"
 msgstr "English"
 
+#: eli5.html.j2:4
+msgid "nav.home"
+msgstr "Accueil"
+
+
 #: base.html.j2:208
 msgid "header.tagline"
 msgstr "Crée de Magnifiques Motifs d'Emojis, avec une Aide Intelligente Dispo"

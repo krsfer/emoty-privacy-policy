@@ -191,6 +191,9 @@ class SiteGenerator:
         eli5_alternate_url = f"{eli5_other_lang['alternate_url']}eli5/"
         eli5_alternate_path = f"{eli5_other_lang['path']}eli5/"
 
+        # Set home URL for the current locale
+        home_path = "/en-GB/" if locale == 'en' else "/"
+
         # Render template
         html = template.render(
             locale=locale,
@@ -199,7 +202,8 @@ class SiteGenerator:
             alternate_url=eli5_alternate_url,
             eli5_alternate_path=eli5_alternate_path,
             privacy_policy_url=lang_config['privacy_policy_url'],
-            path=f"{lang_config['path']}eli5/"
+            path=f"{lang_config['path']}eli5/",
+            home_path=home_path
         )
         
         return html
