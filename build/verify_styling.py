@@ -31,8 +31,8 @@ class StyleVerifier:
         return [
             self.project_root / 'index.html',
             self.project_root / 'privacy-policy' / 'index.html',
-            self.project_root / 'fr-FR' / 'index.html',
-            self.project_root / 'fr-FR' / 'privacy-policy' / 'index.html'
+            self.project_root / 'tu' / 'index.html',
+            self.project_root / 'tu' / 'privacy-policy' / 'index.html'
         ]
     
     def extract_styles(self, html_file):
