@@ -40,9 +40,8 @@ jobs:
     - name: Install dependencies and build site
       run: |
         set -e
-        mkdir -p build
-        python -m venv build/venv
-        source build/venv/bin/activate
+        python -m venv venv
+        source venv/bin/activate
         pip install -r build/requirements.txt
         python build/generate_site.py build
     
