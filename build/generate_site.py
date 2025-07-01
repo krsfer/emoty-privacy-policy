@@ -142,7 +142,7 @@ class SiteGenerator:
         privacy_alternate_url = f"{other_lang['alternate_url']}privacy-policy"
         
         # Set home URL for the current locale
-        home_url = "/" if locale == 'en' else "/fr-FR/"
+        home_url = "/en-GB/" if locale == 'en' else "/"
         
         # Load template
         template = self.env.get_template('privacy-policy.html.j2')
@@ -201,7 +201,7 @@ class SiteGenerator:
             config=self.config,
             alternate_lang=lang_config['alternate_lang'],
             alternate_url=eli5_alternate_url,
-            alternate_path=eli5_alternate_path,
+            eli5_alternate_path=eli5_alternate_path,
             privacy_policy_url=lang_config['privacy_policy_url'],
             path=f"{lang_config['path']}eli5/"
         )
