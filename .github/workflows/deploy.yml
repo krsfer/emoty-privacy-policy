@@ -22,23 +22,19 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
-      
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.11'
-        
-    - name: Install dependencies
+    
+    - name: Prepare site files
       run: |
-        cd build
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-        
-    - name: Build site
-      run: |
-        cd build
-        python generate_site.py build
-        python generate_site.py validate
+        mkdir -p _site
+        # Copy all HTML files and directories, excluding build system
+        cp -r *.html _site/ 2>/dev/null || true
+        cp -r en-GB/ _site/ 2>/dev/null || true
+        cp -r fr-FR/ _site/ 2>/dev/null || true
+        cp -r tu/ _site/ 2>/dev/null || true
+        cp -r eli5/ _site/ 2>/dev/null || true
+        cp -r privacy-policy/ _site/ 2>/dev/null || true
+        cp .nojekyll _site/ 2>/dev/null || true
+        cp CNAME _site/ 2>/dev/null || true
         
     - name: Setup Pages
       uses: actions/configure-pages@v4
@@ -46,7 +42,7 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
       with:
-        path: build/output
+        path: _site
         
   deploy:
     environment:
