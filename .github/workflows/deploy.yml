@@ -37,9 +37,18 @@ jobs:
       with:
         python-version: '3.x'
 
+    - name: List files after checkout
+      run: ls -lR
+
     - name: Install dependencies and build site
       run: |
         set -e
+        echo "Listing current directory:"
+        ls -l
+        echo "---"
+        echo "Listing build directory:"
+        ls -l build/
+        echo "---"
         echo "Creating virtual environment..."
         python -m venv venv
         echo "Activating virtual environment..."
