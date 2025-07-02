@@ -23,6 +23,7 @@ build/__pycache__/
 *.swo
 *~
 emoty-privacy-policy.sublime-workspace
+.claude/
 
 # OS
 .DS_Store
