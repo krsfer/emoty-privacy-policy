@@ -17,15 +17,8 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    
     steps:
     - name: Checkout
       uses: actions/checkout@v4
@@ -37,44 +30,50 @@ jobs:
       with:
         python-version: '3.x'
 
-    - name: List files after checkout
-      run: ls -lR
-
     - name: Install dependencies and build site
       run: |
         set -e
-        echo "Listing current directory:"
-        ls -l
-        echo "---"
-        echo "Listing build directory:"
-        ls -l build/
-        echo "---"
-        echo "Creating virtual environment..."
         python -m venv venv
-        echo "Activating virtual environment..."
         source venv/bin/activate
-        echo "Installing dependencies..."
         pip install -r build/requirements.txt
-        echo "Running build script..."
         python build/generate_site.py build
-        echo "Build script finished."
-    
-    - name: List build output
-      run: ls -lR build/output
     
     - name: Prepare deployment artifact
       run: |
         set -e
         cp CNAME build/output/
-        cp .nojekyll build/output/
+        echo "" > build/output/.nojekyll
         
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: github-pages
+        path: build/output
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    
+    steps:
     - name: Setup Pages
       uses: actions/configure-pages@v4
       
-    - name: Upload artifact
+    - name: Download artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: github-pages
+        path: ./artifact
+        
+    - name: Upload pages artifact
       uses: actions/upload-pages-artifact@v3
       with:
-        path: build/output
+        path: ./artifact
         
     - name: Deploy to GitHub Pages
       id: deployment
