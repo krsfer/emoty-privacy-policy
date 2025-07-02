@@ -130,7 +130,7 @@ msgstr "Assistance Créative"
 
 #: index.html.j2:36
 msgid "features.ai_creation.description"
-msgstr "Tu manques d'idées ? Demande de l'aide pour générer un motif à partir d'un texte, ou obtiens des suggestions de noms astucieux pour ton art fini."
+msgstr "Libérons ta créativité. Demande de l'aide pour générer un motif à partir d'un texte, ou obtiens des suggestions de noms astucieux pour ton art fini."
 
 #: index.html.j2:40
 msgid "features.palettes.title"
