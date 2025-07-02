@@ -68,6 +68,24 @@
             margin-top: 10px;
             opacity: 0.95;
         }
+        .home-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        .home-button a {
+            color: white;
+            text-decoration: none;
+            background: rgba(255,255,255,0.3);
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: background 0.3s;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .home-button a:hover {
+            background: rgba(255,255,255,0.4);
+            border-color: rgba(255,255,255,0.3);
+        }
         .lang-switch {
             position: absolute;
             top: 20px;
@@ -178,6 +196,15 @@
             .emoty-text { font-size: 2em; }
             .tagline { font-size: 1.1em; }
             .features { grid-template-columns: 1fr; }
+            .home-button {
+                position: absolute;
+                top: 15px;
+                left: 15px;
+            }
+            .home-button a {
+                padding: 6px 12px;
+                font-size: 0.9em;
+            }
             .lang-switch {
                 position: absolute;
                 top: 15px;
@@ -193,7 +220,9 @@
 <body>
     <div class="container">
         <header>
-            
+            <div class="home-button">
+                <a href="/en-GB/">Home</a>
+            </div>
 <div class="lang-switch">
     <a href="/eli5/">Français</a>
 </div>
