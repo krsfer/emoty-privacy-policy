@@ -129,7 +129,7 @@ msgstr "Creative Assist"
 
 #: index.html.j2:36
 msgid "features.ai_creation.description"
-msgstr "Stuck for an idea? Ask for help to generate a pattern from a text prompt, or get clever name suggestions for your finished art."
+msgstr "Stuck for an idea? Help is always available to generate a pattern from a text prompt, or get clever name suggestions for your finished art."
 
 #: index.html.j2:40
 msgid "features.palettes.title"
