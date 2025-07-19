@@ -86,6 +86,24 @@
             background: rgba(255,255,255,0.4);
             border-color: rgba(255,255,255,0.3);
         }
+        .home-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        .home-button a {
+            color: white;
+            text-decoration: none;
+            background: rgba(255,255,255,0.3);
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: background 0.3s;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .home-button a:hover {
+            background: rgba(255,255,255,0.4);
+            border-color: rgba(255,255,255,0.3);
+        }
         .features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -187,6 +205,15 @@
                 padding: 6px 12px;
                 font-size: 0.9em;
             }
+            .home-button {
+                position: absolute;
+                top: 15px;
+                left: 15px;
+            }
+            .home-button a {
+                padding: 6px 12px;
+                font-size: 0.9em;
+            }
         }
     </style>
 </head>
@@ -255,11 +282,11 @@
 </style>
 
 <h1>Privacy Policy for Emoty</h1>
-<p><strong>Effective Date:</strong> 19th July 2025<br />
-<strong>Last Updated:</strong> 19th July 2025</p>
+<p><strong>Effective Date:</strong> 15th june 2025<br />
+<strong>Last Updated:</strong> 15th june 2025</p>
 
 <h2>Introduction</h2>
-<p>Welcome to Emoty! This Privacy Policy explains how we collect, use, and protect your information when you use our emoji pattern creation app with advanced progression system and AI assistance. We are committed to protecting your privacy and being transparent about our data practices.</p>
+<p>Welcome to Emoty! This Privacy Policy explains how we collect, use, and protect your information when you use our emoji pattern creation app. We are committed to protecting your privacy and being transparent about our data practices.</p>
 
 <h2>Information We Collect</h2>
 <h3>User-Created Content</h3>
@@ -279,24 +306,7 @@
 <h3>AI Service Data</h3>
 <ul>
     <li><strong>Emoji Sequences</strong>: When you use our AI naming feature, we send your emoji sequences to Anthropic's Claude AI service to generate creative pattern names</li>
-    <li><strong>EmotyBot Conversations</strong>: When you chat with the AI assistant EmotyBot (Advanced level), your messages are sent to Claude AI to generate responses</li>
-    <li><strong>Voice Commands</strong>: Voice commands are processed locally on your device and converted to app actions (no audio is sent to servers)</li>
     <li><strong>No Personal Information</strong>: We do not send any personal information, device identifiers, or user data to AI services</li>
-</ul>
-
-<h3>User Progression Data</h3>
-<ul>
-    <li><strong>User Level</strong>: Your progression level (Beginner, Intermediate, Advanced, Expert) based on activity</li>
-    <li><strong>Activity Counters</strong>: Number of patterns created, active days, features used</li>
-    <li><strong>Reputation Score</strong>: Behavioural score for security and access levels</li>
-    <li><strong>Feature Usage</strong>: Which features you have discovered and used</li>
-</ul>
-
-<h3>Accessibility Data</h3>
-<ul>
-    <li><strong>Accessibility Settings</strong>: Your preferences for touch gestures, hand size calibration</li>
-    <li><strong>Accessibility Profile</strong>: Settings for motor, visual, and cognitive needs</li>
-    <li><strong>Calibration Data</strong>: Custom gesture settings for hand size adaptation</li>
 </ul>
 
 <h2>How We Use Your Information</h2>
@@ -307,27 +317,11 @@
     <li>No personal data is transmitted to our servers</li>
 </ul>
 
-<h3>Advanced AI Features</h3>
+<h3>AI Pattern Naming</h3>
 <ul>
-    <li><strong>Pattern Naming</strong>: When you request AI-generated names, we send only your emoji sequence to Claude AI</li>
-    <li><strong>EmotyBot Assistant</strong>: Conversations with the AI assistant for creative help, pattern suggestions, and support</li>
-    <li><strong>AI Pattern Generation</strong>: Creation of new patterns based on your preferences and history</li>
-    <li><strong>Voice-AI Processing</strong>: Complex voice commands may use AI for better understanding</li>
+    <li>When you request AI-generated pattern names, we send only your emoji sequence to Anthropic's Claude AI</li>
+    <li>This helps generate creative, relevant names for your patterns</li>
     <li>No personal information or device identifiers are included in these requests</li>
-</ul>
-
-<h3>Progression System</h3>
-<ul>
-    <li><strong>Progressive Discovery</strong>: The interface adapts to your level to reveal features gradually</li>
-    <li><strong>Access Control</strong>: Some advanced features unlock with experience</li>
-    <li><strong>Achievement Tracking</strong>: Progression milestones and feature unlocks</li>
-</ul>
-
-<h3>Voice Commands</h3>
-<ul>
-    <li><strong>Local Processing</strong>: Voice recognition occurs on your device (English and French)</li>
-    <li><strong>No Audio Storage</strong>: Audio files are not saved or transmitted</li>
-    <li><strong>Text Conversion</strong>: Voice is converted to text commands to control the app</li>
 </ul>
 
 <h3>App Functionality</h3>
@@ -354,17 +348,9 @@
 <h2>Third-Party Services</h2>
 <h3>Anthropic Claude AI</h3>
 <ul>
-    <li><strong>Multiple Purposes</strong>: Generate creative names, provide EmotyBot assistance, process complex requests</li>
-    <li><strong>Data Sent</strong>: 
-        <ul>
-            <li>Emoji sequences for naming (e.g., ❤️🌸🌟)</li>
-            <li>Conversation messages for EmotyBot (Advanced level+)</li>
-            <li>Pattern generation requests</li>
-            <li>Complex voice commands requiring AI processing</li>
-        </ul>
-    </li>
-    <li><strong>Data Not Sent</strong>: No personal information, device identifiers, user data, or audio files</li>
-    <li><strong>Frequency</strong>: Higher usage for Advanced and Expert level users</li>
+    <li><strong>Purpose</strong>: Generate creative names for your emoji patterns</li>
+    <li><strong>Data Sent</strong>: Only emoji sequences (e.g., ❤️🌸🌟) when you request AI naming</li>
+    <li><strong>Data Not Sent</strong>: No personal information, device identifiers, or user data</li>
     <li><strong>Privacy Policy</strong>: <a href="https://www.anthropic.com/privacy">https://www.anthropic.com/privacy</a></li>
 </ul>
 
@@ -375,24 +361,15 @@
 </ul>
 
 <h2>Children's Privacy (COPPA Compliance)</h2>
-<p>Emoty is safe for children under 13 with enhanced protections:</p>
+<p>Emoty is safe for children under 13:</p>
 <ul>
     <li><strong>No Personal Information Collection</strong>: We do not collect names, email addresses, phone numbers, or any personal identifiers</li>
     <li><strong>No Social Features</strong>: No chat, messaging, or social interaction features</li>
-    <li><strong>Local Data Only</strong>: All personal data stays on the device under parental control</li>
-    <li><strong>Age-Appropriate Progression</strong>: The level system reveals complexity gradually, appropriate to the child's capabilities</li>
-    <li><strong>Safe AI Usage</strong>: 
-        <ul>
-            <li>AI features only process emoji sequences and creative conversations</li>
-            <li>EmotyBot is designed for appropriate educational and creative interactions</li>
-            <li>No personal data in AI requests</li>
-        </ul>
-    </li>
-    <li><strong>Secure Voice Commands</strong>: Local processing only, no audio transmitted</li>
-    <li><strong>Enhanced Parental Control</strong>: Parents can disable AI features via device settings</li>
+    <li><strong>Local Data Only</strong>: All data stays on the device under parental control</li>
+    <li><strong>Safe AI Usage</strong>: AI naming feature only processes emoji sequences, no personal data</li>
     <li><strong>No Advertising</strong>: No third-party advertising or tracking</li>
 </ul>
-<p>Parents can review and delete all app data through the device's application settings, and control access to advanced features.</p>
+<p>Parents can review and delete all app data through the device's application settings.</p>
 
 <h2>Your Rights and Choices</h2>
 <h3>Data Control</h3>
@@ -404,11 +381,9 @@
 
 <h3>App Permissions</h3>
 <ul>
-    <li><strong>Internet</strong>: Required for AI features (naming, EmotyBot, pattern generation)</li>
-    <li><strong>Microphone</strong>: For multilingual voice commands (local processing only)</li>
+    <li><strong>Internet</strong>: Required only for AI pattern naming feature</li>
     <li><strong>Storage</strong>: For saving pattern images to your device gallery (with your permission)</li>
-    <li><strong>Notifications</strong>: For app-related notifications and progression achievements (can be disabled)</li>
-    <li><strong>Accessibility</strong>: For advanced accessibility features and gesture calibration</li>
+    <li><strong>Notifications</strong>: For app-related notifications (can be disabled in device settings)</li>
 </ul>
 
 <h2>Data Retention</h2>
@@ -447,18 +422,8 @@
 </ul>
 
 <hr />
-<p><strong>Last Updated</strong>: 19th July 2025<br />
-<strong>Effective Date</strong>: 19th July 2025</p>
-
-<h2>New Features (July 2025 Update)</h2>
-<p>This policy update covers the following new features:</p>
-<ul>
-    <li><strong>Dual-Level Progression System</strong>: Progressive discovery and reputation-based access control</li>
-    <li><strong>EmotyBot Assistant</strong>: Complete AI conversations for creative assistance</li>
-    <li><strong>Multilingual Voice Commands</strong>: Voice control in English and French</li>
-    <li><strong>Advanced Accessibility Features</strong>: Gesture calibration and accessibility profiles</li>
-    <li><strong>Professional Export</strong>: Multiple formats and bulk operations</li>
-</ul>
+<p><strong>Last Updated</strong>: 15th june 2025<br />
+<strong>Effective Date</strong>: 15th june 2025</p>
 
 
         <footer>
