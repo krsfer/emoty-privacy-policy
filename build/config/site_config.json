@@ -21,9 +21,16 @@
   "contact_email": "support@emoty.fr",
   "author": "Christopher Archer",
   "year": "2025",
+  "version": "2.0.0",
   "language_detection": {
     "enabled": true,
-    "french_language_codes": ["fr", "fr-FR", "fr-CA", "fr-BE", "fr-CH"],
+    "french_language_codes": [
+      "fr",
+      "fr-FR",
+      "fr-CA",
+      "fr-BE",
+      "fr-CH"
+    ],
     "storage_key": "emoty_language_preference",
     "redirect_delay": 0,
     "default_french_locale": "fr-tu"

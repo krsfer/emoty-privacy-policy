@@ -1,0 +1,50 @@
+name: Version Management
+
+on:
+  workflow_dispatch:
+    inputs:
+      version_type:
+        description: 'Version type to bump'
+        required: true
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+permissions:
+  contents: write
+
+jobs:
+  version-bump:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Configure Git
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+    
+    - name: Bump version
+      run: |
+        npm version ${{ github.event.inputs.version_type }} -m "chore: release v%s"
+    
+    - name: Sync version
+      run: |
+        python build/update_version.py
+        git add build/config/site_config.json
+        git commit --amend --no-edit
+    
+    - name: Push changes
+      run: |
+        git push
+        git push --tags
