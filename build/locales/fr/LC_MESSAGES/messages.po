@@ -41,7 +41,7 @@ msgstr "Créez de Magnifiques Motifs d'Emojis, avec une Aide Intelligente Dispon
 
 #: base.html.j2:214
 msgid "footer.rights"
-msgstr "Tous droits réservés."
+msgstr "Tous droits réservés"
 
 #: base.html.j2:216
 msgid "footer.privacy_policy"

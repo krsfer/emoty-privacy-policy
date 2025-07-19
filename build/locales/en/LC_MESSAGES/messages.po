@@ -45,7 +45,7 @@ msgstr "Create Beautiful Emoji Patterns, with Smart Help Available"
 
 #: base.html.j2:214
 msgid "footer.rights"
-msgstr "All rights reserved."
+msgstr "All rights reserved"
 
 #: base.html.j2:216
 msgid "footer.privacy_policy"
