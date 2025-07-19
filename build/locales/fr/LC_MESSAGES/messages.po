@@ -204,7 +204,7 @@ msgstr "Date d'Entrée en Vigueur"
 #: privacy-policy.html.j2:56 privacy-policy.html.j2:57
 #: privacy-policy.html.j2:196 privacy-policy.html.j2:197
 msgid "privacy.date"
-msgstr "15 juin 2025"
+msgstr "19 juin 2025"
 
 #: privacy-policy.html.j2:57 privacy-policy.html.j2:196
 msgid "privacy.last_updated"
