@@ -60,6 +60,10 @@ msgstr "Contact"
 msgid "footer.eli5"
 msgstr "Version Simplifiée"
 
+#: base.html.j2:245
+msgid "footer.changelog"
+msgstr "Journal des modifications"
+
 #: eli5.html.j2:11
 msgid "eli5.title"
 msgstr "Fais des Images Amusantes avec des Emojis ! "

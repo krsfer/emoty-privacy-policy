@@ -10,6 +10,7 @@ import os
 import sys
 import json
 import shutil
+import markdown
 from pathlib import Path
 from typing import Dict, Any
 
@@ -208,6 +209,64 @@ class SiteGenerator:
         
         return html
     
+    def generate_changelog_page(self, locale: str) -> str:
+        """Generate changelog.html for a specific locale."""
+        # Load translations
+        translations = self._get_translations(locale)
+        self.env.install_gettext_translations(translations)
+        
+        # Get language config
+        lang_config = self._get_language_config(locale)
+        
+        # Determine which changelog file to load
+        project_root = self.build_dir.parent
+        if locale == 'en':
+            changelog_path = project_root / 'docs' / 'CHANGELOG.md'
+        elif locale == 'fr-tu':
+            changelog_path = project_root / 'docs' / 'CHANGELOG.fr.md'
+        else:
+            changelog_path = project_root / 'docs' / 'CHANGELOG.md'  # Default to English
+        
+        # Read and convert markdown to HTML
+        changelog_content = ""
+        if changelog_path.exists():
+            with open(changelog_path, 'r', encoding='utf-8') as f:
+                markdown_content = f.read()
+                # Convert markdown to HTML with proper extensions
+                md = markdown.Markdown(extensions=['extra', 'codehilite', 'toc'])
+                changelog_content = md.convert(markdown_content)
+        else:
+            changelog_content = f"<p>Changelog file not found: {changelog_path}</p>"
+        
+        # Set up alternate paths for language switcher
+        if locale == 'en':
+            # English changelog, alternate is French
+            changelog_alternate_path = "/"
+        elif locale == 'fr-tu':
+            # French changelog, alternate is English  
+            changelog_alternate_path = "/en-GB/"
+        else:
+            changelog_alternate_path = "/"
+        
+        # Home path based on locale
+        home_path = "../" if locale == 'en' else "../"
+        
+        # Render template
+        template = self.env.get_template('changelog.html.j2')
+        html = template.render(
+            locale=lang_config['hreflang'],
+            config=self.config,
+            alternate_lang=lang_config['alternate_lang'],
+            alternate_url=f"{lang_config['alternate_url']}changelog/",
+            alternate_path=changelog_alternate_path,
+            privacy_policy_url=lang_config['privacy_policy_url'],
+            path=f"{lang_config['path']}changelog/",
+            home_path=home_path,
+            changelog_content=changelog_content
+        )
+        
+        return html
+    
     def build_site(self) -> None:
         """Build the complete site for all locales."""
         click.echo("Building site...")
@@ -280,6 +339,25 @@ class SiteGenerator:
             with open(eli5_output_path, 'w', encoding='utf-8') as f:
                 f.write(eli5_html)
             click.echo(f"    Created: {eli5_output_path}")
+            
+            # Generate Changelog page
+            changelog_html = self.generate_changelog_page(locale)
+            
+            # Determine Changelog output path based on new structure
+            if locale == 'en':
+                # English Changelog goes to en-GB/changelog
+                changelog_dir = self.output_dir / 'en-GB' / 'changelog'
+                changelog_dir.mkdir(parents=True, exist_ok=True)
+                changelog_output_path = changelog_dir / 'index.html'
+            elif locale == 'fr-tu':
+                # Informal French Changelog is at root changelog
+                changelog_dir = self.output_dir / 'changelog'
+                changelog_dir.mkdir(exist_ok=True)
+                changelog_output_path = changelog_dir / 'index.html'
+
+            with open(changelog_output_path, 'w', encoding='utf-8') as f:
+                f.write(changelog_html)
+            click.echo(f"    Created: {changelog_output_path}")
     
     def validate_build(self) -> bool:
         """Validate the generated site."""
@@ -290,9 +368,11 @@ class SiteGenerator:
             self.output_dir / 'index.html',                           # French homepage (root)
             self.output_dir / 'privacy-policy' / 'index.html',       # French privacy policy (root)
             self.output_dir / 'eli5' / 'index.html',                 # French ELI5 (root)
+            self.output_dir / 'changelog' / 'index.html',            # French Changelog (root)
             self.output_dir / 'en-GB' / 'index.html',                # English homepage
             self.output_dir / 'en-GB' / 'privacy-policy' / 'index.html', # English privacy policy
             self.output_dir / 'en-GB' / 'eli5' / 'index.html',       # English ELI5
+            self.output_dir / 'en-GB' / 'changelog' / 'index.html',  # English Changelog
         ]
         
         all_valid = True
@@ -456,6 +536,15 @@ def deploy(ctx, target):
                 shutil.rmtree(target_eli5)
             shutil.copytree(src_eli5, target_eli5)
             click.echo(f"  Copied: eli5/ (French)")
+        
+        # Copy French changelog directory to root
+        src_changelog = generator.output_dir / 'changelog'
+        target_changelog = target_path / 'changelog'
+        if src_changelog.exists():
+            if target_changelog.exists():
+                shutil.rmtree(target_changelog)
+            shutil.copytree(src_changelog, target_changelog)
+            click.echo(f"  Copied: changelog/ (French)")
         
         # Copy en-GB directory
         src_en = generator.output_dir / 'en-GB'
