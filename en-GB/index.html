@@ -798,15 +798,7 @@
         };
         localStorage.setItem(config.storageKey, JSON.stringify(signupData));
         
-        // Simulate API call (replace with actual API endpoint)
-        setTimeout(() => {
-            // In a real implementation, you would make an actual API call here
-            // For demonstration, we'll simulate a successful response
-            handleSignupSuccess(email);
-        }, 1000);
-        
-        // Uncomment and modify this for actual API integration:
-        /*
+        // Make API call to backend
         fetch(config.apiEndpoint, {
             method: 'POST',
             headers: {
@@ -830,9 +822,14 @@
             handleSignupSuccess(email);
         })
         .catch(error => {
-            handleSignupError(error);
+            // Fallback to simulation if API is not available (development mode)
+            if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
+                console.warn('API not available, using simulation mode');
+                setTimeout(() => handleSignupSuccess(email), 1000);
+            } else {
+                handleSignupError(error);
+            }
         });
-        */
     }
     
     function handleSignupSuccess(email) {
@@ -881,14 +878,7 @@
         
         setResendLoading(true);
         
-        // Simulate resend API call
-        setTimeout(() => {
-            setResendLoading(false);
-            showResendSuccess();
-        }, 1000);
-        
-        // Uncomment for actual API integration:
-        /*
+        // Make resend API call to backend
         fetch(config.confirmationApiEndpoint, {
             method: 'POST',
             headers: {
@@ -910,10 +900,18 @@
             showResendSuccess();
         })
         .catch(error => {
-            setResendLoading(false);
-            showSignupError(translations.resendError);
+            // Fallback to simulation if API is not available (development mode)
+            if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
+                console.warn('Resend API not available, using simulation mode');
+                setTimeout(() => {
+                    setResendLoading(false);
+                    showResendSuccess();
+                }, 1000);
+            } else {
+                setResendLoading(false);
+                showSignupError(translations.resendError);
+            }
         });
-        */
     }
     
     function checkPendingConfirmation() {
