@@ -192,6 +192,182 @@
             word-spacing: clamp(0.05em, 0.3vw, 0.15em); /* Dynamic word spacing */
         }
         
+        .signup-section {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin: 40px 0;
+        }
+        
+        .signup-section h2 {
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .signup-section > p {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .signup-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .form-group input[type="email"] {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            box-sizing: border-box;
+        }
+        
+        .form-group input[type="email"]:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .form-group input[type="email"]:invalid {
+            border-color: #e74c3c;
+        }
+        
+        .checkbox-container {
+            display: flex;
+            align-items: flex-start;
+            cursor: pointer;
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 0;
+        }
+        
+        .checkbox-container input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+        
+        .checkmark {
+            position: absolute;
+            top: 2px;
+            left: 0;
+            height: 20px;
+            width: 20px;
+            background-color: #f0f0f0;
+            border: 2px solid #e0e0e0;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        .checkbox-container:hover input ~ .checkmark {
+            background-color: #e8e8e8;
+        }
+        
+        .checkbox-container input:checked ~ .checkmark {
+            background-color: #667eea;
+            border-color: #667eea;
+        }
+        
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+        
+        .checkbox-container input:checked ~ .checkmark:after {
+            display: block;
+        }
+        
+        .checkbox-container .checkmark:after {
+            left: 6px;
+            top: 2px;
+            width: 6px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        
+        .help-text {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 8px;
+            line-height: 1.4;
+        }
+        
+        .help-text a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .help-text a:hover {
+            text-decoration: underline;
+        }
+        
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.9em;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        
+        .success-message {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .success-message h3 {
+            color: #155724;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        
+        .success-message p {
+            margin-bottom: 10px;
+        }
+        
+        .signup-button {
+            width: 100%;
+            margin: 20px 0 0 0;
+            padding: 15px;
+            font-size: 1.1em;
+            font-weight: 500;
+        }
+        
+        .signup-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .signup-button:disabled:hover {
+            background: #ccc;
+            transform: none;
+        }
+
         @media (max-width: 600px) {
             .emoty-text { font-size: 2em; }
             .tagline { font-size: 1.1em; }
@@ -213,6 +389,13 @@
             .home-button a {
                 padding: 6px 12px;
                 font-size: 0.9em;
+            }
+            .signup-section {
+                padding: 20px;
+            }
+            .checkbox-container {
+                font-size: 0.95em;
+                line-height: 1.4;
             }
         }
     </style>
@@ -309,6 +492,50 @@
         <a href="/privacy-policy" class="button secondary">
             Politique de Confidentialité
         </a>
+    </div>
+
+    <div class="signup-section">
+        <h2>🧪 Participe aux Tests Beta</h2>
+        <p>Sois parmi les premiers à tester les nouvelles fonctionnalités d'Emoty ! Inscris-toi pour recevoir des invitations aux tests beta et des mises à jour exclusives.</p>
+        
+        <form id="signupForm" class="signup-form">
+            <div class="form-group">
+                <label for="email">Adresse email :</label>
+                <input type="email" id="email" name="email" required 
+                       aria-describedby="email-help" 
+                       placeholder="ton@email.fr">
+                <div id="email-help" class="help-text">Nous utiliserons cette adresse uniquement pour les invitations aux tests</div>
+                <div id="email-error" class="error-message" aria-live="polite"></div>
+            </div>
+            
+            <div class="form-group">
+                <label class="checkbox-container">
+                    <input type="checkbox" id="consent" name="consent" required aria-describedby="consent-help">
+                    <span class="checkmark"></span>
+                    J'accepte de recevoir des emails de test beta d'Emoty
+                </label>
+                <div id="consent-help" class="help-text">
+                    Tu peux te désinscrire à tout moment. Voir notre <a href="/privacy-policy">politique de confidentialité</a>.
+                </div>
+                <div id="consent-error" class="error-message" aria-live="polite"></div>
+            </div>
+            
+            <button type="submit" class="button signup-button" id="submitBtn">
+                S'inscrire aux Tests Beta
+            </button>
+            
+            <div id="signup-success" class="success-message" style="display: none;">
+                <h3>📧 Confirme ton inscription</h3>
+                <p>Nous avons envoyé un email de confirmation à <span id="confirmed-email"></span>. 
+                Clique sur le lien dans l'email pour finaliser ton inscription aux tests beta.</p>
+                <p><strong>Important :</strong> Le lien expire dans 48 heures.</p>
+                <button type="button" id="resendBtn" class="button secondary" style="display: none;">
+                    Renvoyer l'email de confirmation
+                </button>
+            </div>
+            
+            <div id="signup-error" class="error-message" style="display: none;"></div>
+        </form>
     </div>
 
 
@@ -437,6 +664,350 @@
             });
         });
     });
+})();
+
+/**
+ * Emoty Beta Signup with Double Opt-in
+ * GDPR-compliant signup form with confirmation email process
+ */
+(function() {
+    'use strict';
+    
+    // Configuration
+    const config = {
+        apiEndpoint: '/api/beta-signup', // You'll need to implement this endpoint
+        confirmationApiEndpoint: '/api/resend-confirmation',
+        maxRetries: 3,
+        retryDelay: 1000,
+        confirmationTimeout: 48 * 60 * 60 * 1000, // 48 hours
+        storageKey: 'emoty_signup_data'
+    };
+    
+    // DOM elements
+    let form, emailInput, consentInput, submitBtn, resendBtn;
+    let emailError, consentError, signupSuccess, signupError, confirmedEmail;
+    
+    // Initialize when DOM is ready
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeElements();
+        setupEventListeners();
+        checkPendingConfirmation();
+    });
+    
+    function initializeElements() {
+        form = document.getElementById('signupForm');
+        emailInput = document.getElementById('email');
+        consentInput = document.getElementById('consent');
+        submitBtn = document.getElementById('submitBtn');
+        resendBtn = document.getElementById('resendBtn');
+        emailError = document.getElementById('email-error');
+        consentError = document.getElementById('consent-error');
+        signupSuccess = document.getElementById('signup-success');
+        signupError = document.getElementById('signup-error');
+        confirmedEmail = document.getElementById('confirmed-email');
+    }
+    
+    function setupEventListeners() {
+        if (!form) return;
+        
+        form.addEventListener('submit', handleSubmit);
+        emailInput.addEventListener('input', clearEmailError);
+        emailInput.addEventListener('blur', validateEmail);
+        consentInput.addEventListener('change', clearConsentError);
+        
+        if (resendBtn) {
+            resendBtn.addEventListener('click', handleResendConfirmation);
+        }
+    }
+    
+    function handleSubmit(e) {
+        e.preventDefault();
+        
+        if (!validateForm()) {
+            return;
+        }
+        
+        const email = emailInput.value.trim();
+        const consent = consentInput.checked;
+        
+        submitSignup(email, consent);
+    }
+    
+    function validateForm() {
+        let isValid = true;
+        
+        // Validate email
+        if (!validateEmail()) {
+            isValid = false;
+        }
+        
+        // Validate consent
+        if (!consentInput.checked) {
+            showConsentError('Tu dois accepter de recevoir des emails pour t\'inscrire aux tests beta.');
+            isValid = false;
+        }
+        
+        return isValid;
+    }
+    
+    function validateEmail() {
+        const email = emailInput.value.trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        
+        if (!email) {
+            showEmailError('L\'adresse email est requise.');
+            return false;
+        }
+        
+        if (!emailRegex.test(email)) {
+            showEmailError('Veuillez entrer une adresse email valide.');
+            return false;
+        }
+        
+        clearEmailError();
+        return true;
+    }
+    
+    function submitSignup(email, consent) {
+        setFormLoading(true);
+        clearErrors();
+        
+        // Store signup data for potential resend
+        const signupData = {
+            email: email,
+            timestamp: Date.now(),
+            confirmed: false
+        };
+        localStorage.setItem(config.storageKey, JSON.stringify(signupData));
+        
+        // Simulate API call (replace with actual API endpoint)
+        setTimeout(() => {
+            // In a real implementation, you would make an actual API call here
+            // For demonstration, we'll simulate a successful response
+            handleSignupSuccess(email);
+        }, 1000);
+        
+        // Uncomment and modify this for actual API integration:
+        /*
+        fetch(config.apiEndpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: email,
+                consent: consent,
+                language: 'fr',
+                source: 'beta_signup',
+                timestamp: new Date().toISOString()
+            })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            handleSignupSuccess(email);
+        })
+        .catch(error => {
+            handleSignupError(error);
+        });
+        */
+    }
+    
+    function handleSignupSuccess(email) {
+        setFormLoading(false);
+        confirmedEmail.textContent = email;
+        
+        // Hide form and show success message
+        form.style.display = 'none';
+        signupSuccess.style.display = 'block';
+        
+        // Show resend button after 5 minutes
+        setTimeout(() => {
+            if (resendBtn) {
+                resendBtn.style.display = 'inline-block';
+            }
+        }, 5 * 60 * 1000);
+        
+        // Update stored data
+        const signupData = JSON.parse(localStorage.getItem(config.storageKey) || '{}');
+        signupData.email = email;
+        signupData.confirmationSent = Date.now();
+        localStorage.setItem(config.storageKey, JSON.stringify(signupData));
+    }
+    
+    function handleSignupError(error) {
+        setFormLoading(false);
+        
+        let errorMessage = 'Une erreur est survenue lors de l\'inscription. Veuillez réessayer.';
+        
+        if (error.message && error.message.includes('400')) {
+            errorMessage = 'Cette adresse email est déjà inscrite ou invalide.';
+        } else if (error.message && error.message.includes('429')) {
+            errorMessage = 'Trop de tentatives. Veuillez attendre avant de réessayer.';
+        }
+        
+        showSignupError(errorMessage);
+    }
+    
+    function handleResendConfirmation() {
+        const signupData = JSON.parse(localStorage.getItem(config.storageKey) || '{}');
+        
+        if (!signupData.email) {
+            showSignupError('Aucune inscription en attente trouvée.');
+            return;
+        }
+        
+        setResendLoading(true);
+        
+        // Simulate resend API call
+        setTimeout(() => {
+            setResendLoading(false);
+            showResendSuccess();
+        }, 1000);
+        
+        // Uncomment for actual API integration:
+        /*
+        fetch(config.confirmationApiEndpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: signupData.email,
+                language: 'fr'
+            })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            setResendLoading(false);
+            showResendSuccess();
+        })
+        .catch(error => {
+            setResendLoading(false);
+            showSignupError('Erreur lors du renvoi de l\'email. Veuillez réessayer.');
+        });
+        */
+    }
+    
+    function checkPendingConfirmation() {
+        const signupData = JSON.parse(localStorage.getItem(config.storageKey) || '{}');
+        
+        if (signupData.email && signupData.confirmationSent && !signupData.confirmed) {
+            const elapsed = Date.now() - signupData.confirmationSent;
+            
+            if (elapsed < config.confirmationTimeout) {
+                // Show pending confirmation state
+                confirmedEmail.textContent = signupData.email;
+                form.style.display = 'none';
+                signupSuccess.style.display = 'block';
+                
+                // Show resend button if enough time has passed
+                if (elapsed > 5 * 60 * 1000 && resendBtn) {
+                    resendBtn.style.display = 'inline-block';
+                }
+            } else {
+                // Confirmation expired, clear stored data
+                localStorage.removeItem(config.storageKey);
+            }
+        }
+    }
+    
+    function setFormLoading(loading) {
+        submitBtn.disabled = loading;
+        submitBtn.textContent = loading ? 'Inscription en cours...' : 'S\'inscrire aux Tests Beta';
+        
+        if (loading) {
+            submitBtn.style.opacity = '0.7';
+        } else {
+            submitBtn.style.opacity = '1';
+        }
+    }
+    
+    function setResendLoading(loading) {
+        if (!resendBtn) return;
+        
+        resendBtn.disabled = loading;
+        resendBtn.textContent = loading ? 'Envoi en cours...' : 'Renvoyer l\'email de confirmation';
+    }
+    
+    function showResendSuccess() {
+        if (!resendBtn) return;
+        
+        resendBtn.textContent = 'Email renvoyé !';
+        resendBtn.style.background = '#28a745';
+        
+        setTimeout(() => {
+            resendBtn.textContent = 'Renvoyer l\'email de confirmation';
+            resendBtn.style.background = '';
+            resendBtn.disabled = false;
+        }, 3000);
+    }
+    
+    function showEmailError(message) {
+        emailError.textContent = message;
+        emailInput.style.borderColor = '#e74c3c';
+        emailError.setAttribute('aria-live', 'polite');
+    }
+    
+    function clearEmailError() {
+        emailError.textContent = '';
+        emailInput.style.borderColor = '';
+    }
+    
+    function showConsentError(message) {
+        consentError.textContent = message;
+    }
+    
+    function clearConsentError() {
+        consentError.textContent = '';
+    }
+    
+    function showSignupError(message) {
+        signupError.textContent = message;
+        signupError.style.display = 'block';
+        signupError.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+    
+    function clearErrors() {
+        clearEmailError();
+        clearConsentError();
+        signupError.style.display = 'none';
+    }
+    
+    // Handle confirmation link clicks (if implementing confirmation on same domain)
+    function handleConfirmationLink() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const confirmationToken = urlParams.get('confirm');
+        
+        if (confirmationToken) {
+            // Process confirmation
+            const signupData = JSON.parse(localStorage.getItem(config.storageKey) || '{}');
+            signupData.confirmed = true;
+            signupData.confirmedAt = Date.now();
+            localStorage.setItem(config.storageKey, JSON.stringify(signupData));
+            
+            // Show confirmation success message
+            alert('Inscription confirmée ! Merci de rejoindre le programme beta d\'Emoty.');
+            
+            // Clean up URL
+            if (window.history && window.history.replaceState) {
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+        }
+    }
+    
+    // Check for confirmation on page load
+    handleConfirmationLink();
+    
 })();
 </script>
 
