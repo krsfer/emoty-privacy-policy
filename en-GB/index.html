@@ -675,8 +675,9 @@
     
     // Configuration
     const config = {
-        apiEndpoint: '/api/beta-signup', // You'll need to implement this endpoint
-        confirmationApiEndpoint: '/api/resend-confirmation',
+        // Try Netlify Functions first, fallback to local simulation
+        apiEndpoint: 'https://emoty.netlify.app/.netlify/functions/beta-signup',
+        confirmationApiEndpoint: 'https://emoty.netlify.app/.netlify/functions/resend-confirmation',
         maxRetries: 3,
         retryDelay: 1000,
         confirmationTimeout: 48 * 60 * 60 * 1000, // 48 hours
