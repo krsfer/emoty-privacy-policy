@@ -256,7 +256,7 @@ msgstr "Le lien expire dans 48 heures."
 
 #: index.html.j2:104
 msgid "signup.resend_button"
-msgstr "Renvoyer l'email de confirmation"
+msgstr "Renvoyer l\\'email de confirmation"
 
 #: privacy-policy.html.j2:5
 msgid "nav.home"
