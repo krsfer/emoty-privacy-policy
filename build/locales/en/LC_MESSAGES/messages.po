@@ -196,6 +196,67 @@ msgstr "Privacy Policy"
 msgid "cta.eli5_button"
 msgstr "Simplified Version"
 
+# Beta Signup Form
+#: index.html.j2:80
+msgid "signup.title"
+msgstr "🧪 Join the Beta Testing"
+
+#: index.html.j2:81
+msgid "signup.description"
+msgstr "Be among the first to test new Emoty features! Sign up to receive beta test invitations and exclusive updates."
+
+#: index.html.j2:84
+msgid "signup.email_label"
+msgstr "Email address:"
+
+#: index.html.j2:86
+msgid "signup.email_placeholder"
+msgstr "your@email.com"
+
+#: index.html.j2:87
+msgid "signup.email_help"
+msgstr "We'll only use this address for beta test invitations"
+
+#: index.html.j2:91
+msgid "signup.consent_label"
+msgstr "I agree to receive beta testing emails from Emoty"
+
+#: index.html.j2:94
+msgid "signup.consent_help_before"
+msgstr "You can unsubscribe at any time. See our"
+
+#: index.html.j2:94
+msgid "signup.consent_help_link"
+msgstr "privacy policy"
+
+#: index.html.j2:97
+msgid "signup.button"
+msgstr "Sign Up for Beta Testing"
+
+#: index.html.j2:100
+msgid "signup.success_title"
+msgstr "📧 Please Confirm Your Signup"
+
+#: index.html.j2:101
+msgid "signup.success_message_before"
+msgstr "We've sent a confirmation email to"
+
+#: index.html.j2:102
+msgid "signup.success_message_after"
+msgstr "Click the link in the email to complete your beta testing signup."
+
+#: index.html.j2:103
+msgid "signup.success_important"
+msgstr "Important:"
+
+#: index.html.j2:103
+msgid "signup.success_expires"
+msgstr "The link expires in 48 hours."
+
+#: index.html.j2:104
+msgid "signup.resend_button"
+msgstr "Resend Confirmation Email"
+
 #: privacy-policy.html.j2:5
 msgid "nav.home"
 msgstr "Home"

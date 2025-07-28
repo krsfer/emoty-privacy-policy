@@ -75,6 +75,50 @@
             {{ _('cta.privacy_button') }}
         </a>
     </div>
+
+    <div class="signup-section">
+        <h2>{{ _('signup.title') }}</h2>
+        <p>{{ _('signup.description') }}</p>
+        
+        <form id="signupForm" class="signup-form">
+            <div class="form-group">
+                <label for="email">{{ _('signup.email_label') }}</label>
+                <input type="email" id="email" name="email" required 
+                       aria-describedby="email-help" 
+                       placeholder="{{ _('signup.email_placeholder') }}">
+                <div id="email-help" class="help-text">{{ _('signup.email_help') }}</div>
+                <div id="email-error" class="error-message" aria-live="polite"></div>
+            </div>
+            
+            <div class="form-group">
+                <label class="checkbox-container">
+                    <input type="checkbox" id="consent" name="consent" required aria-describedby="consent-help">
+                    <span class="checkmark"></span>
+                    {{ _('signup.consent_label') }}
+                </label>
+                <div id="consent-help" class="help-text">
+                    {{ _('signup.consent_help_before') }} <a href="{{ privacy_policy_url }}">{{ _('signup.consent_help_link') }}</a>.
+                </div>
+                <div id="consent-error" class="error-message" aria-live="polite"></div>
+            </div>
+            
+            <button type="submit" class="button signup-button" id="submitBtn">
+                {{ _('signup.button') }}
+            </button>
+            
+            <div id="signup-success" class="success-message" style="display: none;">
+                <h3>{{ _('signup.success_title') }}</h3>
+                <p>{{ _('signup.success_message_before') }} <span id="confirmed-email"></span>. 
+                {{ _('signup.success_message_after') }}</p>
+                <p><strong>{{ _('signup.success_important') }}</strong> {{ _('signup.success_expires') }}</p>
+                <button type="button" id="resendBtn" class="button secondary" style="display: none;">
+                    {{ _('signup.resend_button') }}
+                </button>
+            </div>
+            
+            <div id="signup-error" class="error-message" style="display: none;"></div>
+        </form>
+    </div>
 {% endblock %}
 
 {% block language_detection %}
@@ -195,4 +239,386 @@
 })();
 </script>
 {% endif %}
+{% endblock %}
+
+{% block signup_script %}
+<script>
+/**
+ * Emoty Beta Signup with Double Opt-in
+ * GDPR-compliant signup form with confirmation email process
+ */
+(function() {
+    'use strict';
+    
+    // Configuration
+    const config = {
+        // Try Netlify Functions first, fallback to local simulation
+        apiEndpoint: 'https://emoty.netlify.app/.netlify/functions/beta-signup',
+        confirmationApiEndpoint: 'https://emoty.netlify.app/.netlify/functions/resend-confirmation',
+        maxRetries: 3,
+        retryDelay: 1000,
+        confirmationTimeout: 48 * 60 * 60 * 1000, // 48 hours
+        storageKey: 'emoty_signup_data_{{ locale }}'
+    };
+    
+    // Translations based on locale
+    const translations = {
+        {% if locale == 'fr' or locale.startswith('fr-') %}
+        emailRequired: "L'adresse email est requise.",
+        emailInvalid: 'Veuillez entrer une adresse email valide.',
+        consentRequired: 'Tu dois accepter de recevoir des emails pour t\'inscrire aux tests beta.',
+        signupInProgress: 'Inscription en cours...',
+        signupButton: '{{ _("signup.button") }}',
+        resendInProgress: 'Envoi en cours...',
+        resendButton: '{{ _("signup.resend_button") }}',
+        resendSuccess: 'Email renvoyé !',
+        signupError: 'Une erreur est survenue lors de l\'inscription. Veuillez réessayer.',
+        emailAlreadyExists: 'Cette adresse email est déjà inscrite ou invalide.',
+        rateLimited: 'Trop de tentatives. Veuillez attendre avant de réessayer.',
+        noSignupFound: 'Aucune inscription en attente trouvée.',
+        resendError: 'Erreur lors du renvoi de l\'email. Veuillez réessayer.',
+        confirmationSuccess: 'Inscription confirmée ! Merci de rejoindre le programme beta d\'Emoty.'
+        {% else %}
+        emailRequired: 'Email address is required.',
+        emailInvalid: 'Please enter a valid email address.',
+        consentRequired: 'You must agree to receive emails to sign up for beta testing.',
+        signupInProgress: 'Signing up...',
+        signupButton: '{{ _("signup.button") }}',
+        resendInProgress: 'Sending...',
+        resendButton: '{{ _("signup.resend_button") }}',
+        resendSuccess: 'Email sent!',
+        signupError: 'An error occurred during signup. Please try again.',
+        emailAlreadyExists: 'This email address is already registered or invalid.',
+        rateLimited: 'Too many attempts. Please wait before trying again.',
+        noSignupFound: 'No pending signup found.',
+        resendError: 'Error sending email. Please try again.',
+        confirmationSuccess: 'Signup confirmed! Thank you for joining the Emoty beta program.'
+        {% endif %}
+    };
+    
+    // DOM elements
+    let form, emailInput, consentInput, submitBtn, resendBtn;
+    let emailError, consentError, signupSuccess, signupError, confirmedEmail;
+    
+    // Initialize when DOM is ready
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeElements();
+        setupEventListeners();
+        checkPendingConfirmation();
+    });
+    
+    function initializeElements() {
+        form = document.getElementById('signupForm');
+        emailInput = document.getElementById('email');
+        consentInput = document.getElementById('consent');
+        submitBtn = document.getElementById('submitBtn');
+        resendBtn = document.getElementById('resendBtn');
+        emailError = document.getElementById('email-error');
+        consentError = document.getElementById('consent-error');
+        signupSuccess = document.getElementById('signup-success');
+        signupError = document.getElementById('signup-error');
+        confirmedEmail = document.getElementById('confirmed-email');
+    }
+    
+    function setupEventListeners() {
+        if (!form) return;
+        
+        form.addEventListener('submit', handleSubmit);
+        emailInput.addEventListener('input', clearEmailError);
+        emailInput.addEventListener('blur', validateEmail);
+        consentInput.addEventListener('change', clearConsentError);
+        
+        if (resendBtn) {
+            resendBtn.addEventListener('click', handleResendConfirmation);
+        }
+    }
+    
+    function handleSubmit(e) {
+        e.preventDefault();
+        
+        if (!validateForm()) {
+            return;
+        }
+        
+        const email = emailInput.value.trim();
+        const consent = consentInput.checked;
+        
+        submitSignup(email, consent);
+    }
+    
+    function validateForm() {
+        let isValid = true;
+        
+        // Validate email
+        if (!validateEmail()) {
+            isValid = false;
+        }
+        
+        // Validate consent
+        if (!consentInput.checked) {
+            showConsentError(translations.consentRequired);
+            isValid = false;
+        }
+        
+        return isValid;
+    }
+    
+    function validateEmail() {
+        const email = emailInput.value.trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        
+        if (!email) {
+            showEmailError(translations.emailRequired);
+            return false;
+        }
+        
+        if (!emailRegex.test(email)) {
+            showEmailError(translations.emailInvalid);
+            return false;
+        }
+        
+        clearEmailError();
+        return true;
+    }
+    
+    function submitSignup(email, consent) {
+        setFormLoading(true);
+        clearErrors();
+        
+        // Store signup data for potential resend
+        const signupData = {
+            email: email,
+            timestamp: Date.now(),
+            confirmed: false
+        };
+        localStorage.setItem(config.storageKey, JSON.stringify(signupData));
+        
+        // Make API call to backend
+        fetch(config.apiEndpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: email,
+                consent: consent,
+                language: '{{ locale.split("-")[0] if "-" in locale else locale }}',
+                source: 'beta_signup',
+                timestamp: new Date().toISOString()
+            })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            handleSignupSuccess(email);
+        })
+        .catch(error => {
+            // Fallback to simulation if API is not available (development mode)
+            if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
+                console.warn('API not available, using simulation mode');
+                setTimeout(() => handleSignupSuccess(email), 1000);
+            } else {
+                handleSignupError(error);
+            }
+        });
+    }
+    
+    function handleSignupSuccess(email) {
+        setFormLoading(false);
+        confirmedEmail.textContent = email;
+        
+        // Hide form and show success message
+        form.style.display = 'none';
+        signupSuccess.style.display = 'block';
+        
+        // Show resend button after 5 minutes
+        setTimeout(() => {
+            if (resendBtn) {
+                resendBtn.style.display = 'inline-block';
+            }
+        }, 5 * 60 * 1000);
+        
+        // Update stored data
+        const signupData = JSON.parse(localStorage.getItem(config.storageKey) || '{}');
+        signupData.email = email;
+        signupData.confirmationSent = Date.now();
+        localStorage.setItem(config.storageKey, JSON.stringify(signupData));
+    }
+    
+    function handleSignupError(error) {
+        setFormLoading(false);
+        
+        let errorMessage = translations.signupError;
+        
+        if (error.message && error.message.includes('400')) {
+            errorMessage = translations.emailAlreadyExists;
+        } else if (error.message && error.message.includes('429')) {
+            errorMessage = translations.rateLimited;
+        }
+        
+        showSignupError(errorMessage);
+    }
+    
+    function handleResendConfirmation() {
+        const signupData = JSON.parse(localStorage.getItem(config.storageKey) || '{}');
+        
+        if (!signupData.email) {
+            showSignupError(translations.noSignupFound);
+            return;
+        }
+        
+        setResendLoading(true);
+        
+        // Make resend API call to backend
+        fetch(config.confirmationApiEndpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: signupData.email,
+                language: '{{ locale.split("-")[0] if "-" in locale else locale }}'
+            })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            setResendLoading(false);
+            showResendSuccess();
+        })
+        .catch(error => {
+            // Fallback to simulation if API is not available (development mode)
+            if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
+                console.warn('Resend API not available, using simulation mode');
+                setTimeout(() => {
+                    setResendLoading(false);
+                    showResendSuccess();
+                }, 1000);
+            } else {
+                setResendLoading(false);
+                showSignupError(translations.resendError);
+            }
+        });
+    }
+    
+    function checkPendingConfirmation() {
+        const signupData = JSON.parse(localStorage.getItem(config.storageKey) || '{}');
+        
+        if (signupData.email && signupData.confirmationSent && !signupData.confirmed) {
+            const elapsed = Date.now() - signupData.confirmationSent;
+            
+            if (elapsed < config.confirmationTimeout) {
+                // Show pending confirmation state
+                confirmedEmail.textContent = signupData.email;
+                form.style.display = 'none';
+                signupSuccess.style.display = 'block';
+                
+                // Show resend button if enough time has passed
+                if (elapsed > 5 * 60 * 1000 && resendBtn) {
+                    resendBtn.style.display = 'inline-block';
+                }
+            } else {
+                // Confirmation expired, clear stored data
+                localStorage.removeItem(config.storageKey);
+            }
+        }
+    }
+    
+    function setFormLoading(loading) {
+        submitBtn.disabled = loading;
+        submitBtn.textContent = loading ? translations.signupInProgress : translations.signupButton;
+        
+        if (loading) {
+            submitBtn.style.opacity = '0.7';
+        } else {
+            submitBtn.style.opacity = '1';
+        }
+    }
+    
+    function setResendLoading(loading) {
+        if (!resendBtn) return;
+        
+        resendBtn.disabled = loading;
+        resendBtn.textContent = loading ? translations.resendInProgress : translations.resendButton;
+    }
+    
+    function showResendSuccess() {
+        if (!resendBtn) return;
+        
+        resendBtn.textContent = translations.resendSuccess;
+        resendBtn.style.background = '#28a745';
+        
+        setTimeout(() => {
+            resendBtn.textContent = translations.resendButton;
+            resendBtn.style.background = '';
+            resendBtn.disabled = false;
+        }, 3000);
+    }
+    
+    function showEmailError(message) {
+        emailError.textContent = message;
+        emailInput.style.borderColor = '#e74c3c';
+        emailError.setAttribute('aria-live', 'polite');
+    }
+    
+    function clearEmailError() {
+        emailError.textContent = '';
+        emailInput.style.borderColor = '';
+    }
+    
+    function showConsentError(message) {
+        consentError.textContent = message;
+    }
+    
+    function clearConsentError() {
+        consentError.textContent = '';
+    }
+    
+    function showSignupError(message) {
+        signupError.textContent = message;
+        signupError.style.display = 'block';
+        signupError.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+    
+    function clearErrors() {
+        clearEmailError();
+        clearConsentError();
+        signupError.style.display = 'none';
+    }
+    
+    // Handle confirmation link clicks (if implementing confirmation on same domain)
+    function handleConfirmationLink() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const confirmationToken = urlParams.get('confirm');
+        
+        if (confirmationToken) {
+            // Process confirmation
+            const signupData = JSON.parse(localStorage.getItem(config.storageKey) || '{}');
+            signupData.confirmed = true;
+            signupData.confirmedAt = Date.now();
+            localStorage.setItem(config.storageKey, JSON.stringify(signupData));
+            
+            // Show confirmation success message
+            alert(translations.confirmationSuccess);
+            
+            // Clean up URL
+            if (window.history && window.history.replaceState) {
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+        }
+    }
+    
+    // Check for confirmation on page load
+    handleConfirmationLink();
+    
+})();
+</script>
 {% endblock %}

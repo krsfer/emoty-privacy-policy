@@ -197,6 +197,67 @@ msgstr "Politique de Confidentialité"
 msgid "cta.eli5_button"
 msgstr "Version Simplifiée"
 
+# Beta Signup Form
+#: index.html.j2:80
+msgid "signup.title"
+msgstr "🧪 Participe aux Tests Beta"
+
+#: index.html.j2:81
+msgid "signup.description"
+msgstr "Sois parmi les premiers à tester les nouvelles fonctionnalités d'Emoty ! Inscris-toi pour recevoir des invitations aux tests beta et des mises à jour exclusives."
+
+#: index.html.j2:84
+msgid "signup.email_label"
+msgstr "Adresse email :"
+
+#: index.html.j2:86
+msgid "signup.email_placeholder"
+msgstr "ton@email.fr"
+
+#: index.html.j2:87
+msgid "signup.email_help"
+msgstr "Nous utiliserons cette adresse uniquement pour les invitations aux tests"
+
+#: index.html.j2:91
+msgid "signup.consent_label"
+msgstr "J'accepte de recevoir des emails de test beta d'Emoty"
+
+#: index.html.j2:94
+msgid "signup.consent_help_before"
+msgstr "Tu peux te désinscrire à tout moment. Voir notre"
+
+#: index.html.j2:94
+msgid "signup.consent_help_link"
+msgstr "politique de confidentialité"
+
+#: index.html.j2:97
+msgid "signup.button"
+msgstr "S'inscrire aux Tests Beta"
+
+#: index.html.j2:100
+msgid "signup.success_title"
+msgstr "📧 Confirme ton inscription"
+
+#: index.html.j2:101
+msgid "signup.success_message_before"
+msgstr "Nous avons envoyé un email de confirmation à"
+
+#: index.html.j2:102
+msgid "signup.success_message_after"
+msgstr "Clique sur le lien dans l'email pour finaliser ton inscription aux tests beta."
+
+#: index.html.j2:103
+msgid "signup.success_important"
+msgstr "Important :"
+
+#: index.html.j2:103
+msgid "signup.success_expires"
+msgstr "Le lien expire dans 48 heures."
+
+#: index.html.j2:104
+msgid "signup.resend_button"
+msgstr "Renvoyer l'email de confirmation"
+
 #: privacy-policy.html.j2:5
 msgid "nav.home"
 msgstr "Accueil"

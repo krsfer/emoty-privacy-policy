@@ -367,7 +367,7 @@
             background: #ccc;
             transform: none;
         }
-
+        
         @media (max-width: 600px) {
             .emoty-text { font-size: 2em; }
             .tagline { font-size: 1.1em; }
@@ -540,7 +540,7 @@
 
 
         <footer>
-            <p>&copy; 2025 Christopher Archer • Tous droits réservés • v2.2.0</p>
+            <p>&copy; 2025 Christopher Archer • Tous droits réservés • v2.5.1</p>
             <p>
                 <a href="/privacy-policy">Politique de Confidentialité</a> | 
                 <a href="/eli5/">Version Simplifiée</a> | 
@@ -665,7 +665,11 @@
         });
     });
 })();
+</script>
 
+
+    
+<script>
 /**
  * Emoty Beta Signup with Double Opt-in
  * GDPR-compliant signup form with confirmation email process
@@ -681,7 +685,27 @@
         maxRetries: 3,
         retryDelay: 1000,
         confirmationTimeout: 48 * 60 * 60 * 1000, // 48 hours
-        storageKey: 'emoty_signup_data'
+        storageKey: 'emoty_signup_data_fr-tu'
+    };
+    
+    // Translations based on locale
+    const translations = {
+        
+        emailRequired: "L'adresse email est requise.",
+        emailInvalid: 'Veuillez entrer une adresse email valide.',
+        consentRequired: 'Tu dois accepter de recevoir des emails pour t\'inscrire aux tests beta.',
+        signupInProgress: 'Inscription en cours...',
+        signupButton: 'S'inscrire aux Tests Beta',
+        resendInProgress: 'Envoi en cours...',
+        resendButton: 'Renvoyer l'email de confirmation',
+        resendSuccess: 'Email renvoyé !',
+        signupError: 'Une erreur est survenue lors de l\'inscription. Veuillez réessayer.',
+        emailAlreadyExists: 'Cette adresse email est déjà inscrite ou invalide.',
+        rateLimited: 'Trop de tentatives. Veuillez attendre avant de réessayer.',
+        noSignupFound: 'Aucune inscription en attente trouvée.',
+        resendError: 'Erreur lors du renvoi de l\'email. Veuillez réessayer.',
+        confirmationSuccess: 'Inscription confirmée ! Merci de rejoindre le programme beta d\'Emoty.'
+        
     };
     
     // DOM elements
@@ -744,7 +768,7 @@
         
         // Validate consent
         if (!consentInput.checked) {
-            showConsentError('Tu dois accepter de recevoir des emails pour t\'inscrire aux tests beta.');
+            showConsentError(translations.consentRequired);
             isValid = false;
         }
         
@@ -756,12 +780,12 @@
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         
         if (!email) {
-            showEmailError('L\'adresse email est requise.');
+            showEmailError(translations.emailRequired);
             return false;
         }
         
         if (!emailRegex.test(email)) {
-            showEmailError('Veuillez entrer une adresse email valide.');
+            showEmailError(translations.emailInvalid);
             return false;
         }
         
@@ -840,12 +864,12 @@
     function handleSignupError(error) {
         setFormLoading(false);
         
-        let errorMessage = 'Une erreur est survenue lors de l\'inscription. Veuillez réessayer.';
+        let errorMessage = translations.signupError;
         
         if (error.message && error.message.includes('400')) {
-            errorMessage = 'Cette adresse email est déjà inscrite ou invalide.';
+            errorMessage = translations.emailAlreadyExists;
         } else if (error.message && error.message.includes('429')) {
-            errorMessage = 'Trop de tentatives. Veuillez attendre avant de réessayer.';
+            errorMessage = translations.rateLimited;
         }
         
         showSignupError(errorMessage);
@@ -855,7 +879,7 @@
         const signupData = JSON.parse(localStorage.getItem(config.storageKey) || '{}');
         
         if (!signupData.email) {
-            showSignupError('Aucune inscription en attente trouvée.');
+            showSignupError(translations.noSignupFound);
             return;
         }
         
@@ -892,7 +916,7 @@
                 }, 1000);
             } else {
                 setResendLoading(false);
-                showSignupError('Erreur lors du renvoi de l\'email. Veuillez réessayer.');
+                showSignupError(translations.resendError);
             }
         });
     }
@@ -922,7 +946,7 @@
     
     function setFormLoading(loading) {
         submitBtn.disabled = loading;
-        submitBtn.textContent = loading ? 'Inscription en cours...' : 'S\'inscrire aux Tests Beta';
+        submitBtn.textContent = loading ? translations.signupInProgress : translations.signupButton;
         
         if (loading) {
             submitBtn.style.opacity = '0.7';
@@ -935,17 +959,17 @@
         if (!resendBtn) return;
         
         resendBtn.disabled = loading;
-        resendBtn.textContent = loading ? 'Envoi en cours...' : 'Renvoyer l\'email de confirmation';
+        resendBtn.textContent = loading ? translations.resendInProgress : translations.resendButton;
     }
     
     function showResendSuccess() {
         if (!resendBtn) return;
         
-        resendBtn.textContent = 'Email renvoyé !';
+        resendBtn.textContent = translations.resendSuccess;
         resendBtn.style.background = '#28a745';
         
         setTimeout(() => {
-            resendBtn.textContent = 'Renvoyer l\'email de confirmation';
+            resendBtn.textContent = translations.resendButton;
             resendBtn.style.background = '';
             resendBtn.disabled = false;
         }, 3000);
@@ -995,7 +1019,7 @@
             localStorage.setItem(config.storageKey, JSON.stringify(signupData));
             
             // Show confirmation success message
-            alert('Inscription confirmée ! Merci de rejoindre le programme beta d\'Emoty.');
+            alert(translations.confirmationSuccess);
             
             // Clean up URL
             if (window.history && window.history.replaceState) {
@@ -1009,7 +1033,6 @@
     
 })();
 </script>
-
 
 </body>
 </html>

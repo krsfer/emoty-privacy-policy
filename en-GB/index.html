@@ -367,7 +367,7 @@
             background: #ccc;
             transform: none;
         }
-
+        
         @media (max-width: 600px) {
             .emoty-text { font-size: 2em; }
             .tagline { font-size: 1.1em; }
@@ -540,7 +540,7 @@
 
 
         <footer>
-            <p>&copy; 2025 Christopher Archer • All rights reserved • v2.2.0</p>
+            <p>&copy; 2025 Christopher Archer • All rights reserved • v2.5.1</p>
             <p>
                 <a href="/en-GB/privacy-policy">Privacy Policy</a> | 
                 <a href="/en-GB/eli5/">Simplified Version</a> | 
@@ -665,9 +665,13 @@
         });
     });
 })();
+</script>
 
+
+    
+<script>
 /**
- * Emoty Beta Signup with Double Opt-in (English Version)
+ * Emoty Beta Signup with Double Opt-in
  * GDPR-compliant signup form with confirmation email process
  */
 (function() {
@@ -684,8 +688,9 @@
         storageKey: 'emoty_signup_data_en'
     };
     
-    // English translations
+    // Translations based on locale
     const translations = {
+        
         emailRequired: 'Email address is required.',
         emailInvalid: 'Please enter a valid email address.',
         consentRequired: 'You must agree to receive emails to sign up for beta testing.',
@@ -700,6 +705,7 @@
         noSignupFound: 'No pending signup found.',
         resendError: 'Error sending email. Please try again.',
         confirmationSuccess: 'Signup confirmed! Thank you for joining the Emoty beta program.'
+        
     };
     
     // DOM elements
@@ -1027,7 +1033,6 @@
     
 })();
 </script>
-
 
 </body>
 </html>
