@@ -14,7 +14,7 @@ class EmailService {
         try {
             if (process.env.SENDGRID_API_KEY) {
                 // SendGrid configuration
-                this.transporter = nodemailer.createTransporter({
+                this.transporter = nodemailer.createTransport({
                     service: 'SendGrid',
                     auth: {
                         user: 'apikey',
@@ -32,20 +32,23 @@ class EmailService {
                     region: process.env.AWS_REGION || 'us-east-1'
                 });
                 
-                this.transporter = nodemailer.createTransporter({
+                this.transporter = nodemailer.createTransport({
                     SES: new aws.SES({ apiVersion: '2010-12-01' })
                 });
                 logger.info('Email service initialized with AWS SES');
                 
             } else if (process.env.SMTP_HOST) {
                 // SMTP configuration
-                this.transporter = nodemailer.createTransporter({
+                this.transporter = nodemailer.createTransport({
                     host: process.env.SMTP_HOST,
                     port: parseInt(process.env.SMTP_PORT) || 587,
                     secure: process.env.SMTP_SECURE === 'true',
                     auth: {
                         user: process.env.SMTP_USER,
-                        pass: process.env.SMTP_PASSWORD
+                        pass: process.env.SMTP_PASS || process.env.SMTP_PASSWORD
+                    },
+                    tls: {
+                        rejectUnauthorized: process.env.NODE_ENV === 'production'
                     }
                 });
                 logger.info('Email service initialized with SMTP');

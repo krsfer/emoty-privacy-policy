@@ -51,11 +51,11 @@ class NotificationService {
         }
 
         try {
-            // Prepare the notification data
+            // Prepare the notification data - include all signup data plus timestamp
             const notificationData = {
                 timestamp: new Date().toISOString(),
-                email: signupData.email,
-                language: signupData.language,
+                ...signupData, // Include all fields from signupData
+                // Set defaults for optional fields
                 source: signupData.source || 'beta_signup',
                 ip: signupData.ip || 'unknown',
                 userAgent: signupData.userAgent || 'unknown'
