@@ -117,33 +117,7 @@ Create `thanks.html` and `en-GB/thanks.html`:
 
 ---
 
-## Option 2: Netlify Forms (If Using Netlify)
-
-### Step 1: Deploy to Netlify
-1. Connect your GitHub repository to Netlify
-2. Deploy your site
-
-### Step 2: Update Forms
-Add `netlify` attribute to forms:
-
-```html
-<form name="beta-signup-fr" method="POST" data-netlify="true" data-netlify-recaptcha="true">
-    <input type="hidden" name="form-name" value="beta-signup-fr">
-    <input type="hidden" name="language" value="fr">
-    <!-- rest of form fields -->
-    <div data-netlify-recaptcha="true"></div>
-</form>
-```
-
-### Step 3: Configure Notifications
-In Netlify dashboard:
-1. Go to Forms tab
-2. Set up email notifications
-3. Configure spam filtering
-
----
-
-## Option 3: EmailJS (Client-Side)
+## Option 2: EmailJS (Client-Side)
 
 ### Step 1: Create EmailJS Account
 1. Go to [emailjs.com](https://emailjs.com)
@@ -172,7 +146,7 @@ Replace the fetch API calls with EmailJS calls in your existing JavaScript.
 
 ---
 
-## Option 4: Google Forms (Ultra Simple)
+## Option 3: Google Forms (Ultra Simple)
 
 ### Step 1: Create Google Form
 1. Go to [forms.google.com](https://forms.google.com)
@@ -189,6 +163,25 @@ Set up Google Sheets integration and email notifications.
 
 ---
 
+## Option 4: Custom API Server
+
+### Step 1: Deploy Express API
+Follow the main DEPLOYMENT_GUIDE.md to deploy the Express API server.
+
+### Step 2: Configure Frontend
+The frontend is already configured to use the API endpoints:
+```javascript
+const config = {
+    apiEndpoint: '/api/beta-signup',
+    confirmationApiEndpoint: '/api/resend-confirmation'
+};
+```
+
+### Step 3: Set Up Environment
+Configure your hosting provider with the required environment variables.
+
+---
+
 ## Recommendation
 
 **For immediate deployment:** Use **Formspree** (Option 1)
@@ -198,11 +191,12 @@ Set up Google Sheets integration and email notifications.
 - ✅ GDPR compliant
 - ✅ Free tier: 50 submissions/month
 
-**For more control:** Use **Netlify Functions** (from main deployment guide)
+**For more control:** Use **Express API Server** (Option 4)
 - ✅ Full customization
 - ✅ Higher limits
 - ✅ Professional appearance
 - ✅ Advanced features
+- ✅ Complete control over data
 
 ## Quick Start with Formspree
 

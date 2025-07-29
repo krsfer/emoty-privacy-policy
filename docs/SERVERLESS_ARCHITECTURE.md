@@ -22,29 +22,13 @@ Since emoty.fr is hosted as a static site on GitHub Pages, we need serverless so
 </form>
 ```
 
-### B. Netlify Forms (If hosting on Netlify)
-**Setup:** Add `netlify` attribute to form and data-netlify="true"
-**Features:** Built-in spam protection, notifications, integrations
-
-### C. ConvertKit/Mailchimp (Email-focused)
+### B. ConvertKit/Mailchimp (Email-focused)
 **Benefits:** Professional email marketing, automation, analytics
 **Integration:** Use their API with serverless functions
 
 ## Option 2: Serverless Functions (Recommended)
 
-### A. Netlify Functions
-Deploy to Netlify (free hosting) and use Netlify Functions for backend.
-
-**Structure:**
-```
-netlify/
-  functions/
-    beta-signup.js
-    resend-confirmation.js
-    confirm-signup.js
-```
-
-### B. Vercel Functions
+### A. Vercel Functions
 Deploy to Vercel (free hosting) and use Vercel Functions.
 
 **Structure:**
@@ -55,38 +39,56 @@ api/
   confirm-signup.js
 ```
 
+### B. AWS Lambda
+Use AWS Lambda with API Gateway for serverless endpoints.
+
+**Benefits:**
+- Highly scalable
+- Pay-per-use pricing
+- Integration with other AWS services
+
 ### C. GitHub Actions + External Database
 Use GitHub Actions to process form submissions and store in external services.
 
-## Option 3: Hybrid Approach (Best of Both Worlds)
+## Option 3: Express API Server
 
-**Frontend:** GitHub Pages (free, fast)
-**Backend:** Serverless functions on Netlify/Vercel (free tier)
-**Database:** Airtable, Google Sheets, or FaunaDB (free tiers)
-**Email:** EmailJS, ConvertKit, or Mailgun (free tiers)
+Deploy a traditional Node.js/Express server for full control.
 
-## Recommended Implementation: Netlify Functions + Airtable
+**Structure:**
+```
+api/
+  server.js
+  routes/
+    signup.js
+    health.js
+  services/
+    emailService.js
+  utils/
+    validation.js
+    logger.js
+```
+
+## Recommended Implementation: Express API + Airtable
 
 ### Why This Combination?
-- ✅ **Free hosting** on both GitHub Pages and Netlify
-- ✅ **No server management** required
+- ✅ **Full control** over API behavior
+- ✅ **Flexible deployment** options (Heroku, DigitalOcean, AWS)
 - ✅ **GDPR compliant** with proper configuration
 - ✅ **Scalable** to thousands of signups
 - ✅ **Easy to manage** with GUI interface (Airtable)
 
 ### Architecture Flow:
 1. User submits form on emoty.fr (GitHub Pages)
-2. Form posts to Netlify Function endpoint
-3. Function validates data and stores in Airtable
-4. Function sends confirmation email via EmailJS/Mailgun
-5. User clicks confirmation link → another Netlify Function
-6. Function updates Airtable record as confirmed
+2. Form posts to Express API endpoint
+3. API validates data and stores in Airtable
+4. API sends confirmation email via Mailgun
+5. User clicks confirmation link → API confirms signup
+6. API updates Airtable record as confirmed
 
 ### Cost Breakdown (Free Tiers):
 - GitHub Pages: Free
-- Netlify Functions: 125K requests/month free
+- Express hosting: Free on Heroku, Railway, or Render
 - Airtable: 1,200 records/month free
-- EmailJS: 200 emails/month free
 - Mailgun: 5,000 emails/month free (with verification)
 
 ### Data Storage Options:
@@ -106,22 +108,23 @@ const signupRecord = {
 };
 ```
 
-#### Option B: Google Sheets
-- Use Google Sheets API
-- Free up to 100 requests/100 seconds
-- Easy to view and manage data
+#### Option B: PostgreSQL
+- Use hosted database (Supabase, Railway)
+- Free tiers available
+- More control over data structure
 
-#### Option C: FaunaDB
-- Serverless database
-- 100K read/write operations free
-- More complex but very scalable
+#### Option C: MongoDB
+- Use MongoDB Atlas
+- 512MB storage free
+- Good for flexible schemas
 
 ### Security Considerations:
-- Store API keys in Netlify environment variables
+- Store API keys in environment variables
 - Use CORS restrictions
 - Implement rate limiting
 - Validate all inputs server-side
 - Hash confirmation tokens
+- Use HTTPS everywhere
 
 ## Implementation Priority:
 
@@ -129,15 +132,38 @@ const signupRecord = {
 Use Formspree or similar service for immediate functionality
 
 ### Phase 2: Custom Solution (4-6 hours)
-Implement Netlify Functions + Airtable for full control
+Implement Express API + Airtable for full control
 
 ### Phase 3: Advanced Features (8+ hours)
 Add analytics, A/B testing, advanced email automation
 
+## Alternative Serverless Platforms:
+
+### Vercel Functions
+```javascript
+// api/beta-signup.js
+export default async function handler(req, res) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+  // Handle signup logic
+}
+```
+
+### AWS Lambda + API Gateway
+- More complex setup
+- Better for large scale
+- Integration with AWS ecosystem
+
+### Google Cloud Functions
+- Simple deployment
+- Good integration with Firebase
+- Competitive pricing
+
 ## Next Steps:
 1. Choose approach based on requirements and timeline
-2. Set up hosting (Netlify recommended for full solution)
+2. Set up hosting (Express server or serverless platform)
 3. Configure external services (Airtable, email provider)
-4. Implement functions and update frontend
+4. Implement API endpoints and update frontend
 5. Test thoroughly with different email providers
 6. Deploy and monitor

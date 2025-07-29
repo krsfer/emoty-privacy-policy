@@ -7,7 +7,7 @@ This checklist covers the complete process for deploying the beta signup form to
 - [ ] Python 3.x installed
 - [ ] Virtual environment created in `build/` directory
 - [ ] Required packages installed (`pip install -r build/requirements.txt`)
-- [ ] Netlify Functions configured and deployed
+- [ ] API server configured and deployed
 - [ ] Environment variables set (AIRTABLE_API_KEY, AIRTABLE_BASE_ID, MAILGUN_API_KEY, MAILGUN_DOMAIN)
 
 ## Template System Setup
@@ -29,7 +29,7 @@ This checklist covers the complete process for deploying the beta signup form to
   - [ ] Success and error message containers
 - [ ] Add signup JavaScript functionality
   - [ ] Form validation logic
-  - [ ] API integration with Netlify Functions
+  - [ ] API integration with Express endpoints
   - [ ] Multi-language translation support
   - [ ] Local storage for pending confirmations
 
@@ -80,7 +80,7 @@ source build_venv/bin/activate  # or create if doesn't exist
   - [ ] Use conventional commit format
   - [ ] Include descriptive commit message
 - [ ] **Push to repository**: `git push`
-  - [ ] Triggers Netlify automatic deployment
+  - [ ] Triggers automatic deployment (if configured)
   - [ ] Site will be live within 1-2 minutes
 
 ## Verification
@@ -101,15 +101,15 @@ source build_venv/bin/activate  # or create if doesn't exist
   - [ ] Translation strings match locale
 
 ### 7. Backend Integration Verification
-- [ ] Netlify Functions deployed
-  - [ ] `netlify/functions/beta-signup.js`
-  - [ ] `netlify/functions/confirm-signup.js`
-  - [ ] `netlify/functions/resend-confirmation.js`
-- [ ] `netlify.toml` configuration correct
-  - [ ] Functions directory specified
-  - [ ] CORS headers configured
-  - [ ] API redirects set up
-- [ ] Environment variables configured in Netlify dashboard
+- [ ] Express API server deployed
+  - [ ] Health check endpoint responding
+  - [ ] Signup endpoints accessible
+  - [ ] CORS configured correctly
+- [ ] API configuration correct
+  - [ ] Rate limiting enabled
+  - [ ] Error handling in place
+  - [ ] Logging configured
+- [ ] Environment variables configured on hosting provider
   - [ ] `AIRTABLE_API_KEY`
   - [ ] `AIRTABLE_BASE_ID`
   - [ ] `MAILGUN_API_KEY`
@@ -172,11 +172,27 @@ grep -A 3 "signup-section" index.html
 grep -A 3 "signup-section" en-GB/index.html
 ```
 
+## API Integration
+
+### Frontend Configuration
+The frontend is configured to use relative API endpoints:
+```javascript
+const config = {
+    apiEndpoint: '/api/beta-signup',
+    confirmationApiEndpoint: '/api/resend-confirmation'
+};
+```
+
+### Deployment Options
+1. **Same Domain**: Deploy API on same domain as frontend
+2. **Subdomain**: Deploy API on api.emoty.fr
+3. **Separate Service**: Deploy API on separate hosting service
+
 ## Notes
 
 - The build system uses Jinja2 templates with Babel for internationalization
 - All changes must be made to templates, not directly to HTML files
 - The deployment process overwrites files in the root directory
-- Netlify automatically deploys when files change in the root directory
-- Form submissions are handled by serverless Netlify Functions
+- Form submissions are handled by the Express API server
 - Double opt-in process ensures GDPR compliance
+- API server provides flexibility for various hosting options
