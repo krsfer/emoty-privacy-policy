@@ -552,7 +552,7 @@
 
 
         <footer>
-            <p>&copy; 2025 Christopher Archer • All rights reserved • v2.11.4</p>
+            <p>&copy; 2025 Christopher Archer • All rights reserved • v2.11.5</p>
             <p>
                 <a href="/en-GB/privacy-policy">Privacy Policy</a> | 
                 <a href="/en-GB/eli5/">Simplified Version</a> | 
@@ -608,11 +608,11 @@
     // Check if user has already made a manual language choice
     const storedPreference = localStorage.getItem(config.storageKey);
     if (storedPreference) {
-        // User has made a choice, respect it unless they're on wrong page
-        if (storedPreference === 'fr' && window.location.pathname === '/') {
-            redirect(config.frenchUrl);
-        } else if (storedPreference === 'en' && window.location.pathname.startsWith('/fr-FR/')) {
+        // User has made a choice, redirect only if they're on the wrong page
+        if (storedPreference === 'en' && window.location.pathname === '/') {
             redirect(config.englishUrl);
+        } else if (storedPreference === 'fr' && window.location.pathname.startsWith('/en-GB/')) {
+            redirect(config.frenchUrl);
         }
         return;
     }
@@ -640,14 +640,14 @@
         );
     });
     
-    // Redirect to French if preferred
-    if (prefersFrench && window.location.pathname === '/') {
-        // Store the automatic detection result
-        localStorage.setItem(config.storageKey, 'fr');
-        redirect(config.frenchUrl);
-    } else if (!prefersFrench && window.location.pathname === '/') {
-        // Store English preference for consistency
+    // Redirect based on language preference
+    if (!prefersFrench && window.location.pathname === '/') {
+        // User prefers English but is on French page, redirect to English
         localStorage.setItem(config.storageKey, 'en');
+        redirect(config.englishUrl);
+    } else if (prefersFrench && window.location.pathname === '/') {
+        // User prefers French and is on French page, just store preference
+        localStorage.setItem(config.storageKey, 'fr');
     }
     
     function redirect(url) {
