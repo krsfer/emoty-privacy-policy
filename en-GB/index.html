@@ -552,7 +552,7 @@
 
 
         <footer>
-            <p>&copy; 2025 Christopher Archer • All rights reserved • v2.10.1</p>
+            <p>&copy; 2025 Christopher Archer • All rights reserved • v2.11.0</p>
             <p>
                 <a href="/en-GB/privacy-policy">Privacy Policy</a> | 
                 <a href="/en-GB/eli5/">Simplified Version</a> | 
@@ -864,9 +864,15 @@
             return response.json();
         })
         .then(data => {
-            handleSignupSuccess(email);
+            console.log('API response:', data);
+            if (data && data.success) {
+                handleSignupSuccess(email);
+            } else {
+                throw new Error('API returned unsuccessful response');
+            }
         })
         .catch(error => {
+            console.error('Signup error:', error);
             // Fallback to simulation if API is not available (development mode)
             if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
                 console.warn('API not available, using simulation mode');
@@ -878,12 +884,28 @@
     }
     
     function handleSignupSuccess(email) {
+        console.log('handleSignupSuccess called with email:', email);
         setFormLoading(false);
-        confirmedEmail.textContent = email;
+        
+        if (confirmedEmail) {
+            confirmedEmail.textContent = email;
+        } else {
+            console.error('confirmedEmail element not found');
+        }
         
         // Hide form and show success message
-        form.style.display = 'none';
-        signupSuccess.style.display = 'block';
+        if (form) {
+            form.style.display = 'none';
+        } else {
+            console.error('form element not found');
+        }
+        
+        if (signupSuccess) {
+            signupSuccess.style.display = 'block';
+            console.log('Success message should now be visible');
+        } else {
+            console.error('signupSuccess element not found');
+        }
         
         // Show resend button after 5 minutes
         setTimeout(() => {
