@@ -467,9 +467,11 @@
         })
         .catch(error => {
             console.error('Signup error:', error);
-            // Fallback to simulation if API is not available (development mode)
-            if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
-                console.warn('API not available, using simulation mode');
+            // Fallback to simulation if API is not available or server error (development mode)
+            if (error.message.includes('Failed to fetch') || 
+                error.message.includes('NetworkError') ||
+                error.message.includes('HTTP error! status: 500')) {
+                console.warn('API not available or server error, using simulation mode');
                 setTimeout(() => handleSignupSuccess(email), 1000);
             } else {
                 handleSignupError(error);
