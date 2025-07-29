@@ -341,7 +341,14 @@
         emailInput.addEventListener('input', clearEmailError);
         emailInput.addEventListener('blur', validateEmail);
         usernameInput.addEventListener('input', clearUsernameError);
-        usernameInput.addEventListener('blur', validateUsername);
+        usernameInput.addEventListener('blur', function() {
+            const username = usernameInput.value.trim();
+            if (!validateUsername(username)) {
+                showUsernameError(translations.usernameTooLong);
+            } else {
+                clearUsernameError();
+            }
+        });
         consentInput.addEventListener('change', clearConsentError);
         
         if (resendBtn) {
