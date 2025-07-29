@@ -552,7 +552,7 @@
 
 
         <footer>
-            <p>&copy; 2025 Christopher Archer • Tous droits réservés • v2.6.1</p>
+            <p>&copy; 2025 Christopher Archer • Tous droits réservés • v2.9.0</p>
             <p>
                 <a href="/privacy-policy">Politique de Confidentialité</a> | 
                 <a href="/eli5/">Version Simplifiée</a> | 
@@ -692,9 +692,8 @@
     // Configuration
     const config = {
         // API endpoints for beta signup
-        // Update with your Railway URL after deployment
-        apiEndpoint: 'https://your-app.up.railway.app/api/beta-signup',
-        confirmationApiEndpoint: 'https://your-app.up.railway.app/api/resend-confirmation',
+        apiEndpoint: '/api/beta-signup',
+        confirmationApiEndpoint: '/api/resend-confirmation',
         maxRetries: 3,
         retryDelay: 1000,
         confirmationTimeout: 48 * 60 * 60 * 1000, // 48 hours
@@ -717,7 +716,8 @@
         rateLimited: 'Trop de tentatives. Veuillez attendre avant de réessayer.',
         noSignupFound: 'Aucune inscription en attente trouvée.',
         resendError: 'Erreur lors du renvoi de l\'email. Veuillez réessayer.',
-        confirmationSuccess: 'Inscription confirmée ! Merci de rejoindre le programme beta d\'Emoty.'
+        confirmationSuccess: 'Inscription confirmée ! Merci de rejoindre le programme beta d\'Emoty.',
+        usernameTooLong: 'Le nom d\'utilisateur doit faire 50 caractères ou moins.'
         
     };
     
@@ -770,7 +770,7 @@
         }
         
         const email = emailInput.value.trim();
-        const username = usernameInput.value.trim();
+        const username = usernameInput ? usernameInput.value.trim() : '';
         const consent = consentInput.checked;
         
         submitSignup(email, username, consent);
@@ -784,9 +784,15 @@
             isValid = false;
         }
         
-        // Validate username (optional but if provided, must be valid)
-        if (!validateUsername()) {
-            isValid = false;
+        // Validate username (optional field)
+        if (usernameInput) {
+            const username = usernameInput.value.trim();
+            if (!validateUsername(username)) {
+                showUsernameError(translations.usernameTooLong);
+                isValid = false;
+            } else {
+                clearUsernameError();
+            }
         }
         
         // Validate consent
@@ -816,25 +822,6 @@
         return true;
     }
     
-    function validateUsername() {
-        const username = usernameInput.value.trim();
-        
-        // Username is optional, so empty is valid
-        if (!username) {
-            clearUsernameError();
-            return true;
-        }
-        
-        // If provided, check length
-        if (username.length > 50) {
-            showUsernameError('Le nom d\'utilisateur doit contenir 50 caractères maximum');
-            return false;
-        }
-        
-        clearUsernameError();
-        return true;
-    }
-    
     function submitSignup(email, username, consent) {
         setFormLoading(true);
         clearErrors();
@@ -842,10 +829,25 @@
         // Store signup data for potential resend
         const signupData = {
             email: email,
+            username: username,
             timestamp: Date.now(),
             confirmed: false
         };
         localStorage.setItem(config.storageKey, JSON.stringify(signupData));
+        
+        // Prepare the request body
+        const requestBody = {
+            email: email,
+            consent: consent,
+            language: 'fr',
+            source: 'beta_signup',
+            timestamp: new Date().toISOString()
+        };
+        
+        // Include username only if provided
+        if (username) {
+            requestBody.username = username;
+        }
         
         // Make API call to backend
         fetch(config.apiEndpoint, {
@@ -853,14 +855,7 @@
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
-                email: email,
-                username: username || undefined,
-                consent: consent,
-                language: 'fr',
-                source: 'beta_signup',
-                timestamp: new Date().toISOString()
-            })
+            body: JSON.stringify(requestBody)
         })
         .then(response => {
             if (!response.ok) {
@@ -1029,23 +1024,34 @@
         emailInput.style.borderColor = '';
     }
     
-    function showUsernameError(message) {
-        usernameError.textContent = message;
-        usernameInput.style.borderColor = '#e74c3c';
-        usernameError.setAttribute('aria-live', 'polite');
-    }
-    
-    function clearUsernameError() {
-        usernameError.textContent = '';
-        usernameInput.style.borderColor = '';
-    }
-    
     function showConsentError(message) {
         consentError.textContent = message;
     }
     
     function clearConsentError() {
         consentError.textContent = '';
+    }
+    
+    function validateUsername(username) {
+        if (username && username.trim().length > 50) {
+            return false;
+        }
+        return true;
+    }
+    
+    function showUsernameError(message) {
+        if (usernameError) {
+            usernameError.textContent = message;
+            usernameInput.style.borderColor = '#e74c3c';
+            usernameError.setAttribute('aria-live', 'polite');
+        }
+    }
+    
+    function clearUsernameError() {
+        if (usernameError) {
+            usernameError.textContent = '';
+            usernameInput.style.borderColor = '';
+        }
     }
     
     function showSignupError(message) {
