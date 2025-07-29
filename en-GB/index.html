@@ -228,7 +228,8 @@
             color: #333;
         }
         
-        .form-group input[type="email"] {
+        .form-group input[type="email"],
+        .form-group input[type="text"] {
             width: 100%;
             padding: 12px 16px;
             border: 2px solid #e0e0e0;
@@ -238,7 +239,8 @@
             box-sizing: border-box;
         }
         
-        .form-group input[type="email"]:focus {
+        .form-group input[type="email"]:focus,
+        .form-group input[type="text"]:focus {
             outline: none;
             border-color: #667eea;
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
@@ -509,6 +511,16 @@
             </div>
             
             <div class="form-group">
+                <label for="username">Username (optional):</label>
+                <input type="text" id="username" name="username" 
+                       aria-describedby="username-help" 
+                       placeholder="Your preferred username" 
+                       maxlength="50">
+                <div id="username-help" class="help-text">Help us personalize your beta test invitations (50 characters max)</div>
+                <div id="username-error" class="error-message" aria-live="polite"></div>
+            </div>
+            
+            <div class="form-group">
                 <label class="checkbox-container">
                     <input type="checkbox" id="consent" name="consent" required aria-describedby="consent-help">
                     <span class="checkmark"></span>
@@ -709,8 +721,8 @@
     };
     
     // DOM elements
-    let form, emailInput, consentInput, submitBtn, resendBtn;
-    let emailError, consentError, signupSuccess, signupError, confirmedEmail;
+    let form, emailInput, usernameInput, consentInput, submitBtn, resendBtn;
+    let emailError, usernameError, consentError, signupSuccess, signupError, confirmedEmail;
     
     // Initialize when DOM is ready
     document.addEventListener('DOMContentLoaded', function() {
@@ -722,10 +734,12 @@
     function initializeElements() {
         form = document.getElementById('signupForm');
         emailInput = document.getElementById('email');
+        usernameInput = document.getElementById('username');
         consentInput = document.getElementById('consent');
         submitBtn = document.getElementById('submitBtn');
         resendBtn = document.getElementById('resendBtn');
         emailError = document.getElementById('email-error');
+        usernameError = document.getElementById('username-error');
         consentError = document.getElementById('consent-error');
         signupSuccess = document.getElementById('signup-success');
         signupError = document.getElementById('signup-error');
@@ -738,6 +752,8 @@
         form.addEventListener('submit', handleSubmit);
         emailInput.addEventListener('input', clearEmailError);
         emailInput.addEventListener('blur', validateEmail);
+        usernameInput.addEventListener('input', clearUsernameError);
+        usernameInput.addEventListener('blur', validateUsername);
         consentInput.addEventListener('change', clearConsentError);
         
         if (resendBtn) {
@@ -753,9 +769,10 @@
         }
         
         const email = emailInput.value.trim();
+        const username = usernameInput.value.trim();
         const consent = consentInput.checked;
         
-        submitSignup(email, consent);
+        submitSignup(email, username, consent);
     }
     
     function validateForm() {
@@ -763,6 +780,11 @@
         
         // Validate email
         if (!validateEmail()) {
+            isValid = false;
+        }
+        
+        // Validate username (optional but if provided, must be valid)
+        if (!validateUsername()) {
             isValid = false;
         }
         
@@ -793,7 +815,26 @@
         return true;
     }
     
-    function submitSignup(email, consent) {
+    function validateUsername() {
+        const username = usernameInput.value.trim();
+        
+        // Username is optional, so empty is valid
+        if (!username) {
+            clearUsernameError();
+            return true;
+        }
+        
+        // If provided, check length
+        if (username.length > 50) {
+            showUsernameError('Username must be 50 characters or less');
+            return false;
+        }
+        
+        clearUsernameError();
+        return true;
+    }
+    
+    function submitSignup(email, username, consent) {
         setFormLoading(true);
         clearErrors();
         
@@ -813,6 +854,7 @@
             },
             body: JSON.stringify({
                 email: email,
+                username: username || undefined,
                 consent: consent,
                 language: 'en',
                 source: 'beta_signup',
@@ -986,6 +1028,17 @@
         emailInput.style.borderColor = '';
     }
     
+    function showUsernameError(message) {
+        usernameError.textContent = message;
+        usernameInput.style.borderColor = '#e74c3c';
+        usernameError.setAttribute('aria-live', 'polite');
+    }
+    
+    function clearUsernameError() {
+        usernameError.textContent = '';
+        usernameInput.style.borderColor = '';
+    }
+    
     function showConsentError(message) {
         consentError.textContent = message;
     }
@@ -1002,6 +1055,7 @@
     
     function clearErrors() {
         clearEmailError();
+        clearUsernameError();
         clearConsentError();
         signupError.style.display = 'none';
     }

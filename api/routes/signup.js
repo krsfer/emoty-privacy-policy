@@ -6,7 +6,7 @@ const logger = require('../utils/logger');
 // Beta signup endpoint
 router.post('/beta-signup', async (req, res) => {
     try {
-        const { email, consent, language, source, timestamp } = req.body;
+        const { email, consent, language, source, timestamp, username } = req.body;
         
         // Basic validation
         if (!email || !consent || !language) {
@@ -36,10 +36,29 @@ router.post('/beta-signup', async (req, res) => {
             });
         }
 
+        // Username validation (optional but if provided, must be valid)
+        if (username !== undefined && username !== null) {
+            const trimmedUsername = username.trim();
+            if (trimmedUsername.length > 50) {
+                return res.status(400).json({
+                    success: false,
+                    error: 'VALIDATION_ERROR',
+                    message: 'Username must be 50 characters or less'
+                });
+            }
+            // Allow empty string to be converted to undefined
+            if (trimmedUsername.length === 0) {
+                username = undefined;
+            } else {
+                username = trimmedUsername;
+            }
+        }
+
         // Prepare signup data
         const signupData = {
             email,
             language,
+            username: username ? username.trim() : undefined,
             source: source || 'beta_signup',
             timestamp: timestamp || new Date().toISOString(),
             consent: consent === true,

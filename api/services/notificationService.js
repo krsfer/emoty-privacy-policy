@@ -91,7 +91,8 @@ Signup Details (JSON):
 ${JSON.stringify(data, null, 2)}
 
 Raw Data:
-- Email: ${data.email}
+- Email: ${data.email}${data.username ? `
+- Username: ${data.username}` : ''}
 - Language: ${data.language}
 - Timestamp: ${data.timestamp}
 - IP Address: ${data.ip}
@@ -190,6 +191,10 @@ This is an automated notification from the Emoty Beta Signup system.`;
                 <td><strong>Email</strong></td>
                 <td>${data.email}</td>
             </tr>
+            ${data.username ? `<tr>
+                <td><strong>Username</strong></td>
+                <td>${data.username}</td>
+            </tr>` : ''}
             <tr>
                 <td><strong>Language</strong></td>
                 <td>${data.language === 'fr' ? 'French 🇫🇷' : 'English 🇬🇧'}</td>
