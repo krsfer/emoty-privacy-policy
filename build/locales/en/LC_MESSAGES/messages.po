@@ -244,11 +244,11 @@ msgstr "Sign Up for Beta Testing"
 
 #: index.html.j2:100
 msgid "signup.success_title"
-msgstr "📧 Please Confirm Your Signup"
+msgstr "🎉 Thank You! Please Confirm Your Signup"
 
 #: index.html.j2:101
 msgid "signup.success_message_before"
-msgstr "We've sent a confirmation email to"
+msgstr "Thank you for joining the beta program! We've sent a confirmation email to"
 
 #: index.html.j2:102
 msgid "signup.success_message_after"
