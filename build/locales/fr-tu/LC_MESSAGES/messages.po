@@ -218,6 +218,15 @@ msgstr "ton@email.fr"
 msgid "signup.email_help"
 msgstr "Nous utiliserons cette adresse uniquement pour les invitations aux tests"
 
+msgid "signup.username_label"
+msgstr "Nom d'utilisateur (optionnel) :"
+
+msgid "signup.username_placeholder"
+msgstr "Ton pseudo préféré"
+
+msgid "signup.username_help"
+msgstr "Aide-nous à personnaliser tes invitations aux tests (50 caractères max)"
+
 #: index.html.j2:91
 msgid "signup.consent_label"
 msgstr "J'accepte de recevoir des emails de test beta d'Emoty"

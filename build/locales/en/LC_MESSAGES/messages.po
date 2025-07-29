@@ -217,6 +217,15 @@ msgstr "your@email.com"
 msgid "signup.email_help"
 msgstr "We'll only use this address for beta test invitations"
 
+msgid "signup.username_label"
+msgstr "Username (optional):"
+
+msgid "signup.username_placeholder"
+msgstr "Your preferred username"
+
+msgid "signup.username_help"
+msgstr "Help us personalize your beta test invitations (50 characters max)"
+
 #: index.html.j2:91
 msgid "signup.consent_label"
 msgstr "I agree to receive beta testing emails from Emoty"

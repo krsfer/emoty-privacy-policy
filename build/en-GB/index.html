@@ -1,6 +1,426 @@
-{% extends "base.html.j2" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Emoty - Create beautiful emoji patterns with AI assistance. Available for Android. Privacy-focused and COPPA compliant.">
+    <meta name="author" content="Christopher Archer">
+    <meta name="keywords" content="Emoty, emoji patterns, creative app, Android, AI pattern generator, COPPA compliant">
+    <link rel="alternate" hreflang="fr" href="https://emoty.fr/">
+    <link rel="canonical" href="https://emoty.fr/en-GB/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <title>Emoty - Emoji Pattern Creator</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        .emoty-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+        }
+        .emoty-text-container {
+            display: flex;
+            align-items: flex-start;
+        }
+        .emoty-text {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            font-size: 3em;
+            color: white;
+            letter-spacing: 0.3em;
+            text-decoration-color: rgba(255,255,255,0.8);
+            text-underline-offset: 8px;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .emoty-accent-line {
+            width: 50%;
+            height: 3px;
+            margin-top: 0px;
+            background: linear-gradient(90deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.4) 100%);
+            border-radius: 2px;
+        }
+        .tagline {
+            font-size: 1.3em;
+            margin-top: 10px;
+            opacity: 0.95;
+        }
+        .lang-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .lang-switch a {
+            color: white;
+            text-decoration: none;
+            background: rgba(255,255,255,0.3);
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: background 0.3s;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .lang-switch a:hover {
+            background: rgba(255,255,255,0.4);
+            border-color: rgba(255,255,255,0.3);
+        }
+        .home-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        .home-button a {
+            color: white;
+            text-decoration: none;
+            background: rgba(255,255,255,0.3);
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: background 0.3s;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .home-button a:hover {
+            background: rgba(255,255,255,0.4);
+            border-color: rgba(255,255,255,0.3);
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .feature {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        .feature h3 {
+            color: #667eea;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .cta {
+            text-align: center;
+            margin: 40px 0;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1.1em;
+            transition: background 0.3s, transform 0.3s;
+            margin: 10px;
+        }
+        .button:hover {
+            background: #764ba2;
+            transform: scale(1.05);
+        }
+        .button.secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+        .button.secondary:hover {
+            background: #e0e0e0;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            border-top: 1px solid #ddd;
+            margin-top: 40px;
+        }
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
 
-{% block content %}
+        .emoji-demos {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: clamp(0.5rem, 2vw, 2rem); /* Dynamic spacing between divs */
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .emoji-demo {
+            font-size: clamp(0.7rem, 2.5vw, 2rem); /* Dynamic font size */
+            text-align: center;
+            margin: 0; /* Remove margin since we use gap on parent */
+            line-height: 1.4;
+            flex: 1; /* Equal distribution of space */
+            min-width: 0; /* Allow shrinking below content size */
+            letter-spacing: clamp(0.05em, 0.5vw, 0.25em); /* Dynamic letter spacing */
+            word-spacing: clamp(0.05em, 0.3vw, 0.15em); /* Dynamic word spacing */
+        }
+        
+        .signup-section {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin: 40px 0;
+        }
+        
+        .signup-section h2 {
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .signup-section > p {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .signup-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .form-group input[type="email"],
+        .form-group input[type="text"] {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            box-sizing: border-box;
+        }
+        
+        .form-group input[type="email"]:focus,
+        .form-group input[type="text"]:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .form-group input[type="email"]:invalid {
+            border-color: #e74c3c;
+        }
+        
+        .checkbox-container {
+            display: flex;
+            align-items: flex-start;
+            cursor: pointer;
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 0;
+        }
+        
+        .checkbox-container input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+        
+        .checkmark {
+            position: absolute;
+            top: 2px;
+            left: 0;
+            height: 20px;
+            width: 20px;
+            background-color: #f0f0f0;
+            border: 2px solid #e0e0e0;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        .checkbox-container:hover input ~ .checkmark {
+            background-color: #e8e8e8;
+        }
+        
+        .checkbox-container input:checked ~ .checkmark {
+            background-color: #667eea;
+            border-color: #667eea;
+        }
+        
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+        
+        .checkbox-container input:checked ~ .checkmark:after {
+            display: block;
+        }
+        
+        .checkbox-container .checkmark:after {
+            left: 6px;
+            top: 2px;
+            width: 6px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        
+        .help-text {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 8px;
+            line-height: 1.4;
+        }
+        
+        .help-text a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .help-text a:hover {
+            text-decoration: underline;
+        }
+        
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.9em;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        
+        .success-message {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .success-message h3 {
+            color: #155724;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        
+        .success-message p {
+            margin-bottom: 10px;
+        }
+        
+        .signup-button {
+            width: 100%;
+            margin: 20px 0 0 0;
+            padding: 15px;
+            font-size: 1.1em;
+            font-weight: 500;
+        }
+        
+        .signup-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .signup-button:disabled:hover {
+            background: #ccc;
+            transform: none;
+        }
+        
+        @media (max-width: 600px) {
+            .emoty-text { font-size: 2em; }
+            .tagline { font-size: 1.1em; }
+            .features { grid-template-columns: 1fr; }
+            .lang-switch {
+                position: absolute;
+                top: 15px;
+                right: 15px;
+            }
+            .lang-switch a {
+                padding: 6px 12px;
+                font-size: 0.9em;
+            }
+            .home-button {
+                position: absolute;
+                top: 15px;
+                left: 15px;
+            }
+            .home-button a {
+                padding: 6px 12px;
+                font-size: 0.9em;
+            }
+            .signup-section {
+                padding: 20px;
+            }
+            .checkbox-container {
+                font-size: 0.95em;
+                line-height: 1.4;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            
+            <div class="lang-switch">
+                <a href="/">Français</a>
+            </div>
+            
+            <div class="emoty-logo">
+                <div class="emoty-text-container">
+                    <span class="emoty-text">e m o t y</span>
+                    <span>💬</span>
+                </div>
+                <div class="emoty-accent-line"></div>
+            </div>
+            <p class="tagline">Create Beautiful Emoji Patterns, with Smart Help Available</p>
+        </header>
+
+        
 
     <div class="emoji-demos">
 
@@ -32,71 +452,71 @@
 
     <div class="features">
         <div class="feature">
-            <h3>&#x2728; {{ _('features.ai_creation.title') }}</h3>
-            <p>{{ _('features.ai_creation.description') }}</p>
+            <h3>&#x2728; Creative Assist</h3>
+            <p>Stuck for an idea? Help is always available to generate a pattern from a text prompt, or get clever name suggestions for your finished art.</p>
         </div>
         
         <div class="feature">
-            <h3>&#x1F3A8; {{ _('features.palettes.title') }}</h3>
-            <p>{{ _('features.palettes.description') }}</p>
+            <h3>&#x1F3A8; 15 Curated Palettes</h3>
+            <p>Choose from Hearts & Flowers, Happy Faces, Nature Vibes, Cute Animals, Space & Cosmos, and 10 more themed collections.</p>
         </div>
         
         <div class="feature">
-            <h3>&#x1F510; {{ _('features.privacy.title') }}</h3>
-            <p>{{ _('features.privacy.description') }}</p>
+            <h3>&#x1F510; Privacy First</h3>
+            <p>All data stays on your device. No personal information collected. COPPA compliant and safe for all ages.</p>
         </div>
         
         <div class="feature">
-            <h3>&#x1F4AC; {{ _('features.emotybot.title') }}</h3>
-            <p>{{ _('features.emotybot.description') }}</p>
+            <h3>&#x1F4AC; Your EmotyBot Assistant</h3>
+            <p>Your friendly EmotyBot is always ready to help. Ask for creative ideas, find app features, or get emoji recommendations through a simple chat.</p>
         </div>
         
         <div class="feature">
-            <h3>&#x1F4E4; {{ _('features.share_export.title') }}</h3>
-            <p>{{ _('features.share_export.description') }}</p>
+            <h3>&#x1F4E4; Share & Export</h3>
+            <p>Save as images, print as PDFs, share patterns as codes, or export your entire collection as JSON.</p>
         </div>
         
         <div class="feature">
-            <h3>&#x1F399; {{ _('features.voice_commands.title') }}</h3>
-            <p>{{ _('features.voice_commands.description') }}</p>
+            <h3>&#x1F399; Voice Commands</h3>
+            <p>Create patterns hands-free with voice commands in English and French with automatic language detection.</p>
         </div>
     </div>
 
     <div class="cta">
-        <h2>{{ _('cta.title') }}</h2>
-        <p>{{ _('cta.description') }}</p>
-        <a href="{{ config.google_play_url }}" class="button">
-            {{ _('cta.download_button') }}
+        <h2>Get Emoty for Android</h2>
+        <p>Transform your emojis into beautiful patterns. Perfect for social media, decorations, or creative expression!</p>
+        <a href="https://play.google.com/store/apps/details?id=com.carcher.emoty" class="button">
+            Download on Google Play
         </a>
-        <a href="{{ path }}eli5/" class="button secondary">
-            🎈 {{ _('cta.eli5_button') }}
+        <a href="/en-GB/eli5/" class="button secondary">
+            🎈 Simplified Version
         </a>
-        <a href="{{ privacy_policy_url }}" class="button secondary">
-            {{ _('cta.privacy_button') }}
+        <a href="/en-GB/privacy-policy" class="button secondary">
+            Privacy Policy
         </a>
     </div>
 
     <div class="signup-section">
-        <h2>{{ _('signup.title') }}</h2>
-        <p>{{ _('signup.description') }}</p>
+        <h2>🧪 Join the Beta Testing</h2>
+        <p>Be among the first to test new Emoty features! Sign up to receive beta test invitations and exclusive updates.</p>
         
         <form id="signupForm" class="signup-form">
             <div class="form-group">
-                <label for="email">{{ _('signup.email_label') }}</label>
+                <label for="email">Email address:</label>
                 <input type="email" id="email" name="email" required 
                        aria-describedby="email-help" 
-                       placeholder="{{ _('signup.email_placeholder') }}">
-                <div id="email-help" class="help-text">{{ _('signup.email_help') }}</div>
+                       placeholder="your@email.com">
+                <div id="email-help" class="help-text">We'll only use this address for beta test invitations</div>
                 <div id="email-error" class="error-message" aria-live="polite"></div>
             </div>
             
             <div class="form-group">
-                <label for="username">{{ _('signup.username_label') }}</label>
+                <label for="username">Username (optional):</label>
                 <input type="text" id="username" name="username" 
                        aria-describedby="username-help" 
-                       placeholder="{{ _('signup.username_placeholder') }}" 
+                       placeholder="Your preferred username" 
                        maxlength="50">
-                <div id="username-help" class="help-text">{{ _('signup.username_help') }}</div>
+                <div id="username-help" class="help-text">Help us personalize your beta test invitations (50 characters max)</div>
                 <div id="username-error" class="error-message" aria-live="polite"></div>
             </div>
             
@@ -104,35 +524,45 @@
                 <label class="checkbox-container">
                     <input type="checkbox" id="consent" name="consent" required aria-describedby="consent-help">
                     <span class="checkmark"></span>
-                    {{ _('signup.consent_label') }}
+                    I agree to receive beta testing emails from Emoty
                 </label>
                 <div id="consent-help" class="help-text">
-                    {{ _('signup.consent_help_before') }} <a href="{{ privacy_policy_url }}">{{ _('signup.consent_help_link') }}</a>.
+                    You can unsubscribe at any time. See our <a href="/en-GB/privacy-policy">privacy policy</a>.
                 </div>
                 <div id="consent-error" class="error-message" aria-live="polite"></div>
             </div>
             
             <button type="submit" class="button signup-button" id="submitBtn">
-                {{ _('signup.button') }}
+                Sign Up for Beta Testing
             </button>
             
             <div id="signup-success" class="success-message" style="display: none;">
-                <h3>{{ _('signup.success_title') }}</h3>
-                <p>{{ _('signup.success_message_before') }} <span id="confirmed-email"></span>. 
-                {{ _('signup.success_message_after') }}</p>
-                <p><strong>{{ _('signup.success_important') }}</strong> {{ _('signup.success_expires') }}</p>
+                <h3>📧 Please Confirm Your Signup</h3>
+                <p>We've sent a confirmation email to <span id="confirmed-email"></span>. 
+                Click the link in the email to complete your beta testing signup.</p>
+                <p><strong>Important:</strong> The link expires in 48 hours.</p>
                 <button type="button" id="resendBtn" class="button secondary" style="display: none;">
-                    {{ _('signup.resend_button') }}
+                    Resend Confirmation Email
                 </button>
             </div>
             
             <div id="signup-error" class="error-message" style="display: none;"></div>
         </form>
     </div>
-{% endblock %}
 
-{% block language_detection %}
-{% if language_detection.enabled %}
+
+        <footer>
+            <p>&copy; 2025 Christopher Archer • All rights reserved • v2.9.0</p>
+            <p>
+                <a href="/en-GB/privacy-policy">Privacy Policy</a> | 
+                <a href="/en-GB/eli5/">Simplified Version</a> | 
+                <a href="/en-GB/changelog/">Changelog</a> | 
+                <a href="mailto:support@emoty.fr">Contact</a>
+            </p>
+        </footer>
+    </div>
+    
+
 <script>
 /**
  * Emoty Language Detection
@@ -144,12 +574,12 @@
     
     // Configuration from template
     const config = {
-        enabled: {{ language_detection.enabled|lower }},
-        frenchLanguageCodes: {{ language_detection.french_language_codes|tojson }},
-        storageKey: '{{ language_detection.storage_key }}',
-        redirectDelay: {{ language_detection.redirect_delay }},
-        frenchUrl: '{{ french_path }}',
-        englishUrl: '{{ english_path }}'
+        enabled: true,
+        frenchLanguageCodes: ["fr", "fr-FR", "fr-CA", "fr-BE", "fr-CH"],
+        storageKey: 'emoty_language_preference',
+        redirectDelay: 0,
+        frenchUrl: '/',
+        englishUrl: '/en-GB/'
     };
     
     // Don't run detection if disabled
@@ -248,10 +678,9 @@
     });
 })();
 </script>
-{% endif %}
-{% endblock %}
 
-{% block signup_script %}
+
+    
 <script>
 /**
  * Emoty Beta Signup with Double Opt-in
@@ -268,35 +697,19 @@
         maxRetries: 3,
         retryDelay: 1000,
         confirmationTimeout: 48 * 60 * 60 * 1000, // 48 hours
-        storageKey: 'emoty_signup_data_{{ locale }}'
+        storageKey: 'emoty_signup_data_en'
     };
     
     // Translations based on locale
     const translations = {
-        {% if locale == 'fr' or locale.startswith('fr-') %}
-        emailRequired: "L'adresse email est requise.",
-        emailInvalid: 'Veuillez entrer une adresse email valide.',
-        consentRequired: 'Tu dois accepter de recevoir des emails pour t\'inscrire aux tests beta.',
-        signupInProgress: 'Inscription en cours...',
-        signupButton: '{{ _("signup.button") }}',
-        resendInProgress: 'Envoi en cours...',
-        resendButton: '{{ _("signup.resend_button") }}',
-        resendSuccess: 'Email renvoyé !',
-        signupError: 'Une erreur est survenue lors de l\'inscription. Veuillez réessayer.',
-        emailAlreadyExists: 'Cette adresse email est déjà inscrite ou invalide.',
-        rateLimited: 'Trop de tentatives. Veuillez attendre avant de réessayer.',
-        noSignupFound: 'Aucune inscription en attente trouvée.',
-        resendError: 'Erreur lors du renvoi de l\'email. Veuillez réessayer.',
-        confirmationSuccess: 'Inscription confirmée ! Merci de rejoindre le programme beta d\'Emoty.',
-        usernameTooLong: 'Le nom d\'utilisateur doit faire 50 caractères ou moins.'
-        {% else %}
+        
         emailRequired: 'Email address is required.',
         emailInvalid: 'Please enter a valid email address.',
         consentRequired: 'You must agree to receive emails to sign up for beta testing.',
         signupInProgress: 'Signing up...',
-        signupButton: '{{ _("signup.button") }}',
+        signupButton: 'Sign Up for Beta Testing',
         resendInProgress: 'Sending...',
-        resendButton: '{{ _("signup.resend_button") }}',
+        resendButton: 'Resend Confirmation Email',
         resendSuccess: 'Email sent!',
         signupError: 'An error occurred during signup. Please try again.',
         emailAlreadyExists: 'This email address is already registered or invalid.',
@@ -305,7 +718,7 @@
         resendError: 'Error sending email. Please try again.',
         confirmationSuccess: 'Signup confirmed! Thank you for joining the Emoty beta program.',
         usernameTooLong: 'Username must be 50 characters or less.'
-        {% endif %}
+        
     };
     
     // DOM elements
@@ -426,7 +839,7 @@
         const requestBody = {
             email: email,
             consent: consent,
-            language: '{{ locale.split("-")[0] if "-" in locale else locale }}',
+            language: 'en',
             source: 'beta_signup',
             timestamp: new Date().toISOString()
         };
@@ -518,7 +931,7 @@
             },
             body: JSON.stringify({
                 email: signupData.email,
-                language: '{{ locale.split("-")[0] if "-" in locale else locale }}'
+                language: 'en'
             })
         })
         .then(response => {
@@ -681,4 +1094,6 @@
     
 })();
 </script>
-{% endblock %}
+
+</body>
+</html>

@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="{{ locale }}">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="{{ meta_override.description if meta_override else _('meta.description') }}">
-    <meta name="author" content="{{ config.author }}">
-    <meta name="keywords" content="{{ meta_override.keywords if meta_override else _('meta.keywords') }}">
-    <link rel="alternate" hreflang="{{ alternate_lang }}" href="{{ alternate_url }}">
-    <link rel="canonical" href="{{ config.base_url }}{{ path if path != '/' else '' }}">
+    <meta name="description" content="Emoty - Create beautiful emoji patterns with AI assistance. Available for Android. Privacy-focused and COPPA compliant.">
+    <meta name="author" content="Christopher Archer">
+    <meta name="keywords" content="Emoty, emoji patterns, creative app, Android, AI pattern generator, COPPA compliant">
+    <link rel="alternate" hreflang="fr" href="https://emoty.fr/eli5/">
+    <link rel="canonical" href="https://emoty.fr/en-GB/eli5/">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
-    <title>{{ meta_override.title if meta_override else _('meta.title') }}</title>
+    <title>Emoty - Emoji Pattern Creator</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
@@ -405,11 +405,14 @@
 <body>
     <div class="container">
         <header>
-            {% block header_nav %}
-            <div class="lang-switch">
-                <a href="{{ alternate_path }}{% if locale == 'fr' %}?lang=en{% endif %}">{{ _('nav.lang_switch') }}</a>
-            </div>
-            {% endblock %}
+            
+<div class="home-button">
+    <a href="/en-GB/">Home</a>
+</div>
+<div class="lang-switch">
+    <a href="/eli5/">Français</a>
+</div>
+
             <div class="emoty-logo">
                 <div class="emoty-text-container">
                     <span class="emoty-text">e m o t y</span>
@@ -417,22 +420,46 @@
                 </div>
                 <div class="emoty-accent-line"></div>
             </div>
-            <p class="tagline">{{ _('header.tagline') }}</p>
+            <p class="tagline">Create Beautiful Emoji Patterns, with Smart Help Available</p>
         </header>
 
-        {% block content %}{% endblock %}
+        
+<div class="container">
+    <h1>Make Fun Emoji Pictures!  &#x1F3A8;</h1>
+    
+    <p>Ever wanted to make cool patterns with emojis? Emoty helps you do just that!</p>
+    
+    <h2>What is Emoty?</h2>
+    <p>It's an app for your Android phone that lets you be creative with emojis. Think of it like a coloring book, but with emojis!</p>
+    
+    <h2>What can you do?</h2>
+    <ul>
+        <li><strong>Make Patterns:</strong> Tell the app what you want, and our robot helper (AI) will make a pattern for you.</li>
+        <li><strong>Use Fun Colors:</strong> Pick from lots of cool emoji groups like animals, space, or hearts.</li>
+        <li><strong>It's Safe:</strong> We don't look at your stuff. What you make stays on your phone.</li>
+        <li><strong>Share Your Art:</strong> Show your friends your cool emoji pictures!</li>
+    </ul>
+    
+    <h2>Get the App!</h2>
+    <p>It's free on the Google Play Store. Click the button to download it.</p>
+    
+    <a href="https://play.google.com/store/apps/details?id=com.carcher.emoty" class="button">
+        Download Emoty
+    </a>
+</div>
+
 
         <footer>
-            <p>&copy; {{ config.year }} {{ config.author }} • {{ _('footer.rights') }} • v{{ config.version }}</p>
+            <p>&copy; 2025 Christopher Archer • All rights reserved • v2.9.0</p>
             <p>
-                <a href="{{ privacy_policy_url }}">{{ _('footer.privacy_policy') }}</a> | 
-                <a href="{{ path }}eli5/">{{ _('footer.eli5') }}</a> | 
-                <a href="{{ path }}changelog/">{{ _('footer.changelog') }}</a> | 
-                <a href="mailto:{{ config.contact_email }}">{{ _('footer.contact') }}</a>
+                <a href="/en-GB/privacy-policy">Privacy Policy</a> | 
+                <a href="/en-GB/eli5/eli5/">Simplified Version</a> | 
+                <a href="/en-GB/eli5/changelog/">Changelog</a> | 
+                <a href="mailto:support@emoty.fr">Contact</a>
             </p>
         </footer>
     </div>
-    {% block language_detection %}{% endblock %}
-    {% block signup_script %}{% endblock %}
+    
+    
 </body>
 </html>
