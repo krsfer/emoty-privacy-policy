@@ -241,7 +241,7 @@ msgstr "politique de confidentialité"
 
 #: index.html.j2:97
 msgid "signup.button"
-msgstr "S\\'inscrire aux Tests Beta"
+msgstr "S'inscrire aux Tests Beta"
 
 #: index.html.j2:100
 msgid "signup.success_title"
@@ -265,7 +265,7 @@ msgstr "Le lien expire dans 48 heures."
 
 #: index.html.j2:104
 msgid "signup.resend_button"
-msgstr "Renvoyer l\\'email de confirmation"
+msgstr "Renvoyer l'email de confirmation"
 
 #: privacy-policy.html.j2:5
 msgid "nav.home"
