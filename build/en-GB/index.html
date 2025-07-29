@@ -537,8 +537,8 @@
             </button>
             
             <div id="signup-success" class="success-message" style="display: none;">
-                <h3>📧 Please Confirm Your Signup</h3>
-                <p>We've sent a confirmation email to <span id="confirmed-email"></span>. 
+                <h3>🎉 Thank You! Please Confirm Your Signup</h3>
+                <p>Thank you for joining the beta program! We've sent a confirmation email to <span id="confirmed-email"></span>. 
                 Click the link in the email to complete your beta testing signup.</p>
                 <p><strong>Important:</strong> The link expires in 48 hours.</p>
                 <button type="button" id="resendBtn" class="button secondary" style="display: none;">
@@ -552,7 +552,7 @@
 
 
         <footer>
-            <p>&copy; 2025 Christopher Archer • All rights reserved • v2.9.0</p>
+            <p>&copy; 2025 Christopher Archer • All rights reserved • v2.11.1</p>
             <p>
                 <a href="/en-GB/privacy-policy">Privacy Policy</a> | 
                 <a href="/en-GB/eli5/">Simplified Version</a> | 
@@ -692,8 +692,8 @@
     // Configuration
     const config = {
         // API endpoints for beta signup
-        apiEndpoint: '/api/beta-signup',
-        confirmationApiEndpoint: '/api/resend-confirmation',
+        apiEndpoint: 'https://emoty-privacy-policy-production.up.railway.app/api/beta-signup',
+        confirmationApiEndpoint: 'https://emoty-privacy-policy-production.up.railway.app/api/resend-confirmation',
         maxRetries: 3,
         retryDelay: 1000,
         confirmationTimeout: 48 * 60 * 60 * 1000, // 48 hours
@@ -754,7 +754,14 @@
         emailInput.addEventListener('input', clearEmailError);
         emailInput.addEventListener('blur', validateEmail);
         usernameInput.addEventListener('input', clearUsernameError);
-        usernameInput.addEventListener('blur', validateUsername);
+        usernameInput.addEventListener('blur', function() {
+            const username = usernameInput.value.trim();
+            if (!validateUsername(username)) {
+                showUsernameError(translations.usernameTooLong);
+            } else {
+                clearUsernameError();
+            }
+        });
         consentInput.addEventListener('change', clearConsentError);
         
         if (resendBtn) {
@@ -864,9 +871,15 @@
             return response.json();
         })
         .then(data => {
-            handleSignupSuccess(email);
+            console.log('API response:', data);
+            if (data && data.success) {
+                handleSignupSuccess(email);
+            } else {
+                throw new Error('API returned unsuccessful response');
+            }
         })
         .catch(error => {
+            console.error('Signup error:', error);
             // Fallback to simulation if API is not available (development mode)
             if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
                 console.warn('API not available, using simulation mode');
@@ -878,12 +891,28 @@
     }
     
     function handleSignupSuccess(email) {
+        console.log('handleSignupSuccess called with email:', email);
         setFormLoading(false);
-        confirmedEmail.textContent = email;
+        
+        if (confirmedEmail) {
+            confirmedEmail.textContent = email;
+        } else {
+            console.error('confirmedEmail element not found');
+        }
         
         // Hide form and show success message
-        form.style.display = 'none';
-        signupSuccess.style.display = 'block';
+        if (form) {
+            form.style.display = 'none';
+        } else {
+            console.error('form element not found');
+        }
+        
+        if (signupSuccess) {
+            signupSuccess.style.display = 'block';
+            console.log('Success message should now be visible');
+        } else {
+            console.error('signupSuccess element not found');
+        }
         
         // Show resend button after 5 minutes
         setTimeout(() => {

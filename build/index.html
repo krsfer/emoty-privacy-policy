@@ -533,16 +533,16 @@
             </div>
             
             <button type="submit" class="button signup-button" id="submitBtn">
-                S\'inscrire aux Tests Beta
+                S'inscrire aux Tests Beta
             </button>
             
             <div id="signup-success" class="success-message" style="display: none;">
-                <h3>📧 Confirme ton inscription</h3>
-                <p>Nous avons envoyé un email de confirmation à <span id="confirmed-email"></span>. 
+                <h3>🎉 Merci ! Confirme ton inscription</h3>
+                <p>Merci de rejoindre le programme beta ! Nous avons envoyé un email de confirmation à <span id="confirmed-email"></span>. 
                 Clique sur le lien dans l'email pour finaliser ton inscription aux tests beta.</p>
                 <p><strong>Important :</strong> Le lien expire dans 48 heures.</p>
                 <button type="button" id="resendBtn" class="button secondary" style="display: none;">
-                    Renvoyer l\'email de confirmation
+                    Renvoyer l'email de confirmation
                 </button>
             </div>
             
@@ -552,7 +552,7 @@
 
 
         <footer>
-            <p>&copy; 2025 Christopher Archer • Tous droits réservés • v2.9.0</p>
+            <p>&copy; 2025 Christopher Archer • Tous droits réservés • v2.11.1</p>
             <p>
                 <a href="/privacy-policy">Politique de Confidentialité</a> | 
                 <a href="/eli5/">Version Simplifiée</a> | 
@@ -692,8 +692,8 @@
     // Configuration
     const config = {
         // API endpoints for beta signup
-        apiEndpoint: '/api/beta-signup',
-        confirmationApiEndpoint: '/api/resend-confirmation',
+        apiEndpoint: 'https://emoty-privacy-policy-production.up.railway.app/api/beta-signup',
+        confirmationApiEndpoint: 'https://emoty-privacy-policy-production.up.railway.app/api/resend-confirmation',
         maxRetries: 3,
         retryDelay: 1000,
         confirmationTimeout: 48 * 60 * 60 * 1000, // 48 hours
@@ -707,9 +707,9 @@
         emailInvalid: 'Veuillez entrer une adresse email valide.',
         consentRequired: 'Tu dois accepter de recevoir des emails pour t\'inscrire aux tests beta.',
         signupInProgress: 'Inscription en cours...',
-        signupButton: 'S\'inscrire aux Tests Beta',
+        signupButton: 'S'inscrire aux Tests Beta',
         resendInProgress: 'Envoi en cours...',
-        resendButton: 'Renvoyer l\'email de confirmation',
+        resendButton: 'Renvoyer l'email de confirmation',
         resendSuccess: 'Email renvoyé !',
         signupError: 'Une erreur est survenue lors de l\'inscription. Veuillez réessayer.',
         emailAlreadyExists: 'Cette adresse email est déjà inscrite ou invalide.',
@@ -754,7 +754,14 @@
         emailInput.addEventListener('input', clearEmailError);
         emailInput.addEventListener('blur', validateEmail);
         usernameInput.addEventListener('input', clearUsernameError);
-        usernameInput.addEventListener('blur', validateUsername);
+        usernameInput.addEventListener('blur', function() {
+            const username = usernameInput.value.trim();
+            if (!validateUsername(username)) {
+                showUsernameError(translations.usernameTooLong);
+            } else {
+                clearUsernameError();
+            }
+        });
         consentInput.addEventListener('change', clearConsentError);
         
         if (resendBtn) {
@@ -864,9 +871,15 @@
             return response.json();
         })
         .then(data => {
-            handleSignupSuccess(email);
+            console.log('API response:', data);
+            if (data && data.success) {
+                handleSignupSuccess(email);
+            } else {
+                throw new Error('API returned unsuccessful response');
+            }
         })
         .catch(error => {
+            console.error('Signup error:', error);
             // Fallback to simulation if API is not available (development mode)
             if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
                 console.warn('API not available, using simulation mode');
@@ -878,12 +891,28 @@
     }
     
     function handleSignupSuccess(email) {
+        console.log('handleSignupSuccess called with email:', email);
         setFormLoading(false);
-        confirmedEmail.textContent = email;
+        
+        if (confirmedEmail) {
+            confirmedEmail.textContent = email;
+        } else {
+            console.error('confirmedEmail element not found');
+        }
         
         // Hide form and show success message
-        form.style.display = 'none';
-        signupSuccess.style.display = 'block';
+        if (form) {
+            form.style.display = 'none';
+        } else {
+            console.error('form element not found');
+        }
+        
+        if (signupSuccess) {
+            signupSuccess.style.display = 'block';
+            console.log('Success message should now be visible');
+        } else {
+            console.error('signupSuccess element not found');
+        }
         
         // Show resend button after 5 minutes
         setTimeout(() => {
