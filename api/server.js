@@ -111,15 +111,25 @@ process.on('SIGINT', () => {
 // Start server
 async function startServer() {
     try {
-        // Connect to database
-        await connectDB();
-        logger.info('Database connected successfully');
+        // Optionally connect to database if configured
+        if (process.env.DATABASE_URL || process.env.DB_HOST) {
+            try {
+                await connectDB();
+                logger.info('Database connected successfully');
+            } catch (dbError) {
+                logger.warn('Database connection failed, continuing without database:', dbError.message);
+                logger.info('📊 Database features will be disabled');
+            }
+        } else {
+            logger.info('📊 No database configuration found, running without database');
+        }
         
         // Start HTTP server
         app.listen(PORT, () => {
             logger.info(`🚀 Emoty Beta API server running on port ${PORT}`);
             logger.info(`📧 Email sending: ${process.env.ENABLE_EMAIL_SENDING === 'true' ? 'ENABLED' : 'DISABLED'}`);
             logger.info(`🛡️  Rate limiting: ${process.env.ENABLE_RATE_LIMITING === 'true' ? 'ENABLED' : 'DISABLED'}`);
+            logger.info(`🛡️  Notifications: ${process.env.ENABLE_NOTIFICATIONS === 'true' ? 'ENABLED' : 'DISABLED'}`);
             logger.info(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
         });
         
