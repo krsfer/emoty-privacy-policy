@@ -180,9 +180,10 @@
     if (storedPreference) {
         // User has made a choice, redirect only if they're on the wrong page
         if (storedPreference === 'en' && window.location.pathname === '/') {
+            // User prefers English but is on French page
             redirect(config.englishUrl);
-        } else if (storedPreference === 'fr' && window.location.pathname.startsWith('/en-GB/')) {
-            redirect(config.frenchUrl);
+        } else if (storedPreference === 'fr' && window.location.pathname === '/') {
+            // User prefers French and is already on French page - do nothing
         }
         return;
     }
@@ -211,13 +212,14 @@
     });
     
     // Redirect based on language preference
-    if (!prefersFrench && window.location.pathname === '/') {
+    if (prefersFrench && window.location.pathname === '/') {
+        // User prefers French and is already on French page, just store preference
+        localStorage.setItem(config.storageKey, 'fr');
+        // No redirect needed - already on French page
+    } else if (!prefersFrench && window.location.pathname === '/') {
         // User prefers English but is on French page, redirect to English
         localStorage.setItem(config.storageKey, 'en');
         redirect(config.englishUrl);
-    } else if (prefersFrench && window.location.pathname === '/') {
-        // User prefers French and is on French page, just store preference
-        localStorage.setItem(config.storageKey, 'fr');
     }
     
     function redirect(url) {

@@ -30,11 +30,12 @@
     // Check if user has already made a manual language choice
     const storedPreference = localStorage.getItem(config.storageKey);
     if (storedPreference) {
-        // User has made a choice, respect it unless they're on wrong page
-        if (storedPreference === 'fr' && window.location.pathname === '/') {
-            redirect(config.frenchUrl);
-        } else if (storedPreference === 'en' && window.location.pathname.startsWith('/fr-FR/')) {
+        // User has made a choice, redirect only if they're on the wrong page
+        if (storedPreference === 'en' && window.location.pathname === '/') {
+            // User prefers English but is on French page
             redirect(config.englishUrl);
+        } else if (storedPreference === 'fr' && window.location.pathname === '/') {
+            // User prefers French and is already on French page - do nothing
         }
         return;
     }
@@ -57,14 +58,15 @@
         );
     });
     
-    // Redirect to French if preferred
+    // Redirect based on language preference
     if (prefersFrench && window.location.pathname === '/') {
-        // Store the automatic detection result
+        // User prefers French and is already on French page, just store preference
         localStorage.setItem(config.storageKey, 'fr');
-        redirect(config.frenchUrl);
+        // No redirect needed - already on French page
     } else if (!prefersFrench && window.location.pathname === '/') {
-        // Store English preference for consistency
+        // User prefers English but is on French page, redirect to English
         localStorage.setItem(config.storageKey, 'en');
+        redirect(config.englishUrl);
     }
     
     function redirect(url) {
