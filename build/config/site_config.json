@@ -21,7 +21,7 @@
   "contact_email": "support@emoty.fr",
   "author": "Christopher Archer",
   "year": "2025",
-  "version": "2.11.6",
+  "version": "2.11.7",
   "language_detection": {
     "enabled": true,
     "french_language_codes": [
