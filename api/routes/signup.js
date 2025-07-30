@@ -6,7 +6,7 @@ const logger = require('../utils/logger');
 // Beta signup endpoint
 router.post('/beta-signup', async (req, res) => {
     try {
-        const { email, consent, language, source, timestamp, username } = req.body;
+        let { email, consent, language, source, timestamp, username } = req.body;
         
         // Basic validation
         if (!email || !consent || !language) {
