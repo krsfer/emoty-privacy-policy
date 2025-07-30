@@ -132,7 +132,6 @@
 {% endblock %}
 
 {% block language_detection %}
-{% if language_detection.enabled %}
 <script>
 /**
  * Emoty Language Detection
@@ -145,112 +144,65 @@
     // Configuration from template
     const config = {
         enabled: {{ language_detection.enabled|lower }},
-        frenchLanguageCodes: {{ language_detection.french_language_codes|tojson }},
         storageKey: '{{ language_detection.storage_key }}',
-        redirectDelay: {{ language_detection.redirect_delay }},
         frenchUrl: '{{ french_path }}',
         englishUrl: '{{ english_path }}'
     };
     
-    // Don't run detection if disabled
-    if (!config.enabled) return;
-    
-    // Don't redirect if this is already a language-specific page
-    if (window.location.pathname !== '/') return;
-    
-    // Check for explicit language choice via URL parameter
-    const urlParams = new URLSearchParams(window.location.search);
-    const langParam = urlParams.get('lang');
-    if (langParam) {
-        localStorage.setItem(config.storageKey, langParam);
-        // Remove the parameter from URL
-        if (window.history && window.history.replaceState) {
-            window.history.replaceState({}, document.title, window.location.pathname);
-        }
-        return; // Don't redirect if explicit language chosen
+    function setLanguagePreference(lang) {
+        localStorage.setItem(config.storageKey, lang);
     }
-    
-    // Don't redirect search engine bots
-    const userAgent = navigator.userAgent.toLowerCase();
-    const isBot = /bot|crawler|spider|crawling/i.test(userAgent);
-    if (isBot) return;
-    
-    // Check if user has already made a manual language choice
-    const storedPreference = localStorage.getItem(config.storageKey);
-    if (storedPreference) {
-        // User has made a choice, redirect only if they're on the wrong page
-        if (storedPreference === 'en' && window.location.pathname === '/') {
-            // User prefers English but is on French page
-            redirect(config.englishUrl);
-        } else if (storedPreference === 'fr' && window.location.pathname === '/') {
-            // User prefers French and is already on French page - do nothing
-        }
-        return;
-    }
-    
-    // Don't redirect if user came from internal navigation (language switching)
-    const referrer = document.referrer;
-    if (referrer && (referrer.includes('emoty.fr') || referrer.includes('localhost'))) {
-        // User clicked language switcher, store their choice
-        if (referrer.includes('/fr-FR/')) {
-            // Coming from French page, user wants English
-            localStorage.setItem(config.storageKey, 'en');
-        }
-        return;
-    }
-    
-    // Get browser languages
-    const browserLanguages = navigator.languages || [navigator.language || navigator.userLanguage];
-    
-    // Check if any browser language matches French
-    const prefersFrench = browserLanguages.some(lang => {
-        const langCode = lang.toLowerCase();
-        return config.frenchLanguageCodes.some(frenchCode => 
-            langCode === frenchCode.toLowerCase() || 
-            langCode.startsWith(frenchCode.toLowerCase() + '-')
-        );
-    });
-    
-    // Redirect based on language preference
-    if (prefersFrench && window.location.pathname === '/') {
-        // User prefers French and is already on French page, just store preference
-        localStorage.setItem(config.storageKey, 'fr');
-        // No redirect needed - already on French page
-    } else if (!prefersFrench && window.location.pathname === '/') {
-        // User prefers English but is on French page, redirect to English
-        localStorage.setItem(config.storageKey, 'en');
-        redirect(config.englishUrl);
-    }
-    
+
     function redirect(url) {
-        if (config.redirectDelay > 0) {
-            setTimeout(() => {
-                window.location.href = url;
-            }, config.redirectDelay);
-        } else {
+        if (window.location.href !== url) {
             window.location.href = url;
         }
     }
-    
-    // Add language switcher event listeners to store preferences
+
+    // Language switcher event listeners
     document.addEventListener('DOMContentLoaded', function() {
-        // Find language switcher links
-        const langLinks = document.querySelectorAll('a[href="/"], a[href="/fr-FR/"], a[href^="/fr-FR"], a[href="https://emoty.fr/"], a[href="https://emoty.fr/fr-FR/"]');
-        
-        langLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                if (href === '/' || href === 'https://emoty.fr/') {
-                    localStorage.setItem(config.storageKey, 'en');
-                } else if (href.includes('/fr-FR')) {
-                    localStorage.setItem(config.storageKey, 'fr');
-                }
+        const langSwitchLink = document.querySelector('.lang-switch a');
+        if (langSwitchLink) {
+            langSwitchLink.addEventListener('click', function(e) {
+                const currentLang = document.documentElement.lang.split('-')[0];
+                const targetLang = (currentLang === 'fr') ? 'en' : 'fr';
+                setLanguagePreference(targetLang);
             });
-        });
+        }
     });
+
+    // Main detection logic
+    if (config.enabled) {
+        const storedPreference = localStorage.getItem(config.storageKey);
+        
+        if (storedPreference) {
+            // User has a preference, redirect if necessary
+            if (storedPreference === 'en' && !window.location.pathname.startsWith(config.englishUrl)) {
+                redirect(config.englishUrl);
+            } else if (storedPreference === 'fr' && window.location.pathname.startsWith(config.englishUrl)) {
+                redirect(config.frenchUrl);
+            }
+        } else {
+            // No preference stored, detect from browser
+            const userAgent = navigator.userAgent.toLowerCase();
+            const isBot = /bot|crawler|spider|crawling/i.test(userAgent);
+            if (isBot) return;
+
+            const browserLanguages = navigator.languages || [navigator.language || navigator.userLanguage];
+            const prefersFrench = browserLanguages.some(lang => lang.toLowerCase().startsWith('fr'));
+
+            if (prefersFrench && !window.location.pathname.startsWith(config.englishUrl)) {
+                setLanguagePreference('fr');
+            } else {
+                setLanguagePreference('en');
+                if (!window.location.pathname.startsWith(config.englishUrl)) {
+                    redirect(config.englishUrl);
+                }
+            }
+        }
+    }
 })();
 </script>
-{% endif %}
 {% endblock %}
 
 {% block signup_script %}
@@ -402,7 +354,10 @@
     
     function validateEmail() {
         const email = emailInput.value.trim();
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const emailRegex = /^[^
+@]+@[^
+@]+\.[^
+@]+$/;
         
         if (!email) {
             showEmailError(translations.emailRequired);
@@ -487,22 +442,15 @@
         
         if (confirmedEmail) {
             confirmedEmail.textContent = email;
-        } else {
-            console.error('confirmedEmail element not found');
         }
         
         // Hide form and show success message
         if (form) {
             form.style.display = 'none';
-        } else {
-            console.error('form element not found');
         }
         
         if (signupSuccess) {
             signupSuccess.style.display = 'block';
-            console.log('Success message should now be visible');
-        } else {
-            console.error('signupSuccess element not found');
         }
         
         // Show resend button after 5 minutes
