@@ -78,7 +78,7 @@ class EmailService {
                 return true; // Simulate success
             }
 
-            const confirmationUrl = `${process.env.CONFIRMATION_URL || 'https://emoty.fr/api/confirm-signup'}?token=${confirmationToken}`;
+            const confirmationUrl = `${process.env.CONFIRMATION_URL || 'https://emoty-privacy-policy-production.up.railway.app/api/confirm-signup'}?token=${confirmationToken}`;
             const unsubscribeUrl = `${process.env.UNSUBSCRIBE_URL || 'https://emoty.fr/unsubscribe'}?email=${encodeURIComponent(email)}`;
             
             const emailContent = this.getConfirmationEmailContent(language, {
