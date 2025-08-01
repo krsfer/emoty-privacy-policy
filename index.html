@@ -533,7 +533,7 @@
             </div>
             
             <button type="submit" class="button signup-button" id="submitBtn">
-                S'inscrire aux Tests Beta
+                S\'inscrire aux Tests Beta
             </button>
             
             <div id="signup-success" class="success-message" style="display: none;">
@@ -542,7 +542,7 @@
                 Clique sur le lien dans l'email pour finaliser ton inscription aux tests beta.</p>
                 <p><strong>Important :</strong> Le lien expire dans 48 heures.</p>
                 <button type="button" id="resendBtn" class="button secondary" style="display: none;">
-                    Renvoyer l'email de confirmation
+                    Renvoyer l\'email de confirmation
                 </button>
             </div>
             
@@ -552,7 +552,7 @@
 
 
         <footer>
-            <p>&copy; 2025 Christopher Archer • Tous droits réservés • v2.11.1</p>
+            <p>&copy; 2025 Christopher Archer • Tous droits réservés • v2.11.12</p>
             <p>
                 <a href="/privacy-policy">Politique de Confidentialité</a> | 
                 <a href="/eli5/">Version Simplifiée</a> | 
@@ -562,7 +562,6 @@
         </footer>
     </div>
     
-
 <script>
 /**
  * Emoty Language Detection
@@ -575,110 +574,65 @@
     // Configuration from template
     const config = {
         enabled: true,
-        frenchLanguageCodes: ["fr", "fr-FR", "fr-CA", "fr-BE", "fr-CH"],
         storageKey: 'emoty_language_preference',
-        redirectDelay: 0,
         frenchUrl: '/',
         englishUrl: '/en-GB/'
     };
     
-    // Don't run detection if disabled
-    if (!config.enabled) return;
-    
-    // Don't redirect if this is already a language-specific page
-    if (window.location.pathname !== '/') return;
-    
-    // Check for explicit language choice via URL parameter
-    const urlParams = new URLSearchParams(window.location.search);
-    const langParam = urlParams.get('lang');
-    if (langParam) {
-        localStorage.setItem(config.storageKey, langParam);
-        // Remove the parameter from URL
-        if (window.history && window.history.replaceState) {
-            window.history.replaceState({}, document.title, window.location.pathname);
-        }
-        return; // Don't redirect if explicit language chosen
+    function setLanguagePreference(lang) {
+        localStorage.setItem(config.storageKey, lang);
     }
-    
-    // Don't redirect search engine bots
-    const userAgent = navigator.userAgent.toLowerCase();
-    const isBot = /bot|crawler|spider|crawling/i.test(userAgent);
-    if (isBot) return;
-    
-    // Check if user has already made a manual language choice
-    const storedPreference = localStorage.getItem(config.storageKey);
-    if (storedPreference) {
-        // User has made a choice, redirect only if they're on the wrong page
-        if (storedPreference === 'en' && window.location.pathname === '/') {
-            redirect(config.englishUrl);
-        } else if (storedPreference === 'fr' && window.location.pathname.startsWith('/en-GB/')) {
-            redirect(config.frenchUrl);
-        }
-        return;
-    }
-    
-    // Don't redirect if user came from internal navigation (language switching)
-    const referrer = document.referrer;
-    if (referrer && (referrer.includes('emoty.fr') || referrer.includes('localhost'))) {
-        // User clicked language switcher, store their choice
-        if (referrer.includes('/fr-FR/')) {
-            // Coming from French page, user wants English
-            localStorage.setItem(config.storageKey, 'en');
-        }
-        return;
-    }
-    
-    // Get browser languages
-    const browserLanguages = navigator.languages || [navigator.language || navigator.userLanguage];
-    
-    // Check if any browser language matches French
-    const prefersFrench = browserLanguages.some(lang => {
-        const langCode = lang.toLowerCase();
-        return config.frenchLanguageCodes.some(frenchCode => 
-            langCode === frenchCode.toLowerCase() || 
-            langCode.startsWith(frenchCode.toLowerCase() + '-')
-        );
-    });
-    
-    // Redirect based on language preference
-    if (!prefersFrench && window.location.pathname === '/') {
-        // User prefers English but is on French page, redirect to English
-        localStorage.setItem(config.storageKey, 'en');
-        redirect(config.englishUrl);
-    } else if (prefersFrench && window.location.pathname === '/') {
-        // User prefers French and is on French page, just store preference
-        localStorage.setItem(config.storageKey, 'fr');
-    }
-    
+
     function redirect(url) {
-        if (config.redirectDelay > 0) {
-            setTimeout(() => {
-                window.location.href = url;
-            }, config.redirectDelay);
-        } else {
+        if (window.location.href !== url) {
             window.location.href = url;
         }
     }
-    
-    // Add language switcher event listeners to store preferences
+
+    // Language switcher event listeners
     document.addEventListener('DOMContentLoaded', function() {
-        // Find language switcher links
-        const langLinks = document.querySelectorAll('a[href="/"], a[href="/fr-FR/"], a[href^="/fr-FR"], a[href="https://emoty.fr/"], a[href="https://emoty.fr/fr-FR/"]');
-        
-        langLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                if (href === '/' || href === 'https://emoty.fr/') {
-                    localStorage.setItem(config.storageKey, 'en');
-                } else if (href.includes('/fr-FR')) {
-                    localStorage.setItem(config.storageKey, 'fr');
-                }
+        const langSwitchLink = document.querySelector('.lang-switch a');
+        if (langSwitchLink) {
+            langSwitchLink.addEventListener('click', function(e) {
+                const currentLang = document.documentElement.lang.split('-')[0];
+                const targetLang = (currentLang === 'fr') ? 'en' : 'fr';
+                setLanguagePreference(targetLang);
             });
-        });
+        }
     });
+
+    // Main detection logic
+    if (config.enabled) {
+        const storedPreference = localStorage.getItem(config.storageKey);
+        
+        if (storedPreference) {
+            // User has a preference, redirect if necessary
+            if (storedPreference === 'en' && !window.location.pathname.startsWith(config.englishUrl)) {
+                redirect(config.englishUrl);
+            } else if (storedPreference === 'fr' && window.location.pathname.startsWith(config.englishUrl)) {
+                redirect(config.frenchUrl);
+            }
+        } else {
+            // No preference stored, detect from browser
+            const userAgent = navigator.userAgent.toLowerCase();
+            const isBot = /bot|crawler|spider|crawling/i.test(userAgent);
+            if (isBot) return;
+
+            const browserLanguages = navigator.languages || [navigator.language || navigator.userLanguage];
+            const prefersFrench = browserLanguages.some(lang => lang.toLowerCase().startsWith('fr'));
+
+            if (prefersFrench && !window.location.pathname.startsWith(config.englishUrl)) {
+                setLanguagePreference('fr');
+            } else {
+                setLanguagePreference('en');
+                if (!window.location.pathname.startsWith(config.englishUrl)) {
+                    redirect(config.englishUrl);
+                }
+            }
+        }
+    }
 })();
 </script>
-
 
     
 <script>
@@ -706,9 +660,9 @@
         emailRequired: "L'adresse email est requise.",
         emailInvalid: 'Veuillez entrer une adresse email valide.',
         consentRequired: 'Tu dois accepter de recevoir des emails pour t\'inscrire aux tests beta.',
-        signupInProgress: 'Inscription en cours...',
+        signupInProgress: 'Inscription en cours...', 
         signupButton: 'S\'inscrire aux Tests Beta',
-        resendInProgress: 'Envoi en cours...',
+        resendInProgress: 'Envoi en cours...', 
         resendButton: 'Renvoyer l\'email de confirmation',
         resendSuccess: 'Email renvoyé !',
         signupError: 'Une erreur est survenue lors de l\'inscription. Veuillez réessayer.',
@@ -813,7 +767,7 @@
     
     function validateEmail() {
         const email = emailInput.value.trim();
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const emailRegex = /^[\S@]+@[\S@]+\.[\S@]+$/;
         
         if (!email) {
             showEmailError(translations.emailRequired);
@@ -880,9 +834,11 @@
         })
         .catch(error => {
             console.error('Signup error:', error);
-            // Fallback to simulation if API is not available (development mode)
-            if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
-                console.warn('API not available, using simulation mode');
+            // Fallback to simulation if API is not available or server error (development mode)
+            if (error.message.includes('Failed to fetch') || 
+                error.message.includes('NetworkError') ||
+                error.message.includes('HTTP error! status: 500')) {
+                console.warn('API not available or server error, using simulation mode');
                 setTimeout(() => handleSignupSuccess(email), 1000);
             } else {
                 handleSignupError(error);
@@ -896,22 +852,15 @@
         
         if (confirmedEmail) {
             confirmedEmail.textContent = email;
-        } else {
-            console.error('confirmedEmail element not found');
         }
         
         // Hide form and show success message
         if (form) {
             form.style.display = 'none';
-        } else {
-            console.error('form element not found');
         }
         
         if (signupSuccess) {
             signupSuccess.style.display = 'block';
-            console.log('Success message should now be visible');
-        } else {
-            console.error('signupSuccess element not found');
         }
         
         // Show resend button after 5 minutes

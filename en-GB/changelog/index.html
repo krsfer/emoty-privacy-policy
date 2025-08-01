@@ -487,6 +487,61 @@
 <p>All notable changes to Emoty will be documented in this file.</p>
 <p>The format is based on <a href="https://keepachangelog.com/en/1.0.0/">Keep a Changelog</a>,
 and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a>.</p>
+<h2 id="emoty-android-app-releases">Emoty Android App Releases</h2>
+<h3 id="app-v193-2025-08-01">[App v1.9.3] - 2025-08-01</h3>
+<h4 id="critical-bug-fixes-noto-emoji-persistence">🔧 Critical Bug Fixes - Noto Emoji Persistence</h4>
+<ul>
+<li><strong>FIXED</strong>: Noto emojis now properly maintain monochrome appearance after app restart</li>
+<li><strong>RESOLVED</strong>: Pattern persistence system losing monochrome state when closing and reopening app</li>
+<li><strong>ENHANCED</strong>: SequenceStateSerializer now preserves isMonochrome property across all persistence mechanisms</li>
+<li><strong>IMPROVED</strong>: PatternOperationsManager SharedPreferences persistence includes monochrome state tracking</li>
+<li><strong>ADDED</strong>: Automatic pattern persistence in onPause() lifecycle method for reliable state saving</li>
+</ul>
+<h4 id="technical-architecture-improvements-robust-state-management">🏗️ Technical Architecture Improvements - Robust State Management</h4>
+<ul>
+<li><strong>NEW</strong>: restoreCharacterSequenceWithModesAndMonochrome() method in SequenceManager</li>
+<li><strong>ENHANCED</strong>: Bundle-based persistence (configuration changes) now preserves monochrome states</li>
+<li><strong>IMPROVED</strong>: SharedPreferences-based persistence (app restarts) includes monochrome state arrays</li>
+<li><strong>REFINED</strong>: Character.fromEmoji() calls throughout codebase use actual monochrome values</li>
+<li><strong>STRENGTHENED</strong>: Undo/redo operations maintain complete state including monochrome information</li>
+</ul>
+<h4 id="user-experience-consistent-visual-behavior">🎯 User Experience - Consistent Visual Behavior</h4>
+<ul>
+<li><strong>RESOLVED</strong>: Visual inconsistency where Noto emojis appeared colored after app sessions</li>
+<li><strong>MAINTAINED</strong>: Backward compatibility with existing saved patterns without monochrome data</li>
+<li><strong>ENSURED</strong>: Graceful fallback handling for corrupted or missing monochrome state data</li>
+<li><strong>GUARANTEED</strong>: Reliable monochrome emoji rendering across all app usage scenarios</li>
+</ul>
+<h3 id="app-v192-2025-07-26">[App v1.9.2] - 2025-07-26</h3>
+<h4 id="enhanced-sharing-experience-improved-content-discovery">🎯 Enhanced Sharing Experience - Improved Content Discovery</h4>
+<ul>
+<li><strong>NEW</strong>: Material Design 3 share menu with level-based progressive disclosure</li>
+<li><strong>RENAMED</strong>: "Tools" FAB to "Share" FAB for clearer functionality understanding</li>
+<li><strong>NEW</strong>: Rich visual interface with icons, descriptions, and format indicators</li>
+<li><strong>NEW</strong>: SharePatternAdapter with RecyclerView for sophisticated option display</li>
+<li><strong>NEW</strong>: Level badges showing feature requirements (BASIC, PRO, EXPERT, MASTER)</li>
+<li><strong>NEW</strong>: Smart feature gating prevents overwhelming beginners while unlocking advanced tools</li>
+</ul>
+<h4 id="tutorial-ui-improvements-better-user-experience">🎨 Tutorial &amp; UI Improvements - Better User Experience</h4>
+<ul>
+<li><strong>IMPROVED</strong>: Tutorial button positioning with undo support functionality</li>
+<li><strong>IMPROVED</strong>: Localized tutorial buttons displaying in user's language</li>
+<li><strong>ENHANCED</strong>: Precise balloon targeting for specific UI elements and controls</li>
+<li><strong>REFINED</strong>: Animation improvements and cleaner layout spacing throughout app</li>
+<li><strong>ENHANCED</strong>: Auto-clear functionality for pattern and sequence during tutorial start</li>
+<li><strong>IMPROVED</strong>: Background dimming when tapping empty areas during tutorial flow</li>
+</ul>
+<h4 id="technical-implementation-modern-architecture">🔧 Technical Implementation - Modern Architecture</h4>
+<ul>
+<li><strong>NEW</strong>: Custom dialog layouts (dialog_share_pattern.xml, item_share_option.xml) replacing simple AlertDialog</li>
+<li><strong>NEW</strong>: 9 comprehensive vector drawable icons for complete visual system coverage</li>
+<li><strong>NEW</strong>: Progressive disclosure logic based on UserProgressTracker level assessment</li>
+<li><strong>ENHANCED</strong>: Multilingual string resources for all share functionality in English and French</li>
+<li><strong>NEW</strong>: ShareOption enum with minimum level requirements and tracking features</li>
+<li><strong>IMPROVED</strong>: ImageShareHelper integration with sophisticated dialog management</li>
+</ul>
+<hr />
+<h2 id="privacy-policy-website-releases">Privacy Policy Website Releases</h2>
 <h2 id="220-2025-07-20"><a href="https://github.com/carcher54321/emoty-privacy-policy/compare/v2.1.0...v2.2.0">2.2.0</a> - 2025-07-20</h2>
 <h3 id="added">Added</h3>
 <ul>
@@ -546,11 +601,11 @@ and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semant
 
 
         <footer>
-            <p>&copy; 2025 Christopher Archer • All rights reserved • v2.11.1</p>
+            <p>&copy; 2025 Christopher Archer • All rights reserved • v2.11.12</p>
             <p>
                 <a href="/en-GB/privacy-policy">Privacy Policy</a> | 
-                <a href="/en-GB/changelog/eli5/">Simplified Version</a> | 
-                <a href="/en-GB/changelog/changelog/">Changelog</a> | 
+                <a href="/en-GB/eli5/">Simplified Version</a> | 
+                <a href="/en-GB/changelog/">Changelog</a> | 
                 <a href="mailto:support@emoty.fr">Contact</a>
             </p>
         </footer>

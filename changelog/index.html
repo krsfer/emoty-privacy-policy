@@ -487,6 +487,61 @@
 <p>Tous les changements notables d'Emoty seront documentés dans ce fichier.</p>
 <p>Le format est basé sur <a href="https://keepachangelog.com/fr/1.0.0/">Keep a Changelog</a>,
 et ce projet adhère au <a href="https://semver.org/lang/fr/">Versionnage Sémantique</a>.</p>
+<h2 id="versions-de-lapplication-android-emoty">Versions de l'Application Android Emoty</h2>
+<h3 id="app-v193-1er-aout-2025">[App v1.9.3] - 1er août 2025</h3>
+<h4 id="corrections-critiques-persistance-des-emojis-noto">🔧 Corrections Critiques - Persistance des Emojis Noto</h4>
+<ul>
+<li><strong>CORRIGÉ</strong>: Les emojis Noto maintiennent maintenant correctement leur apparence monochrome après le redémarrage de l'app</li>
+<li><strong>RÉSOLU</strong>: Le système de persistance des motifs perdait l'état monochrome lors de la fermeture et réouverture de l'app</li>
+<li><strong>AMÉLIORÉ</strong>: SequenceStateSerializer préserve maintenant la propriété isMonochrome à travers tous les mécanismes de persistance</li>
+<li><strong>OPTIMISÉ</strong>: La persistance SharedPreferences de PatternOperationsManager inclut le suivi de l'état monochrome</li>
+<li><strong>AJOUTÉ</strong>: Persistance automatique des motifs dans la méthode de cycle de vie onPause() pour une sauvegarde fiable</li>
+</ul>
+<h4 id="ameliorations-de-larchitecture-technique-gestion-detat-robuste">🏗️ Améliorations de l'Architecture Technique - Gestion d'État Robuste</h4>
+<ul>
+<li><strong>NOUVEAU</strong>: Méthode restoreCharacterSequenceWithModesAndMonochrome() dans SequenceManager</li>
+<li><strong>AMÉLIORÉ</strong>: La persistance basée sur Bundle (changements de configuration) préserve maintenant les états monochromes</li>
+<li><strong>OPTIMISÉ</strong>: La persistance basée sur SharedPreferences (redémarrages d'app) inclut les tableaux d'état monochrome</li>
+<li><strong>AFFINÉ</strong>: Les appels Character.fromEmoji() dans tout le code utilisent les vraies valeurs monochromes</li>
+<li><strong>RENFORCÉ</strong>: Les opérations d'annulation/rétablissement maintiennent l'état complet incluant les informations monochromes</li>
+</ul>
+<h4 id="experience-utilisateur-comportement-visuel-coherent">🎯 Expérience Utilisateur - Comportement Visuel Cohérent</h4>
+<ul>
+<li><strong>RÉSOLU</strong>: Incohérence visuelle où les emojis Noto apparaissaient colorés après les sessions d'app</li>
+<li><strong>MAINTENU</strong>: Compatibilité rétroactive avec les motifs sauvegardés existants sans données monochromes</li>
+<li><strong>ASSURÉ</strong>: Gestion de repli gracieuse pour les données d'état monochrome corrompues ou manquantes</li>
+<li><strong>GARANTI</strong>: Rendu fiable des emojis monochromes dans tous les scénarios d'utilisation de l'app</li>
+</ul>
+<h3 id="app-v192-26-juillet-2025">[App v1.9.2] - 26 juillet 2025</h3>
+<h4 id="experience-de-partage-amelioree-decouverte-de-contenu-amelioree">🎯 Expérience de Partage Améliorée - Découverte de Contenu Améliorée</h4>
+<ul>
+<li><strong>NOUVEAU</strong>: Menu de partage Material Design 3 avec révélation progressive basée sur le niveau</li>
+<li><strong>RENOMMÉ</strong>: FAB "Outils" en FAB "Partager" pour une compréhension plus claire de la fonctionnalité</li>
+<li><strong>NOUVEAU</strong>: Interface visuelle riche avec icônes, descriptions et indicateurs de format</li>
+<li><strong>NOUVEAU</strong>: SharePatternAdapter avec RecyclerView pour un affichage sophistiqué des options</li>
+<li><strong>NOUVEAU</strong>: Badges de niveau montrant les exigences de fonctionnalité (BASIC, PRO, EXPERT, MASTER)</li>
+<li><strong>NOUVEAU</strong>: Filtrage intelligent des fonctionnalités évite de submerger les débutants tout en débloquant les outils avancés</li>
+</ul>
+<h4 id="ameliorations-du-tutoriel-et-de-linterface-meilleure-experience-utilisateur">🎨 Améliorations du Tutoriel et de l'Interface - Meilleure Expérience Utilisateur</h4>
+<ul>
+<li><strong>AMÉLIORÉ</strong>: Positionnement des boutons de tutoriel avec fonctionnalité de support d'annulation</li>
+<li><strong>AMÉLIORÉ</strong>: Boutons de tutoriel localisés s'affichant dans la langue de l'utilisateur</li>
+<li><strong>AMÉLIORÉ</strong>: Ciblage précis des ballons pour des éléments et contrôles d'interface spécifiques</li>
+<li><strong>AFFINÉ</strong>: Améliorations d'animation et espacement de mise en page plus propre dans toute l'app</li>
+<li><strong>AMÉLIORÉ</strong>: Fonctionnalité d'effacement automatique pour le motif et la séquence lors du démarrage du tutoriel</li>
+<li><strong>AMÉLIORÉ</strong>: Assombrissement de l'arrière-plan lors du tap sur les zones vides pendant le flux de tutoriel</li>
+</ul>
+<h4 id="implementation-technique-architecture-moderne">🔧 Implémentation Technique - Architecture Moderne</h4>
+<ul>
+<li><strong>NOUVEAU</strong>: Mises en page de dialogue personnalisées (dialog_share_pattern.xml, item_share_option.xml) remplaçant AlertDialog simple</li>
+<li><strong>NOUVEAU</strong>: 9 icônes vectorielles complètes pour une couverture système visuelle complète</li>
+<li><strong>NOUVEAU</strong>: Logique de révélation progressive basée sur l'évaluation du niveau UserProgressTracker</li>
+<li><strong>AMÉLIORÉ</strong>: Ressources de chaînes multilingues pour toute la fonctionnalité de partage en anglais et français</li>
+<li><strong>NOUVEAU</strong>: Énumération ShareOption avec exigences de niveau minimum et fonctionnalités de suivi</li>
+<li><strong>AMÉLIORÉ</strong>: Intégration ImageShareHelper avec gestion sophistiquée de dialogue</li>
+</ul>
+<hr />
+<h2 id="versions-du-site-web-de-politique-de-confidentialite">Versions du Site Web de Politique de Confidentialité</h2>
 <h2 id="220-20-juillet-2025"><a href="https://github.com/carcher54321/emoty-privacy-policy/compare/v2.1.0...v2.2.0">2.2.0</a> - 20 juillet 2025</h2>
 <h3 id="ajoute">Ajouté</h3>
 <ul>
@@ -546,11 +601,11 @@ et ce projet adhère au <a href="https://semver.org/lang/fr/">Versionnage Séman
 
 
         <footer>
-            <p>&copy; 2025 Christopher Archer • Tous droits réservés • v2.11.1</p>
+            <p>&copy; 2025 Christopher Archer • Tous droits réservés • v2.11.12</p>
             <p>
                 <a href="/privacy-policy">Politique de Confidentialité</a> | 
-                <a href="/changelog/eli5/">Version Simplifiée</a> | 
-                <a href="/changelog/changelog/">Journal des modifications</a> | 
+                <a href="/eli5/">Version Simplifiée</a> | 
+                <a href="/changelog/">Journal des modifications</a> | 
                 <a href="mailto:support@emoty.fr">Contact</a>
             </p>
         </footer>

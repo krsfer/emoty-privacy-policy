@@ -5,6 +5,60 @@ Tous les changements notables d'Emoty seront documentés dans ce fichier.
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/),
 et ce projet adhère au [Versionnage Sémantique](https://semver.org/lang/fr/).
 
+## Versions de l'Application Android Emoty
+
+### [App v1.9.3] - 1er août 2025
+
+#### 🔧 Corrections Critiques - Persistance des Emojis Noto
+- **CORRIGÉ**: Les emojis Noto maintiennent maintenant correctement leur apparence monochrome après le redémarrage de l'app
+- **RÉSOLU**: Le système de persistance des motifs perdait l'état monochrome lors de la fermeture et réouverture de l'app
+- **AMÉLIORÉ**: SequenceStateSerializer préserve maintenant la propriété isMonochrome à travers tous les mécanismes de persistance
+- **OPTIMISÉ**: La persistance SharedPreferences de PatternOperationsManager inclut le suivi de l'état monochrome
+- **AJOUTÉ**: Persistance automatique des motifs dans la méthode de cycle de vie onPause() pour une sauvegarde fiable
+
+#### 🏗️ Améliorations de l'Architecture Technique - Gestion d'État Robuste
+- **NOUVEAU**: Méthode restoreCharacterSequenceWithModesAndMonochrome() dans SequenceManager
+- **AMÉLIORÉ**: La persistance basée sur Bundle (changements de configuration) préserve maintenant les états monochromes
+- **OPTIMISÉ**: La persistance basée sur SharedPreferences (redémarrages d'app) inclut les tableaux d'état monochrome
+- **AFFINÉ**: Les appels Character.fromEmoji() dans tout le code utilisent les vraies valeurs monochromes
+- **RENFORCÉ**: Les opérations d'annulation/rétablissement maintiennent l'état complet incluant les informations monochromes
+
+#### 🎯 Expérience Utilisateur - Comportement Visuel Cohérent
+- **RÉSOLU**: Incohérence visuelle où les emojis Noto apparaissaient colorés après les sessions d'app
+- **MAINTENU**: Compatibilité rétroactive avec les motifs sauvegardés existants sans données monochromes
+- **ASSURÉ**: Gestion de repli gracieuse pour les données d'état monochrome corrompues ou manquantes
+- **GARANTI**: Rendu fiable des emojis monochromes dans tous les scénarios d'utilisation de l'app
+
+### [App v1.9.2] - 26 juillet 2025
+
+#### 🎯 Expérience de Partage Améliorée - Découverte de Contenu Améliorée
+- **NOUVEAU**: Menu de partage Material Design 3 avec révélation progressive basée sur le niveau
+- **RENOMMÉ**: FAB "Outils" en FAB "Partager" pour une compréhension plus claire de la fonctionnalité
+- **NOUVEAU**: Interface visuelle riche avec icônes, descriptions et indicateurs de format
+- **NOUVEAU**: SharePatternAdapter avec RecyclerView pour un affichage sophistiqué des options
+- **NOUVEAU**: Badges de niveau montrant les exigences de fonctionnalité (BASIC, PRO, EXPERT, MASTER)
+- **NOUVEAU**: Filtrage intelligent des fonctionnalités évite de submerger les débutants tout en débloquant les outils avancés
+
+#### 🎨 Améliorations du Tutoriel et de l'Interface - Meilleure Expérience Utilisateur
+- **AMÉLIORÉ**: Positionnement des boutons de tutoriel avec fonctionnalité de support d'annulation
+- **AMÉLIORÉ**: Boutons de tutoriel localisés s'affichant dans la langue de l'utilisateur
+- **AMÉLIORÉ**: Ciblage précis des ballons pour des éléments et contrôles d'interface spécifiques
+- **AFFINÉ**: Améliorations d'animation et espacement de mise en page plus propre dans toute l'app
+- **AMÉLIORÉ**: Fonctionnalité d'effacement automatique pour le motif et la séquence lors du démarrage du tutoriel
+- **AMÉLIORÉ**: Assombrissement de l'arrière-plan lors du tap sur les zones vides pendant le flux de tutoriel
+
+#### 🔧 Implémentation Technique - Architecture Moderne
+- **NOUVEAU**: Mises en page de dialogue personnalisées (dialog_share_pattern.xml, item_share_option.xml) remplaçant AlertDialog simple
+- **NOUVEAU**: 9 icônes vectorielles complètes pour une couverture système visuelle complète
+- **NOUVEAU**: Logique de révélation progressive basée sur l'évaluation du niveau UserProgressTracker
+- **AMÉLIORÉ**: Ressources de chaînes multilingues pour toute la fonctionnalité de partage en anglais et français
+- **NOUVEAU**: Énumération ShareOption avec exigences de niveau minimum et fonctionnalités de suivi
+- **AMÉLIORÉ**: Intégration ImageShareHelper avec gestion sophistiquée de dialogue
+
+---
+
+## Versions du Site Web de Politique de Confidentialité
+
 ## [2.2.0] - 20 juillet 2025
 
 ### Ajouté
