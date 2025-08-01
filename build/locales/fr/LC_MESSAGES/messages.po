@@ -61,7 +61,7 @@ msgstr "Fais des Images Amusantes avec des Emojis ! "
 
 #: eli5.html.j2:13
 msgid "eli5.intro"
-msgstr "Tu as toujours voulu faire des motifs cools avec des emojis ? Emoty t'aide à faire exactement ça !"
+msgstr "Vous avez toujours voulu faire des motifs cools avec des emojis ? Emoty vous aide à faire exactement ça !"
 
 #: eli5.html.j2:15
 msgid "eli5.what_is_emoty.title"
@@ -69,11 +69,11 @@ msgstr "C'est quoi Emoty ?"
 
 #: eli5.html.j2:16
 msgid "eli5.what_is_emoty.content"
-msgstr "C'est une application pour ton téléphone Android qui te permet d'être créatif avec les emojis. C'est comme un livre de coloriage, mais avec des emojis !"
+msgstr "C'est une application pour votre téléphone Android qui vous permet d'être créatif avec les emojis. C'est comme un livre de coloriage, mais avec des emojis !"
 
 #: eli5.html.j2:18
 msgid "eli5.what_can_you_do.title"
-msgstr "Qu'est-ce que tu peux faire ?"
+msgstr "Qu'est-ce que vous pouvez faire ?"
 
 #: eli5.html.j2:20
 msgid "eli5.what_can_you_do.patterns.title"
@@ -81,7 +81,7 @@ msgstr "Faire des Motifs :"
 
 #: eli5.html.j2:20
 msgid "eli5.what_can_you_do.patterns.content"
-msgstr "Dis à l'application ce que tu veux, et notre assistant robot (IA) fera un motif pour toi."
+msgstr "Dites à l'application ce que vous voulez, et notre assistant robot (IA) fera un motif pour vous."
 
 #: eli5.html.j2:21
 msgid "eli5.what_can_you_do.colors.title"
@@ -89,7 +89,7 @@ msgstr "Utiliser des Couleurs Amusantes :"
 
 #: eli5.html.j2:21
 msgid "eli5.what_can_you_do.colors.content"
-msgstr "Choisis parmi plein de groupes d'emojis sympas comme les animaux, l'espace, ou les cœurs."
+msgstr "Choisissez parmi plein de groupes d'emojis sympas comme les animaux, l'espace, ou les cœurs."
 
 #: eli5.html.j2:22
 msgid "eli5.what_can_you_do.safe.title"
@@ -97,15 +97,15 @@ msgstr "C'est Sûr :"
 
 #: eli5.html.j2:22
 msgid "eli5.what_can_you_do.safe.content"
-msgstr "On ne regarde pas tes affaires. Ce que tu fais reste sur ton téléphone."
+msgstr "On ne regarde pas vos affaires. Ce que vous faites reste sur votre téléphone."
 
 #: eli5.html.j2:23
 msgid "eli5.what_can_you_do.share.title"
-msgstr "Partager Ton Art :"
+msgstr "Partager Votre Art :"
 
 #: eli5.html.j2:23
 msgid "eli5.what_can_you_do.share.content"
-msgstr "Montre à tes amis tes images d'emojis super cool !"
+msgstr "Montrez à vos amis vos images d'emojis super cool !"
 
 #: eli5.html.j2:26
 msgid "eli5.get_the_app.title"
@@ -113,7 +113,7 @@ msgstr "Télécharge l'Application !"
 
 #: eli5.html.j2:27
 msgid "eli5.get_the_app.content"
-msgstr "C'est gratuit sur le Google Play Store. Clique sur le bouton pour la télécharger."
+msgstr "C'est gratuit sur le Google Play Store. Cliquez sur le bouton pour la télécharger."
 
 #: eli5.html.j2:30
 msgid "eli5.download_button"
