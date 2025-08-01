@@ -234,21 +234,21 @@
     // Translations based on locale
     const translations = {
         {% if locale == 'fr' or locale.startswith('fr-') %}
-        emailRequired: "L'adresse email est requise.",
+        emailRequired: "L\\'adresse email est requise.",
         emailInvalid: 'Veuillez entrer une adresse email valide.',
-        consentRequired: 'Tu dois accepter de recevoir des emails pour t\'inscrire aux tests beta.',
+        consentRequired: 'Tu dois accepter de recevoir des emails pour t\\'inscrire aux tests beta.',
         signupInProgress: 'Inscription en cours...', 
         signupButton: '{{ _("signup.button") }}',
         resendInProgress: 'Envoi en cours...', 
         resendButton: '{{ _("signup.resend_button") }}',
         resendSuccess: 'Email renvoyé !',
-        signupError: 'Une erreur est survenue lors de l\'inscription. Veuillez réessayer.',
+        signupError: 'Une erreur est survenue lors de l\\'inscription. Veuillez réessayer.',
         emailAlreadyExists: 'Cette adresse email est déjà inscrite ou invalide.',
         rateLimited: 'Trop de tentatives. Veuillez attendre avant de réessayer.',
         noSignupFound: 'Aucune inscription en attente trouvée.',
-        resendError: 'Erreur lors du renvoi de l\'email. Veuillez réessayer.',
-        confirmationSuccess: 'Inscription confirmée ! Merci de rejoindre le programme beta d\'Emoty.',
-        usernameTooLong: 'Le nom d\'utilisateur doit faire 50 caractères ou moins.'
+        resendError: 'Erreur lors du renvoi de l\\'email. Veuillez réessayer.',
+        confirmationSuccess: 'Inscription confirmée ! Merci de rejoindre le programme beta d\\'Emoty.',
+        usernameTooLong: 'Le nom d\\'utilisateur doit faire 50 caractères ou moins.'
         {% else %}
         emailRequired: 'Email address is required.',
         emailInvalid: 'Please enter a valid email address.',
