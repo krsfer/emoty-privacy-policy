@@ -1,318 +1,459 @@
-# Emoty Beta Signup Deployment Guide
+# Emoty Privacy Policy Site Deployment Guide
 
 ## Overview
-This guide explains how to deploy the backend for the Emoty beta signup system using the Express API server with Airtable and Mailgun.
+This guide explains how to deploy the Emoty privacy policy website, which includes a multilingual static site with beta signup functionality.
 
 ## Prerequisites
 
-### 1. Accounts Needed
+### Development Environment
+- ✅ **Python 3.8+** with pip
+- ✅ **Node.js 18+** with npm (for CI/CD automation)
+- ✅ **Git** for version control
+- ✅ **GitHub** account (for repository hosting and CI/CD)
+
+### Required Python Packages
+- ✅ **Jinja2** for templating
+- ✅ **Babel** for internationalization
+- ✅ **Click** for CLI interface
+- ✅ **PyYAML** for configuration
+
+Install with:
+```bash
+cd build
+pip install -r requirements.txt
+```
+
+### Optional Services (for beta signup)
 - ✅ **Airtable** account (free tier sufficient)
 - ✅ **Mailgun** account (free tier: 5,000 emails/month)
-- ✅ **GitHub** account (for repository hosting)
-- ✅ **Hosting provider** (Heroku, DigitalOcean, AWS, etc.)
 
-### 2. Domain Requirements
-- ✅ Custom domain for email sending (recommended)
-- ✅ DNS access for email verification
+## Quick Deployment
 
-## Step-by-Step Setup
+### Standard Deployment Process
+The deployment process consists of three main steps:
 
-### Step 1: Airtable Database Setup
+1. **Build** - Generate static files from templates
+2. **Validate** - Check generated files for errors
+3. **Deploy** - Copy files to target directory
+4. **Version & Commit** - Update version and push to GitHub
 
-1. **Create Airtable Base:**
-   - Go to [airtable.com](https://airtable.com)
-   - Create new base called "Emoty Beta Signups"
-   - Create table called "BetaSignups"
+```bash
+# Complete deployment sequence
+python generate_site.py build && python generate_site.py validate && python generate_site.py deploy --target ../
 
-2. **Configure Fields:**
-   ```
-   email (Single line text, Primary field)
-   language (Single select: fr, en)
-   consent (Checkbox)
-   consentTimestamp (Date and time)
-   consentIpAddress (Single line text)
-   source (Single line text)
-   confirmationTokenHash (Single line text)
-   confirmationExpiresAt (Date and time)
-   status (Single select: pending, confirmed, expired, unsubscribed)
-   resendCount (Number)
-   confirmedAt (Date and time)
-   lastResendAt (Date and time)
-   ```
+# Commit and push (triggers GitHub CI/CD)
+git add -A
+git commit -m "chore: deploy v$(cat config/site_config.json | grep version | cut -d'"' -f4)"
+git push
+```
 
-3. **Get API Credentials:**
-   - Go to Account → API
-   - Copy your Personal Access Token
-   - Copy your Base ID from the API documentation
+### GitHub CI/CD Integration
+The repository includes automated version bumping and deployment:
+- **Automatic versioning** via npm version (semantic versioning)
+- **Git tags** created for each release
+- **GitHub Actions** (optional) for automated deployment
+- **Site config sync** with package.json version
 
-### Step 2: Mailgun Email Setup
+## Build System Architecture
 
-1. **Create Mailgun Account:**
-   - Go to [mailgun.com](https://mailgun.com)
-   - Add your domain (e.g., `emoty.fr`)
-   - Verify domain ownership
+### Core Components
 
-2. **DNS Configuration:**
-   Add these DNS records to your domain:
-   ```
-   TXT record: v=spf1 include:mailgun.org ~all
-   TXT record: k=rsa; p=[DKIM_PUBLIC_KEY]
-   CNAME record: email.emoty.fr → mailgun.org
-   ```
+1. **`generate_site.py`** - Main build script with CLI interface
+2. **`templates/`** - Jinja2 templates for all pages
+3. **`locales/`** - Translation files (.po/.mo format)
+4. **`config/`** - Site configuration (site_config.json)
+5. **`static/`** - Static assets (CSS, images, etc.)
 
-3. **Get API Key:**
-   - Go to Settings → API Keys
-   - Copy your Private API Key
-   - Note your domain name
+### Multi-language Support
+The site supports mixed French formality:
+- **Informal French (fr-tu)** - Used for homepage and ELI5 pages
+- **Formal French (fr)** - Used only for privacy policy
+- **English (en)** - Standard English for all pages
 
-### Step 3: API Server Deployment
+### Template System
+Templates use Jinja2 with internationalization:
+```html
+<h1>{{ _("privacy.title") }}</h1>
+<p>{{ _("privacy.description") }}</p>
+```
 
-1. **Configure Environment Variables:**
-   Create a `.env` file (don't commit this to Git):
+JavaScript escaping for French apostrophes:
+```html
+signupButton: "{{ _("signup.button")|replace("'", "\\\\'") }}"
+```
+
+## Detailed Build Process
+
+### Build Command
+```bash
+python generate_site.py build
+```
+
+**Actions performed:**
+1. Load site configuration from `config/site_config.json`
+2. Compile translation files (.po → .mo)
+3. Process templates with Jinja2
+4. Generate static HTML files for all languages
+5. Copy static assets
+6. Validate internal links
+
+### Validate Command
+```bash
+python generate_site.py validate
+```
+
+**Validation checks:**
+1. HTML syntax validation
+2. Internal link verification
+3. Translation completeness
+4. JavaScript syntax (Chrome compatibility)
+5. Accessibility compliance
+
+### Deploy Command
+```bash
+python generate_site.py deploy --target ../
+```
+
+**Deployment actions:**
+1. Copy generated files to target directory
+2. Preserve directory structure
+3. Update file permissions
+4. Generate deployment report
+
+## GitHub CI/CD Workflow
+
+### Automated Version Management
+The repository uses npm for semantic versioning:
+
+```bash
+# Version is automatically bumped on push
+# package.json and site_config.json stay in sync
+# Git tags are created automatically
+```
+
+### Deployment Workflow
+1. **Make changes** to templates, translations, or config
+2. **Build and validate** locally:
    ```bash
-   # Server Configuration
-   PORT=8000
-   NODE_ENV=production
-   
-   # Database
-   AIRTABLE_API_KEY=your_airtable_personal_access_token
-   AIRTABLE_BASE_ID=your_airtable_base_id
-   
-   # Email Service
-   MAILGUN_API_KEY=your_mailgun_private_api_key
-   MAILGUN_DOMAIN=emoty.fr
-   
-   # Features
-   ENABLE_EMAIL_SENDING=true
-   ENABLE_RATE_LIMITING=true
-   
-   # Rate Limiting
-   RATE_LIMIT_WINDOW_MS=900000  # 15 minutes
-   RATE_LIMIT_MAX_REQUESTS=100
+   python generate_site.py build && python generate_site.py validate && python generate_site.py deploy --target ../
    ```
-
-2. **Install Dependencies:**
+3. **Commit and push**:
    ```bash
-   cd api
-   npm install
+   git add -A
+   git commit -m "feat: add new privacy policy section"
+   git push
    ```
+4. **Automatic version bump** occurs via GitHub hooks
+5. **Deploy to production** (manual or automated)
 
-3. **Start the Server:**
+### Continuous Integration
+The repository supports GitHub Actions for:
+- **Automated testing** of build process
+- **Link validation** across all languages
+- **Accessibility testing** 
+- **JavaScript syntax validation**
+- **Translation completeness checks**
+
+Example `.github/workflows/deploy.yml`:
+```yaml
+name: Deploy Privacy Policy Site
+on:
+  push:
+    branches: [main]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: Install dependencies
+        run: |
+          cd build
+          pip install -r requirements.txt
+      - name: Build and validate
+        run: |
+          cd build
+          python generate_site.py build
+          python generate_site.py validate
+      - name: Deploy to production
+        run: |
+          cd build
+          python generate_site.py deploy --target ../
+```
+
+## Translation Management
+
+### Adding New Translations
+1. **Extract strings** from templates:
    ```bash
-   # Development
-   npm run dev
+   cd build
+   pybabel extract -F babel.cfg -o locales/messages.pot templates/
+   ```
+
+2. **Update translation files**:
+   ```bash
+   # French informal (homepage/ELI5)
+   pybabel update -i locales/messages.pot -d locales -l fr-tu
    
-   # Production
-   npm start
+   # French formal (privacy policy)
+   pybabel update -i locales/messages.pot -d locales -l fr
+   
+   # English
+   pybabel update -i locales/messages.pot -d locales -l en
    ```
 
-### Step 4: Frontend Configuration
+3. **Edit .po files** with translations
+4. **Compile** translations are compiled automatically during build
 
-1. **Update API Endpoints:**
-   The frontend is already configured to use relative paths:
-   ```javascript
-   // In index.html and en-GB/index.html
-   const config = {
-       apiEndpoint: '/api/beta-signup',
-       confirmationApiEndpoint: '/api/resend-confirmation'
-   };
-   ```
+### JavaScript String Escaping
+For French translations with apostrophes, use the escape filter:
+```html
+// Template
+signupButton: "{{ _("signup.button")|replace("'", "\\\\'") }}"
 
-2. **Configure CORS (if needed):**
-   If hosting frontend and backend separately, update CORS in `api/server.js`:
-   ```javascript
-   app.use(cors({
-       origin: [
-           'https://emoty.fr',
-           'https://www.emoty.fr',
-           'https://your-frontend-domain.com'
-       ],
-       credentials: true
-   }));
-   ```
+// .po file (no pre-escaping needed)
+msgstr "S'inscrire aux Tests Beta"
 
-### Step 5: Deployment Options
+// Generated JavaScript (correctly escaped)
+signupButton: "S\\'inscrire aux Tests Beta"
+```
+
+## Optional Beta Signup Backend
+
+### Quick Setup (if needed)
+For the beta signup functionality, you'll need:
+
+1. **Airtable** for storing signups
+2. **Mailgun** for confirmation emails  
+3. **Express API server** (see api/ directory)
+
+### Environment Configuration
+```bash
+# In api/.env
+AIRTABLE_API_KEY=your_key
+AIRTABLE_BASE_ID=your_base_id
+MAILGUN_API_KEY=your_key
+MAILGUN_DOMAIN=emoty.fr
+```
+
+### API Server Deployment Options
 
 #### Option A: Heroku
 ```bash
-# Install Heroku CLI
-# Create Heroku app
+cd api
 heroku create emoty-beta-api
-
-# Set environment variables
-heroku config:set AIRTABLE_API_KEY=your_key
-heroku config:set AIRTABLE_BASE_ID=your_base_id
-heroku config:set MAILGUN_API_KEY=your_key
-heroku config:set MAILGUN_DOMAIN=emoty.fr
-
-# Deploy
+heroku config:set AIRTABLE_API_KEY=your_key MAILGUN_API_KEY=your_key
 git push heroku main
 ```
 
-#### Option B: DigitalOcean App Platform
-1. Connect GitHub repository
-2. Choose Node.js as the environment
-3. Set run command: `npm start`
-4. Configure environment variables in the UI
-5. Deploy
-
-#### Option C: Traditional VPS
+#### Option B: Docker
 ```bash
-# On your server
-git clone your-repo
-cd your-repo/api
-npm install --production
-
-# Use PM2 for process management
-npm install -g pm2
-pm2 start server.js --name emoty-api
-pm2 save
-pm2 startup
-```
-
-## Testing Checklist
-
-### ✅ Basic Functionality
-- [ ] Form accepts valid email addresses
-- [ ] Form rejects invalid email addresses
-- [ ] Consent checkbox is required
-- [ ] Language selection works correctly
-- [ ] Confirmation email is sent
-- [ ] Email confirmation link works
-- [ ] Confirmed signups are marked in Airtable
-
-### ✅ Error Handling
-- [ ] Invalid email shows error message
-- [ ] Missing consent shows error message
-- [ ] Network errors show fallback message
-- [ ] Expired confirmation shows appropriate page
-- [ ] Invalid confirmation token shows error page
-
-### ✅ Security
-- [ ] Rate limiting prevents spam
-- [ ] CORS headers restrict origins
-- [ ] Environment variables are secure
-- [ ] No sensitive data in client-side code
-
-### ✅ Internationalization
-- [ ] French form works correctly
-- [ ] English form works correctly
-- [ ] Confirmation emails use correct language
-- [ ] Error messages are localized
-
-## Monitoring and Maintenance
-
-### Health Check Endpoint
-Monitor your API health at:
-```
-GET /api/health
-```
-
-### Logging
-The API server includes comprehensive logging:
-- Request/response logging
-- Error tracking
-- Email sending status
-- Database operations
-
-### Regular Maintenance Tasks
-1. **Weekly:** Check Airtable for new signups
-2. **Monthly:** Review email delivery rates in Mailgun
-3. **Quarterly:** Clean up expired/old records
-4. **As needed:** Update confirmation email templates
-
-### Scaling Considerations
-- **Free tier limits:**
-  - Airtable: 1,200 records/month
-  - Mailgun: 5,000 emails/month
-
-- **Upgrade paths:**
-  - Airtable Plus: $10/month for 5,000 records
-  - Mailgun Flex: Pay-as-you-go pricing
-  - Consider MongoDB or PostgreSQL for larger scale
-
-## Troubleshooting
-
-### Common Issues
-
-**1. CORS Errors**
-- Verify Access-Control-Allow-Origin headers
-- Check if frontend domain matches configuration
-- Test with browser dev tools
-
-**2. Email Not Sending**
-- Verify Mailgun domain verification
-- Check API key permissions
-- Review Mailgun logs
-- Check `ENABLE_EMAIL_SENDING` environment variable
-
-**3. Airtable Errors**
-- Verify base ID and table name
-- Check API key permissions
-- Ensure field names match exactly
-
-**4. Rate Limiting Issues**
-- Adjust `RATE_LIMIT_WINDOW_MS` and `RATE_LIMIT_MAX_REQUESTS`
-- Monitor rate limit headers in responses
-- Consider implementing per-email limits
-
-**5. Environment Variables Not Working**
-- Verify `.env` file location
-- Check variable names for typos
-- Ensure no quotes around values in `.env`
-
-### Debug Mode
-Enable debug logging by setting:
-```bash
-DEBUG=true
-LOG_LEVEL=debug
-```
-
-## Security Best Practices
-
-1. **Environment Variables:**
-   - Never commit API keys to version control
-   - Use different keys for staging/production
-   - Rotate keys regularly
-
-2. **Rate Limiting:**
-   - Monitor for unusual activity
-   - Adjust limits based on usage patterns
-   - Consider implementing IP blocking
-
-3. **Data Protection:**
-   - Regularly audit stored data
-   - Implement data retention policies
-   - Provide easy unsubscribe mechanism
-
-4. **HTTPS:**
-   - Always use HTTPS in production
-   - Configure SSL certificates
-   - Redirect HTTP to HTTPS
-
-## Alternative Deployments
-
-### Serverless Functions
-If you prefer serverless deployment:
-1. **Vercel Functions:** Move routes to `api/` directory
-2. **AWS Lambda:** Use Serverless Framework or SAM
-3. **Google Cloud Functions:** Deploy individual endpoints
-
-### Docker Deployment
-```dockerfile
-FROM node:18-alpine
-WORKDIR /app
-COPY api/package*.json ./
-RUN npm ci --production
-COPY api/ .
-EXPOSE 8000
-CMD ["node", "server.js"]
-```
-
-Build and run:
-```bash
+cd api
 docker build -t emoty-api .
 docker run -p 8000:8000 --env-file .env emoty-api
 ```
 
-This approach provides full control over the deployment while maintaining flexibility for various hosting options.
+#### Option C: Traditional VPS
+```bash
+cd api
+npm install --production
+pm2 start server.js --name emoty-api
+```
+
+## Testing Checklist
+
+### ✅ Build System
+- [ ] `python generate_site.py build` completes without errors
+- [ ] `python generate_site.py validate` passes all checks
+- [ ] `python generate_site.py deploy --target ../` copies files correctly
+- [ ] All translations compile successfully (.po → .mo)
+- [ ] JavaScript escaping works for French apostrophes
+
+### ✅ Multi-language Support
+- [ ] French informal (fr-tu) used on homepage and ELI5
+- [ ] French formal (fr) used only on privacy policy
+- [ ] English (en) works correctly on all pages
+- [ ] Language switching links work properly
+- [ ] Translation keys resolve correctly
+
+### ✅ Browser Compatibility
+- [ ] Chrome JavaScript syntax validation passes
+- [ ] Firefox renders correctly
+- [ ] Safari handles all features
+- [ ] Mobile browsers work properly
+- [ ] Form validation works across browsers
+
+### ✅ Signup Functionality (if enabled)
+- [ ] Form accepts valid email addresses
+- [ ] Form rejects invalid email addresses
+- [ ] Consent checkbox is required
+- [ ] Button remains disabled until all fields filled
+- [ ] JavaScript form validation works properly
+- [ ] Confirmation emails are sent correctly
+
+### ✅ Version Management
+- [ ] Version numbers sync between package.json and site_config.json
+- [ ] Git tags are created automatically
+- [ ] Footer version numbers update correctly
+- [ ] Deployment reports show correct version
+
+## Monitoring and Maintenance
+
+### Build System Monitoring
+Monitor build health with:
+```bash
+# Check build status
+python generate_site.py build --dry-run
+
+# Validate without deployment
+python generate_site.py validate --verbose
+
+# Check translation completeness
+find locales -name "*.po" -exec msgfmt --statistics {} \;
+```
+
+### Version Tracking
+```bash
+# Check current version
+cat build/config/site_config.json | grep version
+
+# View recent deployments
+git log --oneline --grep="chore: release"
+
+# Check for uncommitted changes
+git status
+```
+
+### Regular Maintenance Tasks
+1. **Weekly:** Update translations if content changes
+2. **Monthly:** Review build logs for warnings
+3. **Quarterly:** Update dependencies in requirements.txt
+4. **As needed:** Test cross-browser compatibility
+
+### Performance Considerations
+- **Static site advantages:**
+  - No server-side processing needed
+  - CDN-friendly architecture
+  - Fast loading times
+  - High availability
+
+- **Build optimization:**
+  - Minify CSS/JS assets
+  - Optimize images
+  - Implement caching headers
+
+## Troubleshooting
+
+### Common Build Issues
+
+**1. Translation Compilation Errors**
+```bash
+# Check .po file syntax
+msgfmt --check locales/fr/LC_MESSAGES/messages.po
+
+# Verify translation completeness
+pybabel compile -d locales --statistics
+```
+
+**2. Template Rendering Errors**
+```bash
+# Test template syntax
+python -c "from jinja2 import Template; Template(open('templates/index.html.j2').read())"
+
+# Check for missing translation keys
+python generate_site.py build --verbose
+```
+
+**3. JavaScript Escaping Issues**
+```bash
+# Check for unescaped apostrophes in French
+grep -n "'" locales/fr*/LC_MESSAGES/messages.po
+
+# Verify generated JavaScript syntax
+node -c ../index.html  # Extract JS and test
+```
+
+**4. Deployment Path Issues**
+```bash
+# Verify target directory exists
+ls -la ../
+
+# Check file permissions
+python generate_site.py deploy --target ../ --verbose
+```
+
+**5. Version Sync Problems**
+```bash
+# Check version consistency
+cat build/config/site_config.json package.json | grep version
+
+# Reset version if out of sync
+npm version patch --no-git-tag-version
+```
+
+### Debug Mode
+Enable verbose logging:
+```bash
+python generate_site.py build --verbose
+python generate_site.py validate --debug
+```
+
+## Security Best Practices
+
+### Build Security
+1. **Dependencies:** Regularly update requirements.txt packages
+2. **Templates:** Validate all template variables and filters
+3. **Static Assets:** Scan for embedded sensitive data
+4. **JavaScript:** Validate syntax across browsers
+
+### Deployment Security
+1. **Git:** Never commit sensitive configuration files
+2. **Permissions:** Set appropriate file permissions on deployment
+3. **Validation:** Always validate before deploying to production
+4. **Backups:** Maintain backups of working deployments
+
+## Production Deployment
+
+### Static Site Hosting Options
+
+#### Option A: GitHub Pages
+```bash
+# Deploy directly from repository
+git push origin main
+
+# GitHub Pages builds automatically from root directory
+```
+
+#### Option B: Netlify
+```bash
+# Connect repository to Netlify
+# Set build command: cd build && python generate_site.py build && python generate_site.py deploy --target ../
+# Set publish directory: /
+```
+
+#### Option C: CDN + Object Storage
+```bash
+# Deploy to S3, Google Cloud Storage, etc.
+cd build
+python generate_site.py build
+python generate_site.py deploy --target /tmp/emoty-site
+aws s3 sync /tmp/emoty-site s3://your-bucket --delete
+```
+
+### Performance Optimization
+```bash
+# Minify HTML (optional)
+pip install htmlmin
+python -c "import htmlmin; print(htmlmin.minify(open('../index.html').read()))"
+
+# Optimize images
+pip install Pillow
+python -c "from PIL import Image; img = Image.open('static/logo.png'); img.save('static/logo-optimized.png', optimize=True)"
+
+# Enable compression
+# Configure gzip/brotli on your web server
+```
+
+This updated guide focuses on the static site generator and modern GitHub CI/CD workflow, with optional backend services as needed.
