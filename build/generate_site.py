@@ -76,6 +76,7 @@ class SiteGenerator:
         """Compile PO files to MO files for all locales."""
         click.echo("Compiling translations...")
         
+        # Compile configured languages
         for locale in self.config['languages'].keys():
             po_file = self.locales_dir / locale / 'LC_MESSAGES' / 'messages.po'
             mo_file = self.locales_dir / locale / 'LC_MESSAGES' / 'messages.mo'
@@ -91,6 +92,26 @@ class SiteGenerator:
                     write_mo(f, catalog)
                 
                 click.echo(f"  Compiled {locale}: {po_file} -> {mo_file}")
+            else:
+                click.echo(f"  Warning: {po_file} not found")
+        
+        # Also compile formal French (fr) locale used for privacy policy
+        fr_locale = 'fr'
+        if fr_locale not in self.config['languages'].keys():
+            po_file = self.locales_dir / fr_locale / 'LC_MESSAGES' / 'messages.po'
+            mo_file = self.locales_dir / fr_locale / 'LC_MESSAGES' / 'messages.mo'
+            
+            if po_file.exists():
+                from babel.messages.pofile import read_po
+                from babel.messages.mofile import write_mo
+                
+                with open(po_file, 'rb') as f:
+                    catalog = read_po(f)
+                
+                with open(mo_file, 'wb') as f:
+                    write_mo(f, catalog)
+                
+                click.echo(f"  Compiled {fr_locale}: {po_file} -> {mo_file}")
             else:
                 click.echo(f"  Warning: {po_file} not found")
     

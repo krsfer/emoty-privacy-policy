@@ -689,7 +689,7 @@ msgstr "Aidez-nous à personnaliser vos invitations aux tests bêta (50 caractè
 
 #: index.html.j2:91
 msgid "signup.consent_label"
-msgstr "J'accepte de recevoir des e-mails de tests bêta d'Emoty"
+msgstr "J\\'accepte de recevoir des e-mails de tests bêta d\\'Emoty"
 
 #: index.html.j2:94
 msgid "signup.consent_help_before"
@@ -701,7 +701,7 @@ msgstr "politique de confidentialité"
 
 #: index.html.j2:97
 msgid "signup.button"
-msgstr "S'inscrire aux Tests Bêta"
+msgstr "S\\'inscrire aux Tests Bêta"
 
 #: index.html.j2:100
 msgid "signup.success_title"
