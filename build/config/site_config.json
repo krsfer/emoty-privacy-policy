@@ -9,8 +9,8 @@
       "hreflang": "en",
       "alternate_url": "https://emoty.fr/en-GB/"
     },
-    "fr": {
-      "code": "fr",
+    "fr-tu": {
+      "code": "fr-tu",
       "name": "Français",
       "path": "/",
       "hreflang": "fr",
@@ -33,6 +33,6 @@
     ],
     "storage_key": "emoty_language_preference",
     "redirect_delay": 0,
-    "default_french_locale": "fr"
+    "default_french_locale": "fr-tu"
   }
 }

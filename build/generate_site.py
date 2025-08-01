@@ -56,8 +56,8 @@ class SiteGenerator:
         
         # Add alternate language info
         if locale == 'en':
-            other_locale = 'fr'
-        elif locale == 'fr':
+            other_locale = 'fr-tu'
+        elif locale == 'fr-tu':
             other_locale = 'en'
         else:
             other_locale = 'en' # Default to English if unknown locale
@@ -116,7 +116,7 @@ class SiteGenerator:
             privacy_policy_url=lang_config['privacy_policy_url'],
             path=lang_config['path'],
             language_detection=self.config.get('language_detection', {}),
-            french_path=self.config['languages']['fr']['path'],
+            french_path=self.config['languages']['fr-tu']['path'],
             english_path=self.config['languages']['en']['path']
         )
         
@@ -124,11 +124,14 @@ class SiteGenerator:
     
     def generate_privacy_policy_page(self, locale: str) -> str:
         """Generate privacy-policy.html for a specific locale."""
-        # Load translations
-        translations = self._get_translations(locale)
+        # For privacy policy, use formal French (fr) instead of informal (fr-tu)
+        privacy_locale = 'fr' if locale == 'fr-tu' else locale
+        
+        # Load translations (use formal French for privacy policy)
+        translations = self._get_translations(privacy_locale)
         self.env.install_gettext_translations(translations)
         
-        # Get language configuration
+        # Get language configuration (still use original locale for paths)
         lang_config = self._get_language_config(locale)
         
         # Update config with author email
@@ -136,7 +139,7 @@ class SiteGenerator:
         config['author_email'] = 'archer.chris@gmail.com'
         
         # Update privacy policy URL for alternate language
-        other_locale = 'fr' if locale == 'en' else 'en'
+        other_locale = 'fr-tu' if locale == 'en' else 'en'
         other_lang = self.config['languages'][other_locale]
         privacy_alternate_url = f"{other_lang['alternate_url']}privacy-policy"
         
@@ -182,8 +185,8 @@ class SiteGenerator:
 
         # Determine alternate ELI5 URL and path
         if locale == 'en':
-            eli5_alternate_locale = 'fr'
-        elif locale == 'fr':
+            eli5_alternate_locale = 'fr-tu'
+        elif locale == 'fr-tu':
             eli5_alternate_locale = 'en'
         else:
             eli5_alternate_locale = 'en' # Default to English ELI5
@@ -222,7 +225,7 @@ class SiteGenerator:
         project_root = self.build_dir.parent
         if locale == 'en':
             changelog_path = project_root / 'docs' / 'CHANGELOG.md'
-        elif locale == 'fr':
+        elif locale == 'fr-tu':
             changelog_path = project_root / 'docs' / 'CHANGELOG.fr.md'
         else:
             changelog_path = project_root / 'docs' / 'CHANGELOG.md'  # Default to English
@@ -242,7 +245,7 @@ class SiteGenerator:
         if locale == 'en':
             # English changelog, alternate is French
             changelog_alternate_path = "/"
-        elif locale == 'fr':
+        elif locale == 'fr-tu':
             # French changelog, alternate is English  
             changelog_alternate_path = "/en-GB/"
         else:
@@ -290,7 +293,7 @@ class SiteGenerator:
                 locale_dir = self.output_dir / 'en-GB'
                 locale_dir.mkdir(exist_ok=True)
                 output_path = locale_dir / 'index.html'
-            elif locale == 'fr':
+            elif locale == 'fr-tu':
                 # Informal French goes to root (default)
                 output_path = self.output_dir / 'index.html'
             
@@ -309,7 +312,7 @@ class SiteGenerator:
                 privacy_dir = self.output_dir / 'en-GB' / 'privacy-policy'
                 privacy_dir.mkdir(parents=True, exist_ok=True)
                 privacy_output_path = privacy_dir / 'index.html'
-            elif locale == 'fr':
+            elif locale == 'fr-tu':
                 # Informal French privacy policy goes to root privacy-policy
                 privacy_dir = self.output_dir / 'privacy-policy'
                 privacy_dir.mkdir(exist_ok=True)
@@ -330,7 +333,7 @@ class SiteGenerator:
                 eli5_dir = self.output_dir / 'en-GB' / 'eli5'
                 eli5_dir.mkdir(parents=True, exist_ok=True)
                 eli5_output_path = eli5_dir / 'index.html'
-            elif locale == 'fr':
+            elif locale == 'fr-tu':
                 # Informal French ELI5 is at root eli5 (default French)
                 eli5_dir = self.output_dir / 'eli5'
                 eli5_dir.mkdir(exist_ok=True)
@@ -349,7 +352,7 @@ class SiteGenerator:
                 changelog_dir = self.output_dir / 'en-GB' / 'changelog'
                 changelog_dir.mkdir(parents=True, exist_ok=True)
                 changelog_output_path = changelog_dir / 'index.html'
-            elif locale == 'fr':
+            elif locale == 'fr-tu':
                 # Informal French Changelog is at root changelog
                 changelog_dir = self.output_dir / 'changelog'
                 changelog_dir.mkdir(exist_ok=True)
@@ -409,7 +412,7 @@ class SiteGenerator:
             project='Emoty Website',
             version='1.0',
             copyright_holder='Christopher Archer',
-            msgid_bugs_address='support@emoty.fr',
+            msgid_bugs_address='support@emoty.fr-tu',
             charset='utf-8'
         )
         
