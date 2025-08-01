@@ -482,9 +482,9 @@
         </div>
         
         <div class="feature">
-            <h3>&#x1F4C4; features.changelog.title</h3>
-            <p>features.changelog.description</p>
-            <p><a href="/changelog/" style="color: #667eea; text-decoration: none; font-weight: 500;">features.changelog.link_text →</a></p>
+            <h3>&#x1F4C4; Notes de Version</h3>
+            <p>Restez informé des dernières fonctionnalités, améliorations et corrections de bugs de l'application Android Emoty.</p>
+            <p><a href="/changelog/" style="color: #667eea; text-decoration: none; font-weight: 500;">Voir les Dernières Mises à Jour →</a></p>
         </div>
     </div>
 
@@ -503,26 +503,26 @@
     </div>
 
     <div class="signup-section">
-        <h2>signup.title</h2>
-        <p>signup.description</p>
+        <h2>🧪 Rejoignez les Tests Bêta</h2>
+        <p>Soyez parmi les premiers à tester les nouvelles fonctionnalités d'Emoty ! Inscrivez-vous pour recevoir des invitations aux tests bêta et des mises à jour exclusives.</p>
         
         <form id="signupForm" class="signup-form">
             <div class="form-group">
-                <label for="email">signup.email_label</label>
+                <label for="email">Adresse e-mail :</label>
                 <input type="email" id="email" name="email" required 
                        aria-describedby="email-help" 
-                       placeholder="signup.email_placeholder">
-                <div id="email-help" class="help-text">signup.email_help</div>
+                       placeholder="votre@email.com">
+                <div id="email-help" class="help-text">Nous utiliserons cette adresse uniquement pour les invitations aux tests bêta</div>
                 <div id="email-error" class="error-message" aria-live="polite"></div>
             </div>
             
             <div class="form-group">
-                <label for="username">signup.username_label</label>
+                <label for="username">Nom d'utilisateur (optionnel) :</label>
                 <input type="text" id="username" name="username" 
                        aria-describedby="username-help" 
-                       placeholder="signup.username_placeholder" 
+                       placeholder="Votre nom d'utilisateur préféré" 
                        maxlength="50">
-                <div id="username-help" class="help-text">signup.username_help</div>
+                <div id="username-help" class="help-text">Aidez-nous à personnaliser vos invitations aux tests bêta (50 caractères max)</div>
                 <div id="username-error" class="error-message" aria-live="polite"></div>
             </div>
             
@@ -530,25 +530,25 @@
                 <label class="checkbox-container">
                     <input type="checkbox" id="consent" name="consent" required aria-describedby="consent-help">
                     <span class="checkmark"></span>
-                    signup.consent_label
+                    J'accepte de recevoir des e-mails de tests bêta d'Emoty
                 </label>
                 <div id="consent-help" class="help-text">
-                    signup.consent_help_before <a href="/privacy-policy">signup.consent_help_link</a>.
+                    Vous pouvez vous désabonner à tout moment. Consultez notre <a href="/privacy-policy">politique de confidentialité</a>.
                 </div>
                 <div id="consent-error" class="error-message" aria-live="polite"></div>
             </div>
             
             <button type="submit" class="button signup-button" id="submitBtn">
-                signup.button
+                S'inscrire aux Tests Bêta
             </button>
             
             <div id="signup-success" class="success-message" style="display: none;">
-                <h3>signup.success_title</h3>
-                <p>signup.success_message_before <span id="confirmed-email"></span>. 
-                signup.success_message_after</p>
-                <p><strong>signup.success_important</strong> signup.success_expires</p>
+                <h3>🎉 Merci ! Veuillez Confirmer Votre Inscription</h3>
+                <p>Merci de rejoindre le programme bêta ! Nous avons envoyé un e-mail de confirmation à <span id="confirmed-email"></span>. 
+                Cliquez sur le lien dans l'e-mail pour finaliser votre inscription aux tests bêta.</p>
+                <p><strong>Important :</strong> Le lien expire dans 48 heures.</p>
                 <button type="button" id="resendBtn" class="button secondary" style="display: none;">
-                    signup.resend_button
+                    Renvoyer l'E-mail de Confirmation
                 </button>
             </div>
             
@@ -558,11 +558,11 @@
 
 
         <footer>
-            <p>&copy; 2025 Christopher Archer • Tous droits réservés • v2.13.1</p>
+            <p>&copy; 2025 Christopher Archer • Tous droits réservés • v2.14.0</p>
             <p>
                 <a href="/privacy-policy">Politique de Confidentialité</a> | 
                 <a href="/eli5/">Version Simplifiée</a> | 
-                <a href="/changelog/">footer.changelog</a> | 
+                <a href="/changelog/">Journal des Modifications</a> | 
                 <a href="mailto:support@emoty.fr">Contact</a>
             </p>
         </footer>
@@ -665,11 +665,11 @@
         
         emailRequired: "L'adresse email est requise.",
         emailInvalid: 'Veuillez entrer une adresse email valide.',
-        consentRequired: 'Tu dois accepter de recevoir des emails pour t\'inscrire aux tests beta.',
+        consentRequired: 'Vous devez accepter de recevoir des emails pour vous inscrire aux tests beta.',
         signupInProgress: 'Inscription en cours...', 
-        signupButton: 'signup.button',
+        signupButton: 'S'inscrire aux Tests Bêta',
         resendInProgress: 'Envoi en cours...', 
-        resendButton: 'signup.resend_button',
+        resendButton: 'Renvoyer l'E-mail de Confirmation',
         resendSuccess: 'Email renvoyé !',
         signupError: 'Une erreur est survenue lors de l\'inscription. Veuillez réessayer.',
         emailAlreadyExists: 'Cette adresse email est déjà inscrite ou invalide.',

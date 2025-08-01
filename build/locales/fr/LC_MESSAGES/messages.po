@@ -55,6 +55,10 @@ msgstr "Contact"
 msgid "footer.eli5"
 msgstr "Version Simplifiée"
 
+#: base.html.j2:245
+msgid "footer.changelog"
+msgstr "Journal des Modifications"
+
 #: eli5.html.j2:11
 msgid "eli5.title"
 msgstr "Fais des Images Amusantes avec des Emojis ! "
@@ -166,6 +170,18 @@ msgstr "Commandes Vocales"
 #: index.html.j2:61
 msgid "features.voice_commands.description"
 msgstr "Créez des motifs mains-libres avec des commandes vocales en anglais et en français avec détection automatique de la langue."
+
+#: index.html.j2:65
+msgid "features.changelog.title"
+msgstr "Notes de Version"
+
+#: index.html.j2:66
+msgid "features.changelog.description"
+msgstr "Restez informé des dernières fonctionnalités, améliorations et corrections de bugs de l'application Android Emoty."
+
+#: index.html.j2:67
+msgid "features.changelog.link_text"
+msgstr "Voir les Dernières Mises à Jour"
 
 # Call to Action
 #: index.html.j2:66
@@ -641,3 +657,72 @@ msgstr "Règlement Général sur la Protection des Données (RGPD) le cas éché
 #: privacy-policy.html.j2:192
 msgid "privacy.legal.point4"
 msgstr "California Consumer Privacy Act (CCPA) le cas échéant"
+
+#: index.html.j2:80
+msgid "signup.title"
+msgstr "🧪 Rejoignez les Tests Bêta"
+
+#: index.html.j2:81
+msgid "signup.description"
+msgstr "Soyez parmi les premiers à tester les nouvelles fonctionnalités d'Emoty ! Inscrivez-vous pour recevoir des invitations aux tests bêta et des mises à jour exclusives."
+
+#: index.html.j2:84
+msgid "signup.email_label"
+msgstr "Adresse e-mail :"
+
+#: index.html.j2:86
+msgid "signup.email_placeholder"
+msgstr "votre@email.com"
+
+#: index.html.j2:87
+msgid "signup.email_help"
+msgstr "Nous utiliserons cette adresse uniquement pour les invitations aux tests bêta"
+
+msgid "signup.username_label"
+msgstr "Nom d'utilisateur (optionnel) :"
+
+msgid "signup.username_placeholder"
+msgstr "Votre nom d'utilisateur préféré"
+
+msgid "signup.username_help"
+msgstr "Aidez-nous à personnaliser vos invitations aux tests bêta (50 caractères max)"
+
+#: index.html.j2:91
+msgid "signup.consent_label"
+msgstr "J'accepte de recevoir des e-mails de tests bêta d'Emoty"
+
+#: index.html.j2:94
+msgid "signup.consent_help_before"
+msgstr "Vous pouvez vous désabonner à tout moment. Consultez notre"
+
+#: index.html.j2:94
+msgid "signup.consent_help_link"
+msgstr "politique de confidentialité"
+
+#: index.html.j2:97
+msgid "signup.button"
+msgstr "S'inscrire aux Tests Bêta"
+
+#: index.html.j2:100
+msgid "signup.success_title"
+msgstr "🎉 Merci ! Veuillez Confirmer Votre Inscription"
+
+#: index.html.j2:101
+msgid "signup.success_message_before"
+msgstr "Merci de rejoindre le programme bêta ! Nous avons envoyé un e-mail de confirmation à"
+
+#: index.html.j2:102
+msgid "signup.success_message_after"
+msgstr "Cliquez sur le lien dans l'e-mail pour finaliser votre inscription aux tests bêta."
+
+#: index.html.j2:103
+msgid "signup.success_important"
+msgstr "Important :"
+
+#: index.html.j2:103
+msgid "signup.success_expires"
+msgstr "Le lien expire dans 48 heures."
+
+#: index.html.j2:104
+msgid "signup.resend_button"
+msgstr "Renvoyer l'E-mail de Confirmation"
