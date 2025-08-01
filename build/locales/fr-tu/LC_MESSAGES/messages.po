@@ -241,7 +241,7 @@ msgstr "Aide-nous à personnaliser tes invitations aux tests (50 caractères max
 
 #: index.html.j2:91
 msgid "signup.consent_label"
-msgstr "J\\'accepte de recevoir des emails de test beta d\\'Emoty"
+msgstr "J\\\\'accepte de recevoir des emails de test beta d\\\\'Emoty"
 
 #: index.html.j2:94
 msgid "signup.consent_help_before"
