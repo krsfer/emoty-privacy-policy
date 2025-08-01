@@ -10,7 +10,7 @@ et ce projet adhère au [Versionnage Sémantique](https://semver.org/lang/fr/).
 ### [App v1.9.3] - 1er août 2025
 
 #### 🔧 Corrections Critiques - Persistance des Emojis Noto
-- **CORRIGÉ**: Les emojis Noto maintiennent maintenant correctement leur apparence monochrome après le redémarrage de l'app
+- **CORRIGÉ**: Les emojis Noto conservent désormais correctement leur apparence monochrome après le redémarrage de l'app
 - **RÉSOLU**: Le système de persistance des motifs perdait l'état monochrome lors de la fermeture et réouverture de l'app
 - **AMÉLIORÉ**: SequenceStateSerializer préserve maintenant la propriété isMonochrome à travers tous les mécanismes de persistance
 - **OPTIMISÉ**: La persistance SharedPreferences de PatternOperationsManager inclut le suivi de l'état monochrome
