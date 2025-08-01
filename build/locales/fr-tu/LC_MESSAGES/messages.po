@@ -176,6 +176,18 @@ msgstr "Commandes Vocales"
 msgid "features.voice_commands.description"
 msgstr "Crée des motifs mains-libres avec des commandes vocales en anglais et en français avec détection automatique de la langue."
 
+#: index.html.j2:65
+msgid "features.changelog.title"
+msgstr "Notes de Version"
+
+#: index.html.j2:66
+msgid "features.changelog.description"
+msgstr "Reste au courant des dernières fonctionnalités, améliorations et corrections de bugs de l'app Android Emoty."
+
+#: index.html.j2:67
+msgid "features.changelog.link_text"
+msgstr "Voir les Dernières Mises à Jour"
+
 # Call to Action
 #: index.html.j2:66
 msgid "cta.title"

@@ -175,6 +175,18 @@ msgstr "Voice Commands"
 msgid "features.voice_commands.description"
 msgstr "Create patterns hands-free with voice commands in English and French with automatic language detection."
 
+#: index.html.j2:65
+msgid "features.changelog.title"
+msgstr "Release Notes"
+
+#: index.html.j2:66
+msgid "features.changelog.description"
+msgstr "Stay updated with the latest Emoty Android app features, improvements, and bug fixes."
+
+#: index.html.j2:67
+msgid "features.changelog.link_text"
+msgstr "View Latest Updates"
+
 # Call to Action
 #: index.html.j2:66
 msgid "cta.title"

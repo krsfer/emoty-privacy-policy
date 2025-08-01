@@ -60,6 +60,12 @@
             <h3>&#x1F399; {{ _('features.voice_commands.title') }}</h3>
             <p>{{ _('features.voice_commands.description') }}</p>
         </div>
+        
+        <div class="feature">
+            <h3>&#x1F4C4; {{ _('features.changelog.title') }}</h3>
+            <p>{{ _('features.changelog.description') }}</p>
+            <p><a href="{% if locale == 'en' %}/en-GB/changelog/{% else %}/changelog/{% endif %}" style="color: #667eea; text-decoration: none; font-weight: 500;">{{ _('features.changelog.link_text') }} →</a></p>
+        </div>
     </div>
 
     <div class="cta">
