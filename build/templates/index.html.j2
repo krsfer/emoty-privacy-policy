@@ -118,7 +118,7 @@
                 <div id="consent-error" class="error-message" aria-live="polite"></div>
             </div>
             
-            <button type="submit" class="button signup-button" id="submitBtn">
+            <button type="submit" class="button signup-button" id="submitBtn" disabled>
                 {{ _('signup.button') }}
             </button>
             
@@ -298,9 +298,18 @@
         if (!form) return;
         
         form.addEventListener('submit', handleSubmit);
-        emailInput.addEventListener('input', clearEmailError);
-        emailInput.addEventListener('blur', validateEmail);
-        usernameInput.addEventListener('input', clearUsernameError);
+        emailInput.addEventListener('input', function() {
+            clearEmailError();
+            updateSubmitButtonState();
+        });
+        emailInput.addEventListener('blur', function() {
+            validateEmail();
+            updateSubmitButtonState();
+        });
+        usernameInput.addEventListener('input', function() {
+            clearUsernameError();
+            updateSubmitButtonState();
+        });
         usernameInput.addEventListener('blur', function() {
             const username = usernameInput.value.trim();
             if (!validateUsername(username)) {
@@ -308,12 +317,19 @@
             } else {
                 clearUsernameError();
             }
+            updateSubmitButtonState();
         });
-        consentInput.addEventListener('change', clearConsentError);
+        consentInput.addEventListener('change', function() {
+            clearConsentError();
+            updateSubmitButtonState();
+        });
         
         if (resendBtn) {
             resendBtn.addEventListener('click', handleResendConfirmation);
         }
+        
+        // Initial button state check
+        updateSubmitButtonState();
     }
     
     function handleSubmit(e) {
@@ -330,6 +346,48 @@
         submitSignup(email, username, consent);
     }
     
+    function updateSubmitButtonState() {
+        if (!submitBtn) return;
+        
+        const isFormValid = isFormValidForSubmission();
+        
+        if (isFormValid) {
+            submitBtn.disabled = false;
+            submitBtn.classList.remove('disabled');
+            submitBtn.style.opacity = '1';
+            submitBtn.style.cursor = 'pointer';
+        } else {
+            submitBtn.disabled = true;
+            submitBtn.classList.add('disabled');
+            submitBtn.style.opacity = '0.5';
+            submitBtn.style.cursor = 'not-allowed';
+        }
+    }
+    
+    function isFormValidForSubmission() {
+        // Check email - must be present and valid format
+        const email = emailInput.value.trim();
+        const emailRegex = /^[\S@]+@[\S@]+\.[\S@]+$/;
+        if (!email || !emailRegex.test(email)) {
+            return false;
+        }
+        
+        // Check username - if present, must be valid length
+        if (usernameInput) {
+            const username = usernameInput.value.trim();
+            if (!validateUsername(username)) {
+                return false;
+            }
+        }
+        
+        // Check consent - must be checked
+        if (!consentInput.checked) {
+            return false;
+        }
+        
+        return true;
+    }
+
     function validateForm() {
         let isValid = true;
         
@@ -554,13 +612,15 @@
     }
     
     function setFormLoading(loading) {
-        submitBtn.disabled = loading;
-        submitBtn.textContent = loading ? translations.signupInProgress : translations.signupButton;
-        
         if (loading) {
+            submitBtn.disabled = true;
+            submitBtn.textContent = translations.signupInProgress;
             submitBtn.style.opacity = '0.7';
+            submitBtn.style.cursor = 'not-allowed';
         } else {
-            submitBtn.style.opacity = '1';
+            submitBtn.textContent = translations.signupButton;
+            // Restore validation state instead of automatically enabling
+            updateSubmitButtonState();
         }
     }
     
