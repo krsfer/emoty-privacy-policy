@@ -13,13 +13,29 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
     <title>Emoty - Emoji Pattern Creator</title>
     <style>
+        /* Arsha-inspired CSS Variables for consistent theming */
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --accent-color: #009bd9;
+            --text-dark: #333;
+            --text-light: #666;
+            --background-light: #f5f5f5;
+            --white: #ffffff;
+            --border-color: #e0e0e0;
+            --hover-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            --card-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+        
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 0;
-            background: #f5f5f5;
-            color: #333;
+            background: var(--background-light);
+            color: var(--text-dark);
+            scroll-behavior: smooth;
         }
         .container {
             max-width: 800px;
@@ -29,11 +45,18 @@
         header {
             text-align: center;
             padding: 40px 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--white);
             border-radius: 10px;
             margin-bottom: 30px;
             position: relative;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+        }
+        
+        header:hover {
+            box-shadow: var(--hover-shadow);
+            transform: translateY(-2px);
         }
         .emoty-logo {
             display: flex;
@@ -74,17 +97,20 @@
             right: 20px;
         }
         .lang-switch a {
-            color: white;
+            color: var(--white);
             text-decoration: none;
-            background: rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.2);
             padding: 8px 16px;
-            border-radius: 20px;
-            transition: background 0.3s;
-            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 25px;
+            transition: var(--transition);
+            border: 1px solid rgba(255,255,255,0.3);
+            font-weight: 500;
+            backdrop-filter: blur(10px);
         }
         .lang-switch a:hover {
-            background: rgba(255,255,255,0.4);
-            border-color: rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.3);
+            border-color: rgba(255,255,255,0.5);
+            transform: translateY(-1px);
         }
         .home-button {
             position: absolute;
@@ -92,17 +118,20 @@
             left: 20px;
         }
         .home-button a {
-            color: white;
+            color: var(--white);
             text-decoration: none;
-            background: rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.2);
             padding: 8px 16px;
-            border-radius: 20px;
-            transition: background 0.3s;
-            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 25px;
+            transition: var(--transition);
+            border: 1px solid rgba(255,255,255,0.3);
+            font-weight: 500;
+            backdrop-filter: blur(10px);
         }
         .home-button a:hover {
-            background: rgba(255,255,255,0.4);
-            border-color: rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.3);
+            border-color: rgba(255,255,255,0.5);
+            transform: translateY(-1px);
         }
         .features {
             display: grid;
@@ -111,65 +140,154 @@
             margin: 30px 0;
         }
         .feature {
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
         }
+        
+        .feature::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            transform: scaleX(0);
+            transition: var(--transition);
+        }
+        
         .feature:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            transform: translateY(-8px);
+            box-shadow: var(--hover-shadow);
         }
+        
+        .feature:hover::before {
+            transform: scaleX(1);
+        }
+        
         .feature h3 {
-            color: #667eea;
+            color: var(--primary-color);
             margin-top: 0;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            font-weight: 600;
+            font-size: 1.2em;
+        }
+        
+        .feature p {
+            color: var(--text-light);
+            margin-bottom: 0;
+            line-height: 1.7;
         }
         .cta {
             text-align: center;
-            margin: 40px 0;
-            padding: 30px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin: 50px 0;
+            padding: 40px 30px;
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+        
+        .cta:hover {
+            box-shadow: var(--hover-shadow);
+        }
+        
+        .cta h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .cta p {
+            color: var(--text-light);
+            margin-bottom: 25px;
+            font-size: 1.1em;
+            line-height: 1.6;
         }
         .button {
             display: inline-block;
-            padding: 15px 30px;
-            background: #667eea;
-            color: white;
+            padding: 16px 32px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
             text-decoration: none;
             border-radius: 30px;
             font-size: 1.1em;
-            transition: background 0.3s, transform 0.3s;
-            margin: 10px;
+            font-weight: 600;
+            transition: var(--transition);
+            margin: 8px;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            text-transform: capitalize;
+            letter-spacing: 0.5px;
         }
+        
+        .button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s;
+        }
+        
+        .button:hover::before {
+            left: 100%;
+        }
+        
         .button:hover {
-            background: #764ba2;
-            transform: scale(1.05);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
         }
+        
         .button.secondary {
-            background: #f0f0f0;
-            color: #333;
+            background: var(--white);
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
         }
+        
         .button.secondary:hover {
-            background: #e0e0e0;
+            background: var(--primary-color);
+            color: var(--white);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
         }
         footer {
             text-align: center;
-            padding: 20px;
-            color: #666;
-            border-top: 1px solid #ddd;
-            margin-top: 40px;
+            padding: 30px 20px;
+            color: var(--text-light);
+            border-top: 1px solid var(--border-color);
+            margin-top: 60px;
+            background: var(--white);
+            border-radius: 15px 15px 0 0;
         }
+        
+        footer p {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+        
         footer a {
-            color: #667eea;
+            color: var(--primary-color);
             text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
         }
+        
         footer a:hover {
+            color: var(--secondary-color);
             text-decoration: underline;
         }
 
@@ -193,23 +311,45 @@
         }
         
         .signup-section {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            margin: 40px 0;
+            background: var(--white);
+            padding: 40px 35px;
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--border-color);
+            margin: 50px 0;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .signup-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+        
+        .signup-section:hover {
+            box-shadow: var(--hover-shadow);
         }
         
         .signup-section h2 {
-            color: #667eea;
+            color: var(--primary-color);
             text-align: center;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            font-weight: 600;
+            font-size: 1.8em;
         }
         
         .signup-section > p {
             text-align: center;
-            color: #666;
-            margin-bottom: 30px;
+            color: var(--text-light);
+            margin-bottom: 35px;
+            line-height: 1.6;
+            font-size: 1.1em;
         }
         
         .signup-form {
@@ -231,19 +371,22 @@
         .form-group input[type="email"],
         .form-group input[type="text"] {
             width: 100%;
-            padding: 12px 16px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
+            padding: 14px 18px;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
             font-size: 16px;
-            transition: border-color 0.3s, box-shadow 0.3s;
+            transition: var(--transition);
             box-sizing: border-box;
+            background: var(--white);
+            font-family: inherit;
         }
         
         .form-group input[type="email"]:focus,
         .form-group input[type="text"]:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
+            transform: translateY(-1px);
         }
         
         .form-group input[type="email"]:invalid {
@@ -376,10 +519,78 @@
             box-shadow: none !important;
         }
         
+        /* Arsha-inspired animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        /* Apply animations to elements */
+        .container > header {
+            animation: fadeInDown 0.8s ease-out;
+        }
+        
+        .features .feature {
+            animation: fadeInUp 0.6s ease-out;
+            animation-fill-mode: both;
+        }
+        
+        .features .feature:nth-child(1) { animation-delay: 0.1s; }
+        .features .feature:nth-child(2) { animation-delay: 0.2s; }
+        .features .feature:nth-child(3) { animation-delay: 0.3s; }
+        .features .feature:nth-child(4) { animation-delay: 0.4s; }
+        .features .feature:nth-child(5) { animation-delay: 0.5s; }
+        .features .feature:nth-child(6) { animation-delay: 0.6s; }
+        
+        .cta, .signup-section {
+            animation: fadeInUp 0.8s ease-out;
+            animation-delay: 0.2s;
+            animation-fill-mode: both;
+        }
+        
+        .emoji-demos {
+            animation: slideInLeft 0.8s ease-out;
+        }
+        
+        /* Responsive Design */
         @media (max-width: 600px) {
             .emoty-text { font-size: 2em; }
             .tagline { font-size: 1.1em; }
-            .features { grid-template-columns: 1fr; }
+            .features { 
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            .feature {
+                padding: 25px 20px;
+            }
             .lang-switch {
                 position: absolute;
                 top: 15px;
@@ -399,11 +610,40 @@
                 font-size: 0.9em;
             }
             .signup-section {
-                padding: 20px;
+                padding: 30px 20px;
+                margin: 30px 0;
             }
             .checkbox-container {
                 font-size: 0.95em;
                 line-height: 1.4;
+            }
+            .cta {
+                padding: 30px 20px;
+                margin: 40px 0;
+            }
+            .button {
+                padding: 14px 24px;
+                font-size: 1em;
+                margin: 6px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+            .features {
+                gap: 12px;
+            }
+            .feature {
+                padding: 20px 15px;
+            }
+            .emoty-text {
+                font-size: 1.6em;
+                letter-spacing: 0.2em;
+            }
+            .signup-section h2 {
+                font-size: 1.5em;
             }
         }
     </style>
@@ -456,7 +696,7 @@
 
 
         <footer>
-            <p>&copy; 2025 Christopher Archer • All rights reserved • v2.16.7</p>
+            <p>&copy; 2025 Christopher Archer • All rights reserved • v2.16.8</p>
             <p>
                 <a href="/en-GB/privacy-policy">Privacy Policy</a> | 
                 <a href="/en-GB/eli5/">Simplified Version</a> | 
