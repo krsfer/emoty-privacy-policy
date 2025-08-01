@@ -253,7 +253,7 @@ msgstr "politique de confidentialité"
 
 #: index.html.j2:97
 msgid "signup.button"
-msgstr "S\\'inscrire aux Tests Beta"
+msgstr "S'inscrire aux Tests Beta"
 
 #: index.html.j2:100
 msgid "signup.success_title"
