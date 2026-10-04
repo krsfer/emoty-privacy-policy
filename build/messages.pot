@@ -381,35 +381,35 @@ msgid "privacy.third_party.title"
 msgstr ""
 
 #: privacy-policy.html.j2:120
-msgid "privacy.third_party.claude.title"
+msgid "privacy.third_party.gemini.title"
 msgstr ""
 
 #: privacy-policy.html.j2:122
-msgid "privacy.third_party.claude.purpose"
+msgid "privacy.third_party.gemini.purpose"
 msgstr ""
 
 #: privacy-policy.html.j2:122
-msgid "privacy.third_party.claude.purpose_desc"
+msgid "privacy.third_party.gemini.purpose_desc"
 msgstr ""
 
 #: privacy-policy.html.j2:123
-msgid "privacy.third_party.claude.data_sent"
+msgid "privacy.third_party.gemini.data_sent"
 msgstr ""
 
 #: privacy-policy.html.j2:123
-msgid "privacy.third_party.claude.data_sent_desc"
+msgid "privacy.third_party.gemini.data_sent_desc"
 msgstr ""
 
 #: privacy-policy.html.j2:124
-msgid "privacy.third_party.claude.data_not_sent"
+msgid "privacy.third_party.gemini.data_not_sent"
 msgstr ""
 
 #: privacy-policy.html.j2:124
-msgid "privacy.third_party.claude.data_not_sent_desc"
+msgid "privacy.third_party.gemini.data_not_sent_desc"
 msgstr ""
 
 #: privacy-policy.html.j2:125
-msgid "privacy.third_party.claude.privacy_policy"
+msgid "privacy.third_party.gemini.privacy_policy"
 msgstr ""
 
 #: privacy-policy.html.j2:128
@@ -636,3 +636,80 @@ msgstr ""
 msgid "privacy.legal.point4"
 msgstr ""
 
+msgid "privacy.collection.ai_service.prompt"
+msgstr ""
+
+msgid "privacy.collection.ai_service.prompt_desc"
+msgstr ""
+
+msgid "privacy.collection.ai_service.chat"
+msgstr ""
+
+msgid "privacy.collection.ai_service.chat_desc"
+msgstr ""
+
+msgid "privacy.usage.ai_generation.title"
+msgstr ""
+
+msgid "privacy.usage.ai_generation.point1"
+msgstr ""
+
+msgid "privacy.usage.ai_generation.point2"
+msgstr ""
+
+msgid "privacy.usage.ai_generation.point3"
+msgstr ""
+
+msgid "privacy.third_party.typesafe.title"
+msgstr ""
+
+msgid "privacy.third_party.typesafe.purpose_desc"
+msgstr ""
+
+msgid "privacy.third_party.typesafe.data_sent_desc"
+msgstr ""
+
+msgid "privacy.third_party.typesafe.data_not_sent_desc"
+msgstr ""
+
+msgid "privacy.third_party.firebase.title"
+msgstr ""
+
+msgid "privacy.third_party.firebase.purpose_desc"
+msgstr ""
+
+msgid "privacy.third_party.firebase.data_handled"
+msgstr ""
+
+msgid "privacy.third_party.firebase.data_handled_desc"
+msgstr ""
+
+msgid "privacy.third_party.firebase.record"
+msgstr ""
+
+msgid "privacy.third_party.firebase.record_desc"
+msgstr ""
+
+msgid "privacy.third_party.typesafe.purpose"
+msgstr ""
+
+msgid "privacy.third_party.firebase.purpose"
+msgstr ""
+
+msgid "privacy.third_party.typesafe.data_sent"
+msgstr ""
+
+msgid "privacy.third_party.firebase.data_sent"
+msgstr ""
+
+msgid "privacy.third_party.typesafe.data_not_sent"
+msgstr ""
+
+msgid "privacy.third_party.firebase.data_not_sent"
+msgstr ""
+
+msgid "privacy.third_party.typesafe.privacy_policy"
+msgstr ""
+
+msgid "privacy.third_party.firebase.privacy_policy"
+msgstr ""

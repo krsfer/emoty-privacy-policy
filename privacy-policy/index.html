@@ -713,8 +713,8 @@
 </style>
 
 <h1>Politique de Confidentialité pour Emoty</h1>
-<p><strong>Date d'Entrée en Vigueur:</strong> 19 juin 2025<br />
-<strong>Dernière Mise à Jour:</strong> 19 juin 2025</p>
+<p><strong>Date d'Entrée en Vigueur:</strong> 4 octobre 2026<br />
+<strong>Dernière Mise à Jour:</strong> 4 octobre 2026</p>
 
 <h2>Introduction</h2>
 <p>Bienvenue sur Emoty ! Cette Politique de Confidentialité explique comment nous collectons, utilisons et protégeons vos informations lorsque vous utilisez notre application de création de motifs d'emojis. Nous nous engageons à protéger votre vie privée et à être transparents sur nos pratiques de données.</p>
@@ -736,8 +736,10 @@
 
 <h3>Données du Service IA</h3>
 <ul>
-    <li><strong>Séquences d'Emojis</strong>: Lorsque vous utilisez notre fonction de nommage IA, nous envoyons vos séquences d'emojis au service Claude AI d'Anthropic pour générer des noms de motifs créatifs</li>
-    <li><strong>Aucune Information Personnelle</strong>: Nous n'envoyons aucune information personnelle, identifiant d'appareil ou donnée utilisateur aux services IA</li>
+    <li><strong>Séquences d'Emojis</strong>: Lorsque vous utilisez notre fonction de nommage IA, nous envoyons vos séquences d'emojis au service Gemini de Google pour générer des noms de motifs créatifs</li>
+    <li><strong>Texte que vous saisissez</strong>: Lorsque vous décrivez un motif dans le générateur de motifs IA, le texte que vous saisissez (jusqu'à 500 caractères) est envoyé au service Gemini de Google et à TypeSafe, avec la liste des emojis que l'application peut choisir, afin de proposer des emojis, des noms et des explications adaptés</li>
+    <li><strong>Conversations EmotyBot</strong>: Lorsque vous discutez avec l'assistant IA EmotyBot, vos messages sont envoyés au service Gemini de Google pour générer les réponses</li>
+    <li><strong>Aucune Information Personnelle</strong>: L'application n'ajoute ni votre nom, ni compte, ni coordonnées, ni identifiant d'appareil aux requêtes IA. Tout ce que vous saisissez dans une requête IA est envoyé : merci de ne pas y saisir d'informations personnelles</li>
 </ul>
 
 <h2>Comment Nous Utilisons Vos Informations</h2>
@@ -745,14 +747,21 @@
 <ul>
     <li>Tous vos motifs, préférences et données d'application sont stockés localement sur votre appareil</li>
     <li>Nous utilisons ces données pour fournir les fonctionnalités de l'application, sauvegarder vos créations et maintenir vos préférences</li>
-    <li>Aucune donnée personnelle n'est transmise à nos serveurs</li>
+    <li>Vos motifs, étiquettes et préférences ne nous sont pas envoyés. Les requêtes IA transitent par une Cloud Function que nous exploitons (voir la section Services Tiers)</li>
 </ul>
 
 <h3>Nommage de Motifs par IA</h3>
 <ul>
-    <li>Lorsque vous demandez des noms de motifs générés par l'IA, nous envoyons uniquement votre séquence d'emojis à Claude AI d'Anthropic</li>
+    <li>Lorsque vous demandez des noms de motifs générés par l'IA, nous envoyons uniquement votre séquence d'emojis à Gemini de Google</li>
     <li>Cela aide à générer des noms créatifs et pertinents pour vos motifs</li>
     <li>Aucune information personnelle ou identifiant d'appareil n'est inclus dans ces requêtes</li>
+</ul>
+
+<h3>Génération de Motifs par IA</h3>
+<ul>
+    <li>Lorsque vous décrivez un motif, Gemini propose des motifs, des noms et des explications à partir du texte que vous saisissez, et TypeSafe classe les emojis les plus proches de votre demande</li>
+    <li>Les conversations EmotyBot sont envoyées à Gemini pour générer les réponses</li>
+    <li>L'application n'ajoute aucune information personnelle ni identifiant d'appareil à ces requêtes</li>
 </ul>
 
 <h3>Fonctionnalité de l'Application</h3>
@@ -771,24 +780,40 @@
 
 <h3>Transmission de Données</h3>
 <ul>
-    <li>Limitée aux requêtes de nommage IA (séquences d'emojis uniquement)</li>
+    <li>Limitée aux requêtes IA (séquences d'emojis, texte saisi dans les fonctions IA et messages EmotyBot)</li>
     <li>Toutes les communications réseau utilisent le chiffrement HTTPS sécurisé</li>
     <li>Aucune collecte ou transmission de données en arrière-plan</li>
 </ul>
 
 <h2>Services Tiers</h2>
-<h3>Anthropic Claude AI</h3>
+<h3>Google Gemini</h3>
 <ul>
-    <li><strong>Objectif</strong>: Générer des noms créatifs pour vos motifs d'emojis</li>
-    <li><strong>Données Envoyées</strong>: Uniquement les séquences d'emojis (par ex., ❤️🌸🌟) lorsque vous demandez un nommage IA</li>
-    <li><strong>Données Non Envoyées</strong>: Aucune information personnelle, identifiant d'appareil ou donnée utilisateur</li>
-    <li><strong>Politique de Confidentialité</strong>: <a href="https://www.anthropic.com/privacy">https://www.anthropic.com/privacy</a></li>
+    <li><strong>Objectif</strong>: Générer des noms créatifs et des propositions de motifs, et assurer l'assistance EmotyBot</li>
+    <li><strong>Données Envoyées</strong>: Les séquences d'emojis pour le nommage (par ex., ❤️🌸🌟) ; le texte saisi dans le générateur de motifs IA, avec la liste des emojis que l'application peut choisir ; les messages des conversations EmotyBot</li>
+    <li><strong>Données Non Envoyées</strong>: Aucun nom, compte, coordonnées, identifiant d'appareil ni fichier audio</li>
+    <li><strong>Politique de Confidentialité</strong>: <a href="https://ai.google.dev/gemini-api/terms">https://ai.google.dev/gemini-api/terms</a> · <a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a></li>
+</ul>
+
+<h3>TypeSafe</h3>
+<ul>
+    <li><strong>Objectif</strong>: Classer les emojis qui correspondent le mieux à votre description dans le générateur de motifs IA, pour que la première proposition s'affiche rapidement</li>
+    <li><strong>Données Envoyées</strong>: Le texte saisi dans le générateur de motifs IA, votre langue (anglais ou français) et la liste des noms d'emojis que l'application peut choisir</li>
+    <li><strong>Données Non Envoyées</strong>: Aucun nom, compte, coordonnées, identifiant d'appareil ni fichier audio. TypeSafe reçoit la requête de notre Cloud Function, pas de votre appareil</li>
+    <li><strong>Politique de Confidentialité</strong>: <a href="https://typesafe.ai/legal/privacy-policy">https://typesafe.ai/legal/privacy-policy</a></li>
+</ul>
+
+<h3>Google Firebase (Cloud Functions et App Check)</h3>
+<ul>
+    <li><strong>Objectif</strong>: Nos requêtes IA transitent par des Cloud Functions que nous exploitons dans Google Firebase, ce qui garde les clés des services IA hors de votre appareil. Firebase App Check, qui s'appuie sur Google Play Integrity, permet à ces fonctions de n'accepter que les requêtes provenant d'exemplaires authentiques d'Emoty</li>
+    <li><strong>Données Traitées</strong>: La requête IA elle-même, ainsi qu'un jeton d'attestation de courte durée qu'App Check obtient auprès de Google Play Integrity. Google reçoit l'adresse réseau de votre appareil lorsqu'il se connecte</li>
+    <li><strong>Ce Que Nous Enregistrons</strong>: Pour chaque requête : l'application, le modèle IA utilisé et le nombre de jetons, afin de suivre l'usage et le coût. Nous n'enregistrons pas ce que vous saisissez</li>
+    <li><strong>Politique de Confidentialité</strong>: <a href="https://firebase.google.com/support/privacy">https://firebase.google.com/support/privacy</a></li>
 </ul>
 
 <h3>Aucun Autre Tiers</h3>
 <ul>
     <li>Nous n'utilisons pas de services d'analyse, de réseaux publicitaires ou d'outils de suivi</li>
-    <li>Aucune donnée n'est partagée avec d'autres tiers</li>
+    <li>Aucune donnée n'est partagée avec des tiers autres que les services listés ci-dessus</li>
 </ul>
 
 <h2>Confidentialité des Enfants (Conformité COPPA)</h2>
@@ -797,7 +822,7 @@
     <li><strong>Aucune Collecte d'Informations Personnelles</strong>: Nous ne collectons pas de noms, adresses e-mail, numéros de téléphone ou identifiants personnels</li>
     <li><strong>Aucune Fonctionnalité Sociale</strong>: Pas de chat, messagerie ou fonctionnalités d'interaction sociale</li>
     <li><strong>Données Locales Uniquement</strong>: Toutes les données restent sur l'appareil sous contrôle parental</li>
-    <li><strong>Utilisation Sûre de l'IA</strong>: La fonction de nommage IA traite uniquement les séquences d'emojis, aucune donnée personnelle</li>
+    <li><strong>Utilisation Sûre de l'IA</strong>: Les fonctions IA traitent uniquement les séquences d'emojis, le texte créatif saisi et les conversations avec EmotyBot. L'application n'ajoute aucune donnée personnelle ; merci de ne saisir aucune information personnelle</li>
     <li><strong>Aucune Publicité</strong>: Aucune publicité ou suivi tiers</li>
 </ul>
 <p>Les parents peuvent consulter et supprimer toutes les données de l'application via les paramètres d'application de l'appareil.</p>
@@ -807,12 +832,12 @@
 <ul>
     <li><strong>Supprimer les Données</strong>: Désinstallez l'application pour supprimer toutes les données, ou utilisez les paramètres de l'appareil pour effacer les données de l'application</li>
     <li><strong>Exporter les Données</strong>: Utilisez la fonction d'export de l'application pour sauvegarder vos motifs</li>
-    <li><strong>Refuser l'IA</strong>: Vous pouvez créer des motifs sans utiliser la fonction de nommage IA</li>
+    <li><strong>Refuser l'IA</strong>: Vous pouvez créer des motifs sans utiliser aucune des fonctions IA</li>
 </ul>
 
 <h3>Permissions de l'Application</h3>
 <ul>
-    <li><strong>Internet</strong>: Requis uniquement pour la fonction de nommage de motifs par IA</li>
+    <li><strong>Internet</strong>: Requis uniquement pour les fonctions IA (nommage, génération de motifs, EmotyBot)</li>
     <li><strong>Stockage</strong>: Pour sauvegarder les images de motifs dans la galerie de votre appareil (avec votre permission)</li>
     <li><strong>Notifications</strong>: Pour les notifications liées à l'application (peuvent être désactivées dans les paramètres de l'appareil)</li>
 </ul>
@@ -820,13 +845,13 @@
 <h2>Conservation des Données</h2>
 <ul>
     <li><strong>Données Locales</strong>: Restent sur votre appareil jusqu'à ce que vous supprimiez l'application ou effaciez ses données</li>
-    <li><strong>Requêtes IA</strong>: Les séquences d'emojis envoyées à Anthropic ne sont pas stockées par nous (voir la politique de confidentialité d'Anthropic pour leurs pratiques)</li>
+    <li><strong>Requêtes IA</strong>: Nous ne stockons pas ce que vous envoyez aux services IA. Google et TypeSafe le traitent selon leurs propres politiques (voir les liens ci-dessus)</li>
 </ul>
 
 <h2>Utilisateurs Internationaux</h2>
 <ul>
     <li>Le traitement des données s'effectue localement sur votre appareil</li>
-    <li>Les requêtes IA sont traitées par Anthropic (voir leur politique de confidentialité pour la gestion des données internationales)</li>
+    <li>Les requêtes IA sont traitées par Google et TypeSafe, qui peuvent traiter des données hors de votre pays (voir leurs politiques de confidentialité pour la gestion des données internationales)</li>
 </ul>
 
 <h2>Modifications de Cette Politique de Confidentialité</h2>
@@ -853,12 +878,12 @@
 </ul>
 
 <hr />
-<p><strong>Dernière Mise à Jour</strong>: 19 juin 2025<br />
-<strong>Date d'Entrée en Vigueur</strong>: 19 juin 2025</p>
+<p><strong>Dernière Mise à Jour</strong>: 4 octobre 2026<br />
+<strong>Date d'Entrée en Vigueur</strong>: 4 octobre 2026</p>
 
 
         <footer>
-            <p>&copy; 2025 Christopher Archer • Tous droits réservés • v2.16.11</p>
+            <p>&copy; 2025 Christopher Archer • Tous droits réservés • v2.16.12</p>
             <p>
                 <a href="/privacy-policy">Politique de Confidentialité</a> | 
                 <a href="/eli5/">Version Simplifiée</a> | 

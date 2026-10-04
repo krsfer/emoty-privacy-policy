@@ -295,7 +295,7 @@ msgstr "Date d'Entrée en Vigueur"
 #: privacy-policy.html.j2:56 privacy-policy.html.j2:57
 #: privacy-policy.html.j2:196 privacy-policy.html.j2:197
 msgid "privacy.date"
-msgstr "19 juin 2025"
+msgstr "4 octobre 2026"
 
 #: privacy-policy.html.j2:57 privacy-policy.html.j2:196
 msgid "privacy.last_updated"
@@ -379,7 +379,7 @@ msgstr "Séquences d'Emojis"
 
 #: privacy-policy.html.j2:79
 msgid "privacy.collection.ai_service.sequences_desc"
-msgstr "Quand tu utilises notre fonction de nommage IA, on envoie tes séquences d'emojis au service Claude AI d'Anthropic pour générer des noms de motifs créatifs"
+msgstr "Quand tu utilises notre fonction de nommage IA, on envoie tes séquences d'emojis au service Gemini de Google pour générer des noms de motifs créatifs"
 
 #: privacy-policy.html.j2:80
 msgid "privacy.collection.ai_service.no_personal"
@@ -387,7 +387,7 @@ msgstr "Aucune Info Personnelle"
 
 #: privacy-policy.html.j2:80
 msgid "privacy.collection.ai_service.no_personal_desc"
-msgstr "On n'envoie aucune info personnelle, identifiant d'appareil ou donnée utilisateur aux services IA"
+msgstr "L'application n'ajoute ni ton nom, ni compte, ni coordonnées, ni identifiant d'appareil aux requêtes IA. Tout ce que tu saisis dans une requête IA est envoyé : merci de ne pas y mettre d'infos personnelles"
 
 #: privacy-policy.html.j2:83
 msgid "privacy.usage.title"
@@ -407,7 +407,7 @@ msgstr "On utilise ces données pour fournir les fonctionnalités de l'app, sauv
 
 #: privacy-policy.html.j2:88
 msgid "privacy.usage.local_storage.point3"
-msgstr "Aucune donnée personnelle n'est transmise à nos serveurs"
+msgstr "Tes motifs, étiquettes et préférences ne nous sont pas envoyés. Les requêtes IA passent par une Cloud Function qu'on exploite (voir la section Services Tiers)"
 
 #: privacy-policy.html.j2:91
 msgid "privacy.usage.ai_naming.title"
@@ -415,7 +415,7 @@ msgstr "Nommage de Motifs par IA"
 
 #: privacy-policy.html.j2:93
 msgid "privacy.usage.ai_naming.point1"
-msgstr "Quand tu demandes des noms de motifs générés par l'IA, on envoie uniquement ta séquence d'emojis à Claude AI d'Anthropic"
+msgstr "Quand tu demandes des noms de motifs générés par l'IA, on envoie uniquement ta séquence d'emojis à Gemini de Google"
 
 #: privacy-policy.html.j2:94
 msgid "privacy.usage.ai_naming.point2"
@@ -463,7 +463,7 @@ msgstr "Transmission de Données"
 
 #: privacy-policy.html.j2:114
 msgid "privacy.storage.transmission.point1"
-msgstr "Limitée aux requêtes de nommage IA (séquences d'emojis uniquement)"
+msgstr "Limitée aux requêtes IA (séquences d'emojis, texte saisi dans les fonctions IA et messages EmotyBot)"
 
 #: privacy-policy.html.j2:115
 msgid "privacy.storage.transmission.point2"
@@ -478,35 +478,35 @@ msgid "privacy.third_party.title"
 msgstr "Services Tiers"
 
 #: privacy-policy.html.j2:120
-msgid "privacy.third_party.claude.title"
-msgstr "Anthropic Claude AI"
+msgid "privacy.third_party.gemini.title"
+msgstr "Google Gemini"
 
 #: privacy-policy.html.j2:122
-msgid "privacy.third_party.claude.purpose"
+msgid "privacy.third_party.gemini.purpose"
 msgstr "Objectif"
 
 #: privacy-policy.html.j2:122
-msgid "privacy.third_party.claude.purpose_desc"
-msgstr "Générer des noms créatifs pour tes motifs d'emojis"
+msgid "privacy.third_party.gemini.purpose_desc"
+msgstr "Générer des noms créatifs et des propositions de motifs, et assurer l'assistance EmotyBot"
 
 #: privacy-policy.html.j2:123
-msgid "privacy.third_party.claude.data_sent"
+msgid "privacy.third_party.gemini.data_sent"
 msgstr "Données Envoyées"
 
 #: privacy-policy.html.j2:123
-msgid "privacy.third_party.claude.data_sent_desc"
-msgstr "Uniquement les séquences d'emojis (par ex., ❤️🌸🌟) quand tu demandes un nommage IA"
+msgid "privacy.third_party.gemini.data_sent_desc"
+msgstr "Les séquences d'emojis pour le nommage (par ex., ❤️🌸🌟) ; le texte saisi dans le générateur de motifs IA, avec la liste des emojis que l'application peut choisir ; les messages des conversations EmotyBot"
 
 #: privacy-policy.html.j2:124
-msgid "privacy.third_party.claude.data_not_sent"
+msgid "privacy.third_party.gemini.data_not_sent"
 msgstr "Données Non Envoyées"
 
 #: privacy-policy.html.j2:124
-msgid "privacy.third_party.claude.data_not_sent_desc"
-msgstr "Aucune info personnelle, identifiant d'appareil ou donnée utilisateur"
+msgid "privacy.third_party.gemini.data_not_sent_desc"
+msgstr "Aucun nom, compte, coordonnées, identifiant d'appareil ni fichier audio"
 
 #: privacy-policy.html.j2:125
-msgid "privacy.third_party.claude.privacy_policy"
+msgid "privacy.third_party.gemini.privacy_policy"
 msgstr "Politique de Confidentialité"
 
 #: privacy-policy.html.j2:128
@@ -519,7 +519,7 @@ msgstr "On n'utilise pas de services d'analyse, de réseaux publicitaires ou d'o
 
 #: privacy-policy.html.j2:131
 msgid "privacy.third_party.none.point2"
-msgstr "Aucune donnée n'est partagée avec d'autres tiers"
+msgstr "Aucune donnée n'est partagée avec des tiers autres que les services listés ci-dessus"
 
 #: privacy-policy.html.j2:134
 msgid "privacy.children.title"
@@ -559,7 +559,7 @@ msgstr "Utilisation Safe de l'IA"
 
 #: privacy-policy.html.j2:140
 msgid "privacy.children.safe_ai_desc"
-msgstr "La fonction de nommage IA traite uniquement les séquences d'emojis, aucune donnée personnelle"
+msgstr "Les fonctions IA traitent uniquement les séquences d'emojis, le texte créatif saisi et les conversations avec EmotyBot. L'application n'ajoute aucune donnée personnelle ; merci de ne mettre aucune info personnelle"
 
 #: privacy-policy.html.j2:141
 msgid "privacy.children.no_ads"
@@ -603,7 +603,7 @@ msgstr "Refuser l'IA"
 
 #: privacy-policy.html.j2:150
 msgid "privacy.rights.control.opt_out_desc"
-msgstr "Tu peux créer des motifs sans utiliser la fonction de nommage IA"
+msgstr "Tu peux créer des motifs sans utiliser aucune des fonctions IA"
 
 #: privacy-policy.html.j2:153
 msgid "privacy.rights.permissions.title"
@@ -615,7 +615,7 @@ msgstr "Internet"
 
 #: privacy-policy.html.j2:155
 msgid "privacy.rights.permissions.internet_desc"
-msgstr "Requis uniquement pour la fonction de nommage de motifs par IA"
+msgstr "Requis uniquement pour les fonctions IA (nommage, génération de motifs, EmotyBot)"
 
 #: privacy-policy.html.j2:156
 msgid "privacy.rights.permissions.storage"
@@ -651,7 +651,7 @@ msgstr "Requêtes IA"
 
 #: privacy-policy.html.j2:163
 msgid "privacy.retention.ai_desc"
-msgstr "Les séquences d'emojis envoyées à Anthropic ne sont pas stockées par nous (voir la politique de confidentialité d'Anthropic pour leurs pratiques)"
+msgstr "On ne stocke pas ce que tu envoies aux services IA. Google et TypeSafe le traitent selon leurs propres politiques (voir les liens ci-dessus)"
 
 #: privacy-policy.html.j2:166
 msgid "privacy.international.title"
@@ -663,7 +663,7 @@ msgstr "Le traitement des données s'effectue localement sur ton appareil"
 
 #: privacy-policy.html.j2:169
 msgid "privacy.international.point2"
-msgstr "Les requêtes IA sont traitées par Anthropic (voir leur politique de confidentialité pour la gestion des données internationales)"
+msgstr "Les requêtes IA sont traitées par Google et TypeSafe, qui peuvent traiter des données hors de ton pays (voir leurs politiques de confidentialité pour la gestion des données internationales)"
 
 #: privacy-policy.html.j2:172
 msgid "privacy.changes.title"
@@ -732,3 +732,75 @@ msgstr "Règlement Général sur la Protection des Données (RGPD) le cas éché
 #: privacy-policy.html.j2:192
 msgid "privacy.legal.point4"
 msgstr "California Consumer Privacy Act (CCPA) le cas échéant"
+
+msgid "privacy.collection.ai_service.prompt"
+msgstr "Texte que tu saisis"
+
+msgid "privacy.collection.ai_service.prompt_desc"
+msgstr "Quand tu décris un motif dans le générateur de motifs IA, le texte que tu saisis (jusqu'à 500 caractères) est envoyé au service Gemini de Google et à TypeSafe, avec la liste des emojis que l'application peut choisir, pour proposer des emojis, des noms et des explications adaptés"
+
+msgid "privacy.collection.ai_service.chat"
+msgstr "Conversations EmotyBot"
+
+msgid "privacy.collection.ai_service.chat_desc"
+msgstr "Quand tu discutes avec l'assistant IA EmotyBot, tes messages sont envoyés au service Gemini de Google pour générer les réponses"
+
+msgid "privacy.usage.ai_generation.title"
+msgstr "Génération de Motifs par IA"
+
+msgid "privacy.usage.ai_generation.point1"
+msgstr "Quand tu décris un motif, Gemini propose des motifs, des noms et des explications à partir du texte que tu saisis, et TypeSafe classe les emojis les plus proches de ta demande"
+
+msgid "privacy.usage.ai_generation.point2"
+msgstr "Les conversations EmotyBot sont envoyées à Gemini pour générer les réponses"
+
+msgid "privacy.usage.ai_generation.point3"
+msgstr "L'application n'ajoute aucune information personnelle ni identifiant d'appareil à ces requêtes"
+
+msgid "privacy.third_party.typesafe.title"
+msgstr "TypeSafe"
+
+msgid "privacy.third_party.typesafe.purpose_desc"
+msgstr "Classer les emojis qui correspondent le mieux à ta description dans le générateur de motifs IA, pour que la première proposition s'affiche rapidement"
+
+msgid "privacy.third_party.typesafe.data_sent_desc"
+msgstr "Le texte que tu saisis dans le générateur de motifs IA, ta langue (anglais ou français) et la liste des noms d'emojis que l'application peut choisir"
+
+msgid "privacy.third_party.typesafe.data_not_sent_desc"
+msgstr "Aucun nom, compte, coordonnées, identifiant d'appareil ni fichier audio. TypeSafe reçoit la requête de notre Cloud Function, pas de ton appareil"
+
+msgid "privacy.third_party.firebase.title"
+msgstr "Google Firebase (Cloud Functions et App Check)"
+
+msgid "privacy.third_party.firebase.purpose_desc"
+msgstr "Nos requêtes IA passent par des Cloud Functions qu'on exploite dans Google Firebase, ce qui garde les clés des services IA hors de ton appareil. Firebase App Check, qui s'appuie sur Google Play Integrity, permet à ces fonctions de n'accepter que les requêtes venant d'exemplaires authentiques d'Emoty"
+
+msgid "privacy.third_party.firebase.data_handled"
+msgstr "Données Traitées"
+
+msgid "privacy.third_party.firebase.data_handled_desc"
+msgstr "La requête IA elle-même, plus un jeton d'attestation de courte durée qu'App Check obtient auprès de Google Play Integrity. Google reçoit l'adresse réseau de ton appareil quand il se connecte"
+
+msgid "privacy.third_party.firebase.record"
+msgstr "Ce Que Nous Enregistrons"
+
+msgid "privacy.third_party.firebase.record_desc"
+msgstr "Pour chaque requête : l'application, le modèle IA utilisé et le nombre de jetons, pour suivre l'usage et le coût. On n'enregistre pas ce que tu saisis"
+
+msgid "privacy.third_party.typesafe.purpose"
+msgstr "Objectif"
+
+msgid "privacy.third_party.firebase.purpose"
+msgstr "Objectif"
+
+msgid "privacy.third_party.typesafe.data_sent"
+msgstr "Données Envoyées"
+
+msgid "privacy.third_party.typesafe.data_not_sent"
+msgstr "Données Non Envoyées"
+
+msgid "privacy.third_party.typesafe.privacy_policy"
+msgstr "Politique de Confidentialité"
+
+msgid "privacy.third_party.firebase.privacy_policy"
+msgstr "Politique de Confidentialité"

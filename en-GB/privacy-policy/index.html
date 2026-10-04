@@ -713,8 +713,8 @@
 </style>
 
 <h1>Privacy Policy for Emoty</h1>
-<p><strong>Effective Date:</strong> 19th june 2025<br />
-<strong>Last Updated:</strong> 19th june 2025</p>
+<p><strong>Effective Date:</strong> 4th October 2026<br />
+<strong>Last Updated:</strong> 4th October 2026</p>
 
 <h2>Introduction</h2>
 <p>Welcome to Emoty! This Privacy Policy explains how we collect, use, and protect your information when you use our emoji pattern creation app. We are committed to protecting your privacy and being transparent about our data practices.</p>
@@ -736,8 +736,10 @@
 
 <h3>AI Service Data</h3>
 <ul>
-    <li><strong>Emoji Sequences</strong>: When you use our AI naming feature, we send your emoji sequences to Anthropic's Claude AI service to generate creative pattern names</li>
-    <li><strong>No Personal Information</strong>: We do not send any personal information, device identifiers, or user data to AI services</li>
+    <li><strong>Emoji Sequences</strong>: When you use our AI naming feature, we send your emoji sequences to Google's Gemini service to generate creative pattern names</li>
+    <li><strong>Text You Type</strong>: When you describe a pattern in the AI pattern generator, the text you type (up to 500 characters) is sent to Google's Gemini service and to TypeSafe, together with the list of emojis the app can choose from, so they can suggest matching emojis, names and explanations</li>
+    <li><strong>EmotyBot Conversations</strong>: When you chat with the AI assistant EmotyBot, your messages are sent to Google's Gemini service to generate responses</li>
+    <li><strong>No Personal Information</strong>: The app does not add your name, account, contact details or device identifiers to AI requests. Anything you type into an AI prompt is sent, so please do not type personal information there</li>
 </ul>
 
 <h2>How We Use Your Information</h2>
@@ -745,14 +747,21 @@
 <ul>
     <li>All your patterns, preferences, and app data are stored locally on your device</li>
     <li>We use this data to provide app functionality, save your creations, and maintain your preferences</li>
-    <li>No personal data is transmitted to our servers</li>
+    <li>Your patterns, tags and preferences are not sent to us. AI requests pass through a Cloud Function that we operate (see Third-Party Services)</li>
 </ul>
 
 <h3>AI Pattern Naming</h3>
 <ul>
-    <li>When you request AI-generated pattern names, we send only your emoji sequence to Anthropic's Claude AI</li>
+    <li>When you request AI-generated pattern names, we send only your emoji sequence to Google's Gemini</li>
     <li>This helps generate creative, relevant names for your patterns</li>
     <li>No personal information or device identifiers are included in these requests</li>
+</ul>
+
+<h3>AI Pattern Generation</h3>
+<ul>
+    <li>When you describe a pattern, Gemini suggests patterns, names and explanations from the text you type, and TypeSafe ranks the closest-matching emojis</li>
+    <li>EmotyBot conversations are sent to Gemini to generate replies</li>
+    <li>The app adds no personal information or device identifiers to these requests</li>
 </ul>
 
 <h3>App Functionality</h3>
@@ -771,24 +780,40 @@
 
 <h3>Data Transmission</h3>
 <ul>
-    <li>Limited to AI naming requests (emoji sequences only)</li>
+    <li>Limited to AI requests (emoji sequences, the text you type in AI features, and EmotyBot messages)</li>
     <li>All network communications use secure HTTPS encryption</li>
     <li>No background data collection or transmission</li>
 </ul>
 
 <h2>Third-Party Services</h2>
-<h3>Anthropic Claude AI</h3>
+<h3>Google Gemini</h3>
 <ul>
-    <li><strong>Purpose</strong>: Generate creative names for your emoji patterns</li>
-    <li><strong>Data Sent</strong>: Only emoji sequences (e.g., ❤️🌸🌟) when you request AI naming</li>
-    <li><strong>Data Not Sent</strong>: No personal information, device identifiers, or user data</li>
-    <li><strong>Privacy Policy</strong>: <a href="https://www.anthropic.com/privacy">https://www.anthropic.com/privacy</a></li>
+    <li><strong>Purpose</strong>: Generate creative names and pattern suggestions, and provide EmotyBot assistance</li>
+    <li><strong>Data Sent</strong>: Emoji sequences for naming (e.g., ❤️🌸🌟); the text you type in the AI pattern generator, with the list of emojis the app can choose from; EmotyBot conversation messages</li>
+    <li><strong>Data Not Sent</strong>: No name, account, contact details, device identifiers or audio files</li>
+    <li><strong>Privacy Policy</strong>: <a href="https://ai.google.dev/gemini-api/terms">https://ai.google.dev/gemini-api/terms</a> · <a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a></li>
+</ul>
+
+<h3>TypeSafe</h3>
+<ul>
+    <li><strong>Purpose</strong>: Rank which emojis best match what you describe in the AI pattern generator, so the first suggestion appears quickly</li>
+    <li><strong>Data Sent</strong>: The text you type in the AI pattern generator, your language setting (English or French) and the list of emoji names the app can choose from</li>
+    <li><strong>Data Not Sent</strong>: No name, account, contact details, device identifiers or audio files. TypeSafe receives the request from our Cloud Function, not from your device</li>
+    <li><strong>Privacy Policy</strong>: <a href="https://typesafe.ai/legal/privacy-policy">https://typesafe.ai/legal/privacy-policy</a></li>
+</ul>
+
+<h3>Google Firebase (Cloud Functions and App Check)</h3>
+<ul>
+    <li><strong>Purpose</strong>: Our AI requests pass through Cloud Functions that we run in Google Firebase, which keep the AI service keys off your device. Firebase App Check, using Google Play Integrity, lets those functions accept requests only from genuine copies of Emoty</li>
+    <li><strong>Data Handled</strong>: The AI request itself, plus a short-lived attestation token that App Check obtains from Google Play Integrity. Google receives your device's network address when your device connects</li>
+    <li><strong>What We Record</strong>: Per request, the app, the AI model used and token counts, to monitor usage and cost. We do not record what you type</li>
+    <li><strong>Privacy Policy</strong>: <a href="https://firebase.google.com/support/privacy">https://firebase.google.com/support/privacy</a></li>
 </ul>
 
 <h3>No Other Third Parties</h3>
 <ul>
     <li>We do not use analytics services, advertising networks, or tracking tools</li>
-    <li>No data is shared with other third parties</li>
+    <li>No data is shared with third parties other than the services listed above</li>
 </ul>
 
 <h2>Children's Privacy (COPPA Compliance)</h2>
@@ -797,7 +822,7 @@
     <li><strong>No Personal Information Collection</strong>: We do not collect names, email addresses, phone numbers, or any personal identifiers</li>
     <li><strong>No Social Features</strong>: No chat, messaging, or social interaction features</li>
     <li><strong>Local Data Only</strong>: All data stays on the device under parental control</li>
-    <li><strong>Safe AI Usage</strong>: AI naming feature only processes emoji sequences, no personal data</li>
+    <li><strong>Safe AI Usage</strong>: AI features only process emoji sequences, the creative text you type, and EmotyBot conversations. The app adds no personal data, and please do not type any personal information</li>
     <li><strong>No Advertising</strong>: No third-party advertising or tracking</li>
 </ul>
 <p>Parents can review and delete all app data through the device's application settings.</p>
@@ -807,12 +832,12 @@
 <ul>
     <li><strong>Delete Data</strong>: Uninstall the app to remove all data, or use device settings to clear app data</li>
     <li><strong>Export Data</strong>: Use the app's export feature to save your patterns</li>
-    <li><strong>Opt-Out of AI</strong>: You can create patterns without using the AI naming feature</li>
+    <li><strong>Opt-Out of AI</strong>: You can create patterns without using any of the AI features</li>
 </ul>
 
 <h3>App Permissions</h3>
 <ul>
-    <li><strong>Internet</strong>: Required only for AI pattern naming feature</li>
+    <li><strong>Internet</strong>: Required only for the AI features (naming, pattern generation, EmotyBot)</li>
     <li><strong>Storage</strong>: For saving pattern images to your device gallery (with your permission)</li>
     <li><strong>Notifications</strong>: For app-related notifications (can be disabled in device settings)</li>
 </ul>
@@ -820,13 +845,13 @@
 <h2>Data Retention</h2>
 <ul>
     <li><strong>Local Data</strong>: Remains on your device until you delete the app or clear its data</li>
-    <li><strong>AI Requests</strong>: Emoji sequences sent to Anthropic are not stored by us (see Anthropic's privacy policy for their practices)</li>
+    <li><strong>AI Requests</strong>: We do not store what you send to the AI services. Google and TypeSafe handle it under their own policies (see the links above)</li>
 </ul>
 
 <h2>International Users</h2>
 <ul>
     <li>Data processing occurs locally on your device</li>
-    <li>AI requests are processed by Anthropic (see their privacy policy for international data handling)</li>
+    <li>AI requests are processed by Google and TypeSafe, which may handle data outside your country (see their privacy policies for international data handling)</li>
 </ul>
 
 <h2>Changes to This Privacy Policy</h2>
@@ -853,12 +878,12 @@
 </ul>
 
 <hr />
-<p><strong>Last Updated</strong>: 19th june 2025<br />
-<strong>Effective Date</strong>: 19th june 2025</p>
+<p><strong>Last Updated</strong>: 4th October 2026<br />
+<strong>Effective Date</strong>: 4th October 2026</p>
 
 
         <footer>
-            <p>&copy; 2025 Christopher Archer • All rights reserved • v2.16.11</p>
+            <p>&copy; 2025 Christopher Archer • All rights reserved • v2.16.12</p>
             <p>
                 <a href="/en-GB/privacy-policy">Privacy Policy</a> | 
                 <a href="/en-GB/eli5/">Simplified Version</a> | 

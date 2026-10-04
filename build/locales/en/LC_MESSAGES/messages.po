@@ -294,7 +294,7 @@ msgstr "Effective Date"
 #: privacy-policy.html.j2:56 privacy-policy.html.j2:57
 #: privacy-policy.html.j2:196 privacy-policy.html.j2:197
 msgid "privacy.date"
-msgstr "19th june 2025"
+msgstr "4th October 2026"
 
 #: privacy-policy.html.j2:57 privacy-policy.html.j2:196
 msgid "privacy.last_updated"
@@ -378,7 +378,7 @@ msgstr "Emoji Sequences"
 
 #: privacy-policy.html.j2:79
 msgid "privacy.collection.ai_service.sequences_desc"
-msgstr "When you use our AI naming feature, we send your emoji sequences to Anthropic's Claude AI service to generate creative pattern names"
+msgstr "When you use our AI naming feature, we send your emoji sequences to Google's Gemini service to generate creative pattern names"
 
 #: privacy-policy.html.j2:80
 msgid "privacy.collection.ai_service.no_personal"
@@ -386,7 +386,7 @@ msgstr "No Personal Information"
 
 #: privacy-policy.html.j2:80
 msgid "privacy.collection.ai_service.no_personal_desc"
-msgstr "We do not send any personal information, device identifiers, or user data to AI services"
+msgstr "The app does not add your name, account, contact details or device identifiers to AI requests. Anything you type into an AI prompt is sent, so please do not type personal information there"
 
 #: privacy-policy.html.j2:83
 msgid "privacy.usage.title"
@@ -406,7 +406,7 @@ msgstr "We use this data to provide app functionality, save your creations, and 
 
 #: privacy-policy.html.j2:88
 msgid "privacy.usage.local_storage.point3"
-msgstr "No personal data is transmitted to our servers"
+msgstr "Your patterns, tags and preferences are not sent to us. AI requests pass through a Cloud Function that we operate (see Third-Party Services)"
 
 #: privacy-policy.html.j2:91
 msgid "privacy.usage.ai_naming.title"
@@ -414,7 +414,7 @@ msgstr "AI Pattern Naming"
 
 #: privacy-policy.html.j2:93
 msgid "privacy.usage.ai_naming.point1"
-msgstr "When you request AI-generated pattern names, we send only your emoji sequence to Anthropic's Claude AI"
+msgstr "When you request AI-generated pattern names, we send only your emoji sequence to Google's Gemini"
 
 #: privacy-policy.html.j2:94
 msgid "privacy.usage.ai_naming.point2"
@@ -462,7 +462,7 @@ msgstr "Data Transmission"
 
 #: privacy-policy.html.j2:114
 msgid "privacy.storage.transmission.point1"
-msgstr "Limited to AI naming requests (emoji sequences only)"
+msgstr "Limited to AI requests (emoji sequences, the text you type in AI features, and EmotyBot messages)"
 
 #: privacy-policy.html.j2:115
 msgid "privacy.storage.transmission.point2"
@@ -477,35 +477,35 @@ msgid "privacy.third_party.title"
 msgstr "Third-Party Services"
 
 #: privacy-policy.html.j2:120
-msgid "privacy.third_party.claude.title"
-msgstr "Anthropic Claude AI"
+msgid "privacy.third_party.gemini.title"
+msgstr "Google Gemini"
 
 #: privacy-policy.html.j2:122
-msgid "privacy.third_party.claude.purpose"
+msgid "privacy.third_party.gemini.purpose"
 msgstr "Purpose"
 
 #: privacy-policy.html.j2:122
-msgid "privacy.third_party.claude.purpose_desc"
-msgstr "Generate creative names for your emoji patterns"
+msgid "privacy.third_party.gemini.purpose_desc"
+msgstr "Generate creative names and pattern suggestions, and provide EmotyBot assistance"
 
 #: privacy-policy.html.j2:123
-msgid "privacy.third_party.claude.data_sent"
+msgid "privacy.third_party.gemini.data_sent"
 msgstr "Data Sent"
 
 #: privacy-policy.html.j2:123
-msgid "privacy.third_party.claude.data_sent_desc"
-msgstr "Only emoji sequences (e.g., ❤️🌸🌟) when you request AI naming"
+msgid "privacy.third_party.gemini.data_sent_desc"
+msgstr "Emoji sequences for naming (e.g., ❤️🌸🌟); the text you type in the AI pattern generator, with the list of emojis the app can choose from; EmotyBot conversation messages"
 
 #: privacy-policy.html.j2:124
-msgid "privacy.third_party.claude.data_not_sent"
+msgid "privacy.third_party.gemini.data_not_sent"
 msgstr "Data Not Sent"
 
 #: privacy-policy.html.j2:124
-msgid "privacy.third_party.claude.data_not_sent_desc"
-msgstr "No personal information, device identifiers, or user data"
+msgid "privacy.third_party.gemini.data_not_sent_desc"
+msgstr "No name, account, contact details, device identifiers or audio files"
 
 #: privacy-policy.html.j2:125
-msgid "privacy.third_party.claude.privacy_policy"
+msgid "privacy.third_party.gemini.privacy_policy"
 msgstr "Privacy Policy"
 
 #: privacy-policy.html.j2:128
@@ -518,7 +518,7 @@ msgstr "We do not use analytics services, advertising networks, or tracking tool
 
 #: privacy-policy.html.j2:131
 msgid "privacy.third_party.none.point2"
-msgstr "No data is shared with other third parties"
+msgstr "No data is shared with third parties other than the services listed above"
 
 #: privacy-policy.html.j2:134
 msgid "privacy.children.title"
@@ -558,7 +558,7 @@ msgstr "Safe AI Usage"
 
 #: privacy-policy.html.j2:140
 msgid "privacy.children.safe_ai_desc"
-msgstr "AI naming feature only processes emoji sequences, no personal data"
+msgstr "AI features only process emoji sequences, the creative text you type, and EmotyBot conversations. The app adds no personal data, and please do not type any personal information"
 
 #: privacy-policy.html.j2:141
 msgid "privacy.children.no_ads"
@@ -602,7 +602,7 @@ msgstr "Opt-Out of AI"
 
 #: privacy-policy.html.j2:150
 msgid "privacy.rights.control.opt_out_desc"
-msgstr "You can create patterns without using the AI naming feature"
+msgstr "You can create patterns without using any of the AI features"
 
 #: privacy-policy.html.j2:153
 msgid "privacy.rights.permissions.title"
@@ -614,7 +614,7 @@ msgstr "Internet"
 
 #: privacy-policy.html.j2:155
 msgid "privacy.rights.permissions.internet_desc"
-msgstr "Required only for AI pattern naming feature"
+msgstr "Required only for the AI features (naming, pattern generation, EmotyBot)"
 
 #: privacy-policy.html.j2:156
 msgid "privacy.rights.permissions.storage"
@@ -650,7 +650,7 @@ msgstr "AI Requests"
 
 #: privacy-policy.html.j2:163
 msgid "privacy.retention.ai_desc"
-msgstr "Emoji sequences sent to Anthropic are not stored by us (see Anthropic's privacy policy for their practices)"
+msgstr "We do not store what you send to the AI services. Google and TypeSafe handle it under their own policies (see the links above)"
 
 #: privacy-policy.html.j2:166
 msgid "privacy.international.title"
@@ -662,7 +662,7 @@ msgstr "Data processing occurs locally on your device"
 
 #: privacy-policy.html.j2:169
 msgid "privacy.international.point2"
-msgstr "AI requests are processed by Anthropic (see their privacy policy for international data handling)"
+msgstr "AI requests are processed by Google and TypeSafe, which may handle data outside your country (see their privacy policies for international data handling)"
 
 #: privacy-policy.html.j2:172
 msgid "privacy.changes.title"
@@ -731,3 +731,75 @@ msgstr "General Data Protection Regulation (GDPR) where applicable"
 #: privacy-policy.html.j2:192
 msgid "privacy.legal.point4"
 msgstr "California Consumer Privacy Act (CCPA) where applicable"
+
+msgid "privacy.collection.ai_service.prompt"
+msgstr "Text You Type"
+
+msgid "privacy.collection.ai_service.prompt_desc"
+msgstr "When you describe a pattern in the AI pattern generator, the text you type (up to 500 characters) is sent to Google's Gemini service and to TypeSafe, together with the list of emojis the app can choose from, so they can suggest matching emojis, names and explanations"
+
+msgid "privacy.collection.ai_service.chat"
+msgstr "EmotyBot Conversations"
+
+msgid "privacy.collection.ai_service.chat_desc"
+msgstr "When you chat with the AI assistant EmotyBot, your messages are sent to Google's Gemini service to generate responses"
+
+msgid "privacy.usage.ai_generation.title"
+msgstr "AI Pattern Generation"
+
+msgid "privacy.usage.ai_generation.point1"
+msgstr "When you describe a pattern, Gemini suggests patterns, names and explanations from the text you type, and TypeSafe ranks the closest-matching emojis"
+
+msgid "privacy.usage.ai_generation.point2"
+msgstr "EmotyBot conversations are sent to Gemini to generate replies"
+
+msgid "privacy.usage.ai_generation.point3"
+msgstr "The app adds no personal information or device identifiers to these requests"
+
+msgid "privacy.third_party.typesafe.title"
+msgstr "TypeSafe"
+
+msgid "privacy.third_party.typesafe.purpose_desc"
+msgstr "Rank which emojis best match what you describe in the AI pattern generator, so the first suggestion appears quickly"
+
+msgid "privacy.third_party.typesafe.data_sent_desc"
+msgstr "The text you type in the AI pattern generator, your language setting (English or French) and the list of emoji names the app can choose from"
+
+msgid "privacy.third_party.typesafe.data_not_sent_desc"
+msgstr "No name, account, contact details, device identifiers or audio files. TypeSafe receives the request from our Cloud Function, not from your device"
+
+msgid "privacy.third_party.firebase.title"
+msgstr "Google Firebase (Cloud Functions and App Check)"
+
+msgid "privacy.third_party.firebase.purpose_desc"
+msgstr "Our AI requests pass through Cloud Functions that we run in Google Firebase, which keep the AI service keys off your device. Firebase App Check, using Google Play Integrity, lets those functions accept requests only from genuine copies of Emoty"
+
+msgid "privacy.third_party.firebase.data_handled"
+msgstr "Data Handled"
+
+msgid "privacy.third_party.firebase.data_handled_desc"
+msgstr "The AI request itself, plus a short-lived attestation token that App Check obtains from Google Play Integrity. Google receives your device's network address when your device connects"
+
+msgid "privacy.third_party.firebase.record"
+msgstr "What We Record"
+
+msgid "privacy.third_party.firebase.record_desc"
+msgstr "Per request, the app, the AI model used and token counts, to monitor usage and cost. We do not record what you type"
+
+msgid "privacy.third_party.typesafe.purpose"
+msgstr "Purpose"
+
+msgid "privacy.third_party.firebase.purpose"
+msgstr "Purpose"
+
+msgid "privacy.third_party.typesafe.data_sent"
+msgstr "Data Sent"
+
+msgid "privacy.third_party.typesafe.data_not_sent"
+msgstr "Data Not Sent"
+
+msgid "privacy.third_party.typesafe.privacy_policy"
+msgstr "Privacy Policy"
+
+msgid "privacy.third_party.firebase.privacy_policy"
+msgstr "Privacy Policy"
